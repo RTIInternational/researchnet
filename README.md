@@ -1,4 +1,3 @@
-
 A ResearchKit Backed
 =====================
 
@@ -22,4 +21,4 @@ Please submit bugs, gripes and feature requests at https://bitbucket.org/adam704
 
 Any other questions contact Adam Preston on Twitter at @adam704a, email at apreston@rti.org
 
-![research.png](https://bitbucket.org/repo/B6bG6n/images/488613854-research.png)
+![research_sm.png](https://bitbucket.org/repo/B6bG6n/images/661596335-research_sm.png)
