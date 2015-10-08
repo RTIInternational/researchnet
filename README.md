@@ -24,3 +24,5 @@ Bugs, new requests or contribution
 Please submit bugs, gripes and feature requests at https://bitbucket.org/adam704a/researchnet/issues
 
 Any other questions contact Adam Preston on Twitter at @adam704a, email at apreston@rti.org
+
+![research_sm.png](https://bitbucket.org/repo/B6bG6n/images/661596335-research_sm.png)
