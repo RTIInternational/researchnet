@@ -1,0 +1,14 @@
+db:
+  image: postgres
+mongo:
+  image: mongo 
+web:
+  build: .
+  command: python researchnet/manage.py runserver 0.0.0.0:8000
+  volumes:
+    - .:/code
+  ports:
+    - "8000:8000"
+  links:
+    - db
+    - mongo
