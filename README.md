@@ -11,7 +11,7 @@ Prerequisites
 
 Getting Started
 ----------------
-`docker-compose up` to start the docker containers.  Your application will be available.  If you want to run this outside of docker, just make sure that you have an entry for `db` that points to your postgressql database and `mongo` to your mongo database.
+Type this `docker-compose up` to start the docker containers.  Your application will be available via docker IP address.  If you want to run this outside of docker, just make sure that you have an entry for `db` that points to your postgressql database and `mongo` to your mongo database.  When you have all of that set up you can run `python manage.py runserver_plus 0.0.0.0:8000 --settings=config.settings.local`
 
 Front-end assets
 ----------------

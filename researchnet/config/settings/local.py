@@ -1,15 +1,5 @@
 from .base import *
 
-# Database
-# https://docs.djangoproject.com/en/1.8/ref/settings/#databases
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = True
 
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'HOST': 'db',
-        'PORT': 5432,
-    }
-}

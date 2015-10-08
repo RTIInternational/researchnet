@@ -1,0 +1,82 @@
+{% load staticfiles %}
+{% load compress %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+{% compress css %}
+<link type="text/css" rel="stylesheet" href="{% static 'foundation/css/foundation.css' %}">
+<link type="text/css" rel="stylesheet" href="{% static 'foundation/css/normalize.css' %}">
+{% endcompress %}
+
+<style type="text/css">
+
+body {
+  background: #333; }
+
+.header.panel {
+  margin: 3rem auto;
+  border: 2px solid #444;
+  background: #fff; }
+  .header.panel p {
+    font: 1rem "Avenir Next";
+    padding: 1rem 2rem 2rem 2rem;
+    margin-top: -1.25rem; }
+    .header.panel p span {
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 75%;
+      font-weight: bold; }
+  .header.panel .sign {
+    background: #fff;
+    width: 150px;
+    height: 2.4rem;
+    border: 2px solid #444;
+    position: relative;
+    top: -2.5rem;
+    margin: auto; }
+    .header.panel .sign h1 {
+      text-transform: uppercase;
+      font: bolder 0.875rem "Avenir Next";
+      letter-spacing: 3px;
+      color: #666;
+      font-size: 70%;
+      text-align: center;
+      line-height: 2rem; }
+
+
+
+</style>
+<title>Research NET</title>
+
+
+</head>
+
+<body>
+
+<div class="row">
+  <div class="small-8 medium-6 large-5 small-centered columns">
+
+    <div class="header panel">
+      <div class="sign">
+        <h1>Notice</h1>
+      </div>
+      <p><span>Research NET is coming</span> While there is not much too see now, very soon there will be somethign to look at.</p>
+    </div>
+  
+  </div>
+</div>
+
+{% compress js %}
+  <script src="{% static 'jquery/dist/jquery.min.js' %}"></script>
+  <script src="{% static 'foundation/js/foundation.min.js' %}"></script>
+{% endcompress %}
+
+</body>
+</html>
