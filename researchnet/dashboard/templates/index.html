@@ -12,47 +12,46 @@
 
 {% compress css %}
 <link type="text/css" rel="stylesheet" href="{% static 'foundation/css/foundation.css' %}">
+<link href="http://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css" rel="stylesheet">
 <link type="text/css" rel="stylesheet" href="{% static 'foundation/css/normalize.css' %}">
 {% endcompress %}
 
 <style type="text/css">
 
-body {
-  background: #333; }
+.signup-panel {
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  padding: 15px;
+  margin-top: 30px;
+}
+.signup-panel i {
+  font-size: 30px;
+  line-height: 50px;
+  color: #999;
+}
+.signup-panel form input, .signup-panel form span {
+  height: 50px;
+}
+.signup-panel .welcome {
+  font-size: 26px;
+  text-align: center;
+  margin-left: 0;
+}
+.signup-panel p {
+  font-size: 13px;
+  font-weight: 200;
+  margin-left: 25%;
+}
+.signup-panel .button {
+  margin-left: 35%;
+}
 
-.header.panel {
-  margin: 3rem auto;
-  border: 2px solid #444;
-  background: #fff; }
-  .header.panel p {
-    font: 1rem "Avenir Next";
-    padding: 1rem 2rem 2rem 2rem;
-    margin-top: -1.25rem; }
-    .header.panel p span {
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      font-size: 75%;
-      font-weight: bold; }
-  .header.panel .sign {
-    background: #fff;
-    width: 150px;
-    height: 2.4rem;
-    border: 2px solid #444;
-    position: relative;
-    top: -2.5rem;
-    margin: auto; }
-    .header.panel .sign h1 {
-      text-transform: uppercase;
-      font: bolder 0.875rem "Avenir Next";
-      letter-spacing: 3px;
-      color: #666;
-      font-size: 70%;
-      text-align: center;
-      line-height: 2rem; }
 
 
 
 </style>
+
+
 <title>Research NET</title>
 
 
@@ -60,18 +59,46 @@ body {
 
 <body>
 
-<div class="row">
-  <div class="small-8 medium-6 large-5 small-centered columns">
 
-    <div class="header panel">
-      <div class="sign">
-        <h1>Notice</h1>
+   <div class="row">
+
+    <div class="large-6 large-centered columns">
+
+      <div class="signup-panel">
+        <p class="welcome"> Welcome to Research.net</p>
+        <form>
+          <div class="row collapse">
+            <div class="small-2  columns">
+              <span class="prefix"><i class="fi-torso-female"></i></span>
+            </div>
+            <div class="small-10  columns">
+              <input type="text" placeholder="username">
+            </div>
+          </div>
+          <div class="row collapse">
+            <div class="small-2 columns">
+              <span class="prefix"><i class="fi-mail"></i></span>
+            </div>
+            <div class="small-10  columns">
+              <input type="text" placeholder="email">
+            </div>
+          </div>
+          <div class="row collapse">
+            <div class="small-2 columns ">
+              <span class="prefix"><i class="fi-lock"></i></span>
+            </div>
+            <div class="small-10 columns ">
+              <input type="text" placeholder="password">
+            </div>
+          </div>
+        </form>
+        <a href="#" class="button ">Login </a>
+         
       </div>
-      <p><span>Research NET is coming</span> Eventually this will be the backend server for mobile apps created with the Apple's ResearchKit framework as well as with the RTI ResearchNET SDK.  While there is not much too see now, very soon there will be and when it is, all of your dreams will come true.</p>
     </div>
-  
-  </div>
-</div>
+   </div>
+            
+
 
 {% compress js %}
   <script src="{% static 'jquery/dist/jquery.min.js' %}"></script>
