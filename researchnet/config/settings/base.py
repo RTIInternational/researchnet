@@ -37,10 +37,12 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+
     # Vendor
     'djangobower',
     'compressor',
     'django_extensions',
+    'rest_framework',
 
     # Mine
     'dashboard',
@@ -105,3 +107,9 @@ BOWER_INSTALLED_APPS = (
     'foundation#5.5.2',
     'font-awesome#4.4.0',
 )
+
+REST_FRAMEWORK = {
+    'PAGE_SIZE': 20,
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination'
+}
+
