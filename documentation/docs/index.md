@@ -24,11 +24,6 @@ Examples of RTI projects that could use the new capabilities developed by this I
 
 
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs help` - Print this help message.
-
 ---
 
 # Research Objectives
@@ -52,12 +47,6 @@ Examples of RTI projects that could use the new capabilities developed by this I
 Each iteration being set based on the full objectives as well as the results of the previous iterations and related stakeholder feedback. 
 
 The basic progression of tasks toward goals is listed here.  Note that these activities will be interleaved and concurrent, rather than consecutive.
-
-
-| First Header | Second Header | Third Header |
-| ------------ | ------------- | ------------ |
-| Content Cell | Content Cell  | Content Cell |
-| Content Cell | Content Cell  | Content Cell |
 
 ---
 
