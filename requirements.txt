@@ -12,6 +12,7 @@ Markdown==2.6.2
 MarkupSafe==0.23
 mkdocs==0.14.0
 psycopg2==2.6.1
+pymongo==3.0.3
 PyYAML==3.11
 six==1.9.0
 tornado==4.2.1
