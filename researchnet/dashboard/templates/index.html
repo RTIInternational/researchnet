@@ -1,79 +1,151 @@
-{% load staticfiles %}
-{% load compress %}
+{% extends "base.html" %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
+{% block content %}
 
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-
-{% compress css %}
-<link type="text/css" rel="stylesheet" href="{% static 'foundation/css/foundation.css' %}">
-<link href="http://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css" rel="stylesheet">
-<link type="text/css" rel="stylesheet" href="{% static 'foundation/css/normalize.css' %}">
-{% endcompress %}
-
-<style type="text/css">
-
-.signup-panel {
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  padding: 15px;
-  margin-top: 30px;
-}
-.signup-panel i {
-  font-size: 30px;
-  line-height: 50px;
-  color: #999;
-}
-.signup-panel form input, .signup-panel form span {
-  height: 50px;
-}
-.signup-panel .welcome {
-  font-size: 26px;
-  text-align: center;
-  margin-left: 0;
-}
-.signup-panel p {
-  font-size: 13px;
-  font-weight: 200;
-  margin-left: 25%;
-}
-.signup-panel .button {
-  margin-left: 35%;
-}
-
-
-
-
-</style>
-
-
-<title>Research NET</title>
-
-
-</head>
-
-<body>
-
-
-   <div class="row">
-
-    <div class="large-6 large-centered columns">
-
-        This is the dashboard
-     
-   </div>
+       
+        <nav class="top-bar" data-topbar>
+          <ul class="title-area">
+             
+            <li class="name">
+              <h1>
+                <a href="#">
+                  Research.net
+                </a>
+              </h1>
+            </li>
             
+          </ul>
+       
+          <section class="top-bar-section">
+             
+            <ul class="right">
+              <li class="divider"></li>
+              
+              <li class="divider"></li>
+              <li> T {{ request.user.username }} </li>
+              
+              <li class="divider"></li>
+              
+              <li><a href="{% url 'django.contrib.auth.views.logout' %}">Logout</a></li>
+            </ul>
+          </section>
+        </nav>
+       
+         
+       
+        <div class="row">
+          <div class="large-12 columns">
+       
+           
+       
+            <div class="row">
+              <div class="large-12 hide-for-small">
+       
+                <div id="featured" data-orbit>
+                    <img src="http://placehold.it/1200x500&text=Slide Image 1" alt="slide image">
+                    <img src="http://placehold.it/1200x500&text=Slide Image 2" alt="slide image">
+                    <img src="http://placehold.it/1200x500&text=Slide Image 3" alt="slide image">
+                  </div>
+       
+            </div>
+          </div>
+       
+            <div class="row">
+              <div class="large-12 columns show-for-small">
+       
+                <img src="http://placehold.it/1200x700&text=Mobile Header">
+       
+              </div>
+            </div><br>
 
+            <div class="row">
+              <div class="large-12 columns">
+                <div class="row">
+                   
+                  <div class="large-4 small-6 columns">
+       
+                    <h4>Upcoming Shows</h4><hr>
+       
+                    <div class="row">
+                      <div class="large-1 column">
+                        <img src="http://placehold.it/50x50&text=[img]">
+                      </div>
+       
+                      <div class="large-9 columns">
+                        <h5><a href="#">Venue Name</a></h5>
+                        <h6 class="subheader show-for-small">Doors at 00:00pm</h6>
+                      </div>
+                    </div><hr>
+       
+                    <div class="hide-for-small">
+                      <div class="row">
+                        <div class="large-1 column">
+                          <img src="http://placehold.it/50x50&text=[img]">
+                        </div>
+       
+                        <div class="large-9 columns">
+                          <h5 class="subheader"><a href="#">Venue Name</a></h5>
+                        </div>
+                      </div><hr>
+       
+                      <div class="row">
+                        <div class="large-1 column">
+                          <img src="http://placehold.it/50x50&text=[img]">
+                        </div>
+       
+                        <div class="large-9 columns">
+                          <h5 class="subheader"><a href="#">Venue Name</a></h5>
+                        </div>
+                      </div><hr>
+       
+                      <div class="row">
+                        <div class="large-1 column">
+                          <img src="http://placehold.it/50x50&text=[img]">
+                        </div>
+       
+                        <div class="large-9 columns">
+                          <h5 class="subheader"><a href="#">Venue Name</a></h5>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                   
 
-{% compress js %}
-  <script src="{% static 'jquery/dist/jquery.min.js' %}"></script>
-  <script src="{% static 'foundation/js/foundation.min.js' %}"></script>
-{% endcompress %}
+                  <div class="large-4 small-6 columns">
+                    <img src="http://placehold.it/300x465&text=Image">
+                  </div>
 
-</body>
-</html>
+                  <div class="large-4 small-12 columns">
+       
+                    <h4>Blog</h4><hr>
+                    <div class="panel">
+                      <h5><a href="#">Post Title 1</a></h5>
+       
+                      <h6 class="subheader">
+                        Risus ligula, aliquam nec fermentum vitae, sollicitudin eget urna. Suspendisse ultrices ornare tempor...
+                      </h6>
+       
+                      <h6><a href="#">Read More »</a></h6>
+                    </div>
+       
+                    <div class="panel hide-for-small">
+                      <h5><a href="#">Post Title 2 »</a></h5>
+                    </div>
+       
+                    <div class="panel hide-for-small">
+                      <h5><a href="#">Post Title 3 »</a></h5>
+                    </div>
+       
+                    <a href="#" class="right">Go To Blog »</a>
+       
+                  </div>
+       
+                   
+       
+                </div>
+              </div>
+            </div>
+       
+           
+
+{% endblock %}

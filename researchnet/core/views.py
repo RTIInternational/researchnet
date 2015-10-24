@@ -20,6 +20,18 @@ class GroupViewSet(viewsets.ModelViewSet):
     serializer_class = GroupSerializer
 
 
-def login(request):
-    return render(request, 'login.html')
+def logout(request):
+    username = request.POST['username']
+    password = request.POST['password']
+    user = authenticate(username=username, password=password)
+    if user is not None:
+        if user.is_active:
+            login(request, user)
+            print("User is valid, active and authenticated")
+        else:
+            print("inactive users")
+            ...
+    else:
+        print("invalid login")
+        ...
 

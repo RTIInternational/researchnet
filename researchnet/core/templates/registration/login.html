@@ -1,20 +1,7 @@
-{% load staticfiles %}
-{% load compress %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
+{% extends "base.html" %}
 
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-
-{% compress css %}
-<link type="text/css" rel="stylesheet" href="{% static 'foundation/css/foundation.css' %}">
-<link href="http://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css" rel="stylesheet">
-<link type="text/css" rel="stylesheet" href="{% static 'foundation/css/normalize.css' %}">
-{% endcompress %}
+{% block head %}
 
 <style type="text/css">
 
@@ -45,34 +32,32 @@
 .signup-panel .button {
   margin-left: 35%;
 }
-
-
-
-
 </style>
 
+{% endblock %}
 
-<title>Research NET</title>
-
-
-</head>
-
-<body>
+{% block content %}
 
 
    <div class="row">
 
     <div class="large-6 large-centered columns">
 
+      {% if form.errors %}
+      <p>Your username and password didn't match. Please try again.</p>
+      {% endif %}
+
       <div class="signup-panel">
         <p class="welcome"> Welcome to Research.net</p>
-        <form>
+        <form method="post" action="{% url 'django.contrib.auth.views.login' %}">
+        {% csrf_token %}
           <div class="row collapse">
             <div class="small-2  columns">
               <span class="prefix"><i class="fi-torso-female"></i></span>
             </div>
             <div class="small-10  columns">
-              <input type="text" placeholder="username">
+
+            {{ form.username }}
             </div>
           </div>
 
@@ -81,22 +66,18 @@
               <span class="prefix"><i class="fi-lock"></i></span>
             </div>
             <div class="small-10 columns ">
-              <input type="text" placeholder="password">
+              {{ form.password }}
             </div>
           </div>
+
+           <input type="submit" class="button" value="Login" >
+           <input type="hidden" name="next" value="{{ next }}" />
         </form>
-        <a href="#" class="button ">Login </a>
-         
+        
       </div>
     </div>
    </div>
             
 
+{% endblock %}
 
-{% compress js %}
-  <script src="{% static 'jquery/dist/jquery.min.js' %}"></script>
-  <script src="{% static 'foundation/js/foundation.min.js' %}"></script>
-{% endcompress %}
-
-</body>
-</html>
