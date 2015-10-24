@@ -37,7 +37,6 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-
     # Vendor
     'djangobower',
     'compressor',
@@ -46,6 +45,7 @@ INSTALLED_APPS = (
 
     # Mine
     'dashboard',
+    'core',
 )
 
 MIDDLEWARE_CLASSES = (

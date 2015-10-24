@@ -18,3 +18,8 @@ class GroupViewSet(viewsets.ModelViewSet):
     """
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
+
+
+def login(request):
+    return render(request, 'login.html')
+
