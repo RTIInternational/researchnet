@@ -15,6 +15,11 @@ Type this `docker-compose up` to start the docker containers.  Your application 
 
 PRO TIP: Because python is running as a container, anytime you install a module you will have to rebuild the container, which you can do like this: `docker-compose build`.
 
+
+Documentation
+----------------
+We use MkDocs for our documentation.  Just go to the documentation folder and run `mkdocs serve`
+
 Front-end assets
 ----------------
 
