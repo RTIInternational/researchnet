@@ -20,10 +20,16 @@ Documentation
 ----------------
 We use MkDocs for our documentation.  Just go to the documentation folder and run `mkdocs serve`
 
+
 Front-end assets
 ----------------
 
 Front-end assets are managed by [Bower](http://bower.io). You have to run this in order to make the dashboard work `python manage.py bower install`
+
+
+Notebooks
+----------------
+We're using notebooks here for exploratory data analysis. To start this up just run `docker-compose up juptyer`
 
 
 Bugs, new requests or contribution

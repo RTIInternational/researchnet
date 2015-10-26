@@ -12,3 +12,9 @@ web:
   links:
     - db
     - mongo
+juptyer:
+  image: jupyter/datascience-notebook
+  volumes: 
+   - ./notebooks:/home/jovyan/work
+  ports:
+    - "8888:8888"
