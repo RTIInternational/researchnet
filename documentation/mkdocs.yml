@@ -1,2 +1,6 @@
 site_name: Research.net
 theme: readthedocs
+pages:
+- 'Introduction': 'index.md'
+- 'API': 'api.md'
+- 'Background': 'background.md'
