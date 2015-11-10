@@ -15,6 +15,9 @@ These challenges represent an opportunity for RTI to step forward with solutions
 
 The solution would include the following basic components: an iOS code library, a cloud-based data host, a service layer implementing data exchange APIs, and a dashboard UI for management.  Exhibit 2 is a simplified diagram showing the flow of data between ReseachKit applications, the proposed backend data service, and researchers. Implementers would include the iOS library in their app code, and connect to our data host via the service APIs.  Users would manage their datasets and perform exploratory analytics via the dashboard UI. The system design and implementation would incorporate US legal and regulatory compliance with respect to data privacy and security. 
 
+
+![Screenshot](images/researchkit.png)
+
 This project would build and demonstrate the feasibility of a service designed to gather and help analyze biomedical data from users of mobile apps developed using ResearchKit. This new capability would be a logical extension and modernization of our existing biomedical data collection, management, and research business. RTI currently cannot offer this capability to clients. 
 This new service will leverage the experience skills of our staff in research data center technologies and operations (e.g. research protocol design and oversight, human subjects research, data privacy and security, data collection and management, statistical analysis, data visualization), and should help generate business in those areas. In developing this service the project team will consult the RTI Center for Advanced Health Information Technology (CAHIT), Information Technology Services (ITS), the Institutional Review Board (IRB), and the Center for Data Sciences (CDS). This service, while developed to receive data from ResearchKit applications running on iOS mobile devices, could also serve as a backend for other mobile applications for biomedical research, such as RTI’s PHIT application.
 Examples of RTI projects that could use the new capabilities developed by this IR&D project immediately include the following:
@@ -47,6 +50,34 @@ Examples of RTI projects that could use the new capabilities developed by this I
 Each iteration being set based on the full objectives as well as the results of the previous iterations and related stakeholder feedback. 
 
 The basic progression of tasks toward goals is listed here.  Note that these activities will be interleaved and concurrent, rather than consecutive.
+
+## Milestones
+
+| October - January | Planned Activities | Notes/Comments      
+----------- | ----------- | -----------
+Task 1: Establishment of product definition | - Scan competitive landscape.<br/> - Review target audience needs.<br/> - Establish feature list and version plan. | The project team will consult CAHIT.
+Task 2: Document requirements for iOS code library | Document technical requirements for the iOS library component. | 
+Task 3: Document basic requirements for cloud data service | The project team will consult RTI-ITS and the IRB to develop and document requirements for cloud service providers. | Analysis and requirements gathering for the cloud data service components
+Task 4: Identification of potential cloud provider/partners| - Research of provider capabilities, reputation, costs, etc. <br/> - Develop short list of top provider/partner candidates.| The project team will consult RTI-ITS to review requirements and assess potential cloud service providers. Potential cloud services include IBM Softlayer, Microsoft Azure, and Amazon Web Services
+
+
+| February - May | Planned Activities | Notes/Comments      
+----------- | ----------- | -----------
+Task 5: Selection of cloud provider/partner | - Scan competitive landscape.<br/> - Confer with stakeholders, review options and make decision. | Stakeholders consulted by the project team will include RTI-ITS and the IRB.
+Task 6: Document detailed requirements and design for cloud data service and dashboard UI | Knowing provider, develop and document requirements and system design |
+Task 7: Early data service development | Kick off data service development|
+Task 8: Early dashboard UI development | Kick off dashboard development |
+Task 9: Development of iOS code library | Development and service integration of iOS component |
+
+| June - September | Planned Activities | Notes/Comments      
+----------- | ----------- | -----------
+Task 10: Data service development | Development, testing, demo/pilot planning | 
+Task 11: Dashboard UI development | Development, testing, demo/pilot planning |
+Task 12: Testing data service integration with iOS components | Integration testing and differential development |
+Task 13: Demo/Pilot of iOS app using data service | Complete a demo app using data service integration |
+Task 14: Demo/Pilot of dashboard UI | Complete a demo/pilot of dashboard app using service hosted data |
+
+
 
 ---
 
