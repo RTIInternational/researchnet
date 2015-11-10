@@ -1,16 +1,19 @@
 
-Put brief description of the REST api here
+This is the core API for to be used primarily within a mobile client.
+
+
+
 
 # Enrollment
 
  |  | 
 :----------- | :----------- 
-__Description__         | Using this API call, you need only supply the survey identifier and createdOn timestamp, as well as an optional array of answers, in order to create a survey response object. You may either supply an identifier for this survey response (the identifier must be unique in the scope of an individual study participant), or else the survey will create an identifier for you. The identifier is returned in either case.
+__Description__         | Using this API call, you need to supply the required fields for enrolling a user, which is usually what you see below
 __Endpoint__         | /enrollment       
 __Method__         | POST
 __Response Codes__         | 200 - Sucessful<br/>403 - Request failed validation        
 
-Request
+Request Object
 ```
 {   
     "username":"participant@mycompany.com",
@@ -28,13 +31,13 @@ Request
 
 |  | 
 :----------- | :----------- 
-__Description__         | This is used to create a session
+__Description__         | This is used to create a session.  The session token will be required for operations for an authenticated user.
 __Endpoint__         | /authenticate/loginin 
-Method         | GET       
-__Authentication__         | Center        
+__Method__        | GET       
+__Response Codes__          | 200 - Sucessful<br/>403 - Invalid Credentials
 
 
-Request
+Request Object
 ```
 {   
     "username":"participant@mycompany.com",
@@ -46,15 +49,18 @@ Request
 
 |  | 
 :----------- | :----------- 
+__Description__         | This API establishes user consent to use submitted data within a scope (to be defined by study)
 __Endpoint__         | /consent   
-Method         | GET     
-__Authentication__         | Center        
-__Description__         | Using this API call, you need only supply the survey identifier and createdOn timestamp, as well as an optional array of answers, in order to create a survey response object. You may either supply an identifier for this survey response (the identifier must be unique in the scope of an individual study participant), or else the survey will create an identifier for you. The identifier is returned in either case.
+__Method__         | POST           
+__Response Codes__          | 200 - Sucessful<br/>403 - Invalid Credentials
 
-Request
+Request Object
 ```
-def fn():
- pass
+{   
+    "userid":"participant@mycompany.com",
+    "imageData":"aadfadfdfadfadfafasdfas", // signature image
+    "scope": "no_sharing"
+}
 ```
 
 
@@ -65,11 +71,21 @@ def fn():
 __Endpoint__         | /submission/  
 Method         | PUT        
 __Authentication__         | Center        
-__Description__         | Using this API call, you need only supply the survey identifier and createdOn timestamp, as well as an optional array of answers, in order to create a survey response object. You may either supply an identifier for this survey response (the identifier must be unique in the scope of an individual study participant), or else the survey will create an identifier for you. The identifier is returned in either case.
-Request
+__Description__         | Using this API call, as well as an optional array of answers.
+
+Request Object
 ```
-def fn():
- pass
+{   
+    "userid": 12222,
+    "time_start": "8:00:01pm",
+    "time_complete": "8:30:01pm",
+    "response": {
+    	"mood": "pretty good",
+    	"wake_up_time": "7:10:00am"
+	}
+
+    
+}
 ```
 
 

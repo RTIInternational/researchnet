@@ -1,5 +1,5 @@
 site_name: Research.net
-theme: readthedocs
+theme: flatly
 pages:
 - 'Introduction': 'index.md'
 - 'API': 'api.md'
