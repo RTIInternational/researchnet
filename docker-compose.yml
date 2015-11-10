@@ -1,7 +1,7 @@
 db:
   image: postgres
 mongo:
-  image: mongo 
+  image: mongo
 web:
   build: .
   command: python researchnet/manage.py runserver 0.0.0.0:8000
@@ -10,11 +10,14 @@ web:
   ports:
     - "8000:8000"
   links:
-    - db
-    - mongo
+    - db:db.local
+    - mongo:mongo.local
 juptyer:
   image: jupyter/datascience-notebook
   volumes: 
    - ./notebooks:/home/jovyan/work
   ports:
     - "8888:8888"
+  links:
+    - db:db.local
+    - mongo:mongo.local
