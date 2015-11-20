@@ -4,3 +4,4 @@ pages:
 - 'Introduction': 'index.md'
 - 'API': 'api.md'
 - 'Background': 'background.md'
+- 'Governance': 'governance.md'
