@@ -34,6 +34,17 @@ Notebooks
 We use notebooks here for exploratory data analysis. To start this up just run `docker-compose up juptyer`.  After you do this you can access your notebooks here: http://[docker-machine ip]:8888
 
 
+Running this thing on AWS
+----------------
+
+Do this if you want to use build number variables
+`sed -e "s;%BUILD_NUMBER%;0;g" ecs.json > ecs_0.json`
+
+This is how to use te aws cli to create the ecs tasks
+`aws ecs register-task-definition --cli-input-json file://ecs.json`
+
+
+
 Bugs, new requests or contribution
 --------------
 Please submit bugs, gripes and feature requests at https://bitbucket.org/rcdrti/researchnet/issues

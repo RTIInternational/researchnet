@@ -1,0 +1,39 @@
+{
+  "family": "researchnet",
+  "volumes": [],
+  "containerDefinitions": [
+    {
+      "name": "researchnet",
+      "image": "researchtriangle/researchnet_web",
+      "memory": 128,
+      "essential": true,
+      "portMappings": [
+        {
+          "hostPort": 80,
+          "containerPort": 8000,
+          "protocol": "tcp"
+        }
+      ],
+      "command": [
+        "python researchnet/manage.py runserver 0.0.0.0:8000"
+      ],
+
+      "links": [
+        "postgres:db.local",
+        "mongo:mongo.local"
+      ]
+    },
+    {
+      "name": "postgres",
+      "image": "postgres",
+      "memory": 128,
+      "essential": true
+    },
+    {
+      "name": "mongo",
+      "image": "mongo",
+      "memory": 128,
+      "essential": true
+    }
+  ]
+}

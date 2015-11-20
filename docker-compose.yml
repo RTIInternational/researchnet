@@ -10,8 +10,8 @@ web:
   ports:
     - "8000:8000"
   links:
-    - db:db.local
-    - mongo:mongo.local
+    - db:db
+    - mongo:mongo
 juptyer:
   image: jupyter/datascience-notebook
   volumes: 
@@ -19,5 +19,5 @@ juptyer:
   ports:
     - "8888:8888"
   links:
-    - db:db.local
-    - mongo:mongo.local
+    - db:db
+    - mongo:mongo
