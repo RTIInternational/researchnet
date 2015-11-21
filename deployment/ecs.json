@@ -1,9 +1,9 @@
 {
-  "family": "researchnet",
+  "family": "researchnet_task",
   "volumes": [],
   "containerDefinitions": [
     {
-      "name": "researchnet",
+      "name": "researchnet_web",
       "image": "researchtriangle/researchnet_web",
       "memory": 128,
       "essential": true,
@@ -19,8 +19,8 @@
       ],
 
       "links": [
-        "postgres:db.local",
-        "mongo:mongo.local"
+        "postgres:db",
+        "mongo:mongo"
       ]
     },
     {
