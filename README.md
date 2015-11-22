@@ -1,8 +1,8 @@
-A ResearchKit Backed
+A ResearchKit Backend
 =====================
 
 
-This document describes the requirement allowing to easily run the components for the RTI ResearchNET server using [docker](https://www.docker.com/) containers.
+This document describes the process for running the Researchnet server using [docker](https://www.docker.com/) containers.
 
 Prerequisites
 -------------
@@ -15,7 +15,7 @@ Type this `docker-compose up` to start the docker containers.  Your application 
 
 We're using Django Authention, which means in order to login you'll need to run 'docker-compose run web researchnet/manage.py migrate' and after that 'docker-compose run web researchnet/manage.py createsuperuser'
 
-PRO TIP: Because python is running as a container, anytime you install a module you will have to rebuild the container, which you can do like this: `docker-compose build`.
+_PRO TIP_: Because python is running as a container, anytime you install a module you will have to rebuild the container, which you can do like this: `docker-compose build`.
 
 
 Documentation
@@ -38,11 +38,14 @@ Running this thing on AWS
 ----------------
 
 Do this if you want to use build number variables
+
 `sed -e "s;%BUILD_NUMBER%;0;g" ecs.json > ecs_0.json`
 
-This is how to use te aws cli to create the ecs tasks
+This is how to use the aws cli to create the ecs tasks
+
 `aws ecs register-task-definition --cli-input-json file://ecs.json`
 
+(don't worry, we'll clean this section up later)
 
 
 Bugs, new requests or contribution
