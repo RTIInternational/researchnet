@@ -15,7 +15,7 @@ Type this `docker-compose up` to start the docker containers.  Your application 
 
 We're using Django Authention, which means in order to login you'll need to run 'docker-compose run web researchnet/manage.py migrate' and after that 'docker-compose run web researchnet/manage.py createsuperuser'
 
-_PRO TIP_: Because python is running as a container, anytime you install a module you will have to rebuild the container, which you can do like this: `docker-compose build`.
+_PRO TIP_: Because python is running as a container, anytime you install a module you will have to rebuild the container, which you can do like this: `docker-compose build --no-cache` (using the --no-cache flag will save you at least day at some point in your life).
 
 
 Documentation

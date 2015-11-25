@@ -19,19 +19,12 @@
       ],
 
       "links": [
-        "postgres:db",
-        "mongo:mongo"
+        "postgres:db"
       ]
     },
     {
       "name": "postgres",
       "image": "postgres",
-      "memory": 128,
-      "essential": true
-    },
-    {
-      "name": "mongo",
-      "image": "mongo",
       "memory": 128,
       "essential": true
     }

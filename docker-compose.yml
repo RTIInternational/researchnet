@@ -4,7 +4,6 @@ mongo:
   image: mongo
 web:
   build: .
-  command: python researchnet/manage.py runserver 0.0.0.0:8000
   volumes:
     - .:/code
   ports:

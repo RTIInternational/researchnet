@@ -18,10 +18,12 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from rest_framework import routers
 from core import views
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 router = routers.DefaultRouter()
 router.register(r'users', views.UserViewSet)
 router.register(r'groups', views.GroupViewSet)
+
 
 urlpatterns = [
     url(r'^$', 'dashboard.views.index'),
@@ -31,6 +33,9 @@ urlpatterns = [
     url(r'^accounts/login/$', 'django.contrib.auth.views.login'),
     url(r'^logout/$', 'django.contrib.auth.views.logout')
 ]   
+
+# Needed until the static file deployment situation is figured out
+urlpatterns += staticfiles_urlpatterns()
 
 
 
