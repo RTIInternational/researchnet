@@ -13,13 +13,6 @@
           "containerPort": 8000,
           "protocol": "tcp"
         }
-      ],
-      "command": [
-        "python researchnet/manage.py runserver 0.0.0.0:8000"
-      ],
-
-      "links": [
-        "postgres:db"
       ]
     },
     {
