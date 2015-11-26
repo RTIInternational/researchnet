@@ -13,6 +13,9 @@
           "containerPort": 8000,
           "protocol": "tcp"
         }
+      ],
+      "links": [
+        "postgres:db"
       ]
     },
     {
