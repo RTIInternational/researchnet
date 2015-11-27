@@ -2,7 +2,7 @@ FROM python:3.4
 ENV PYTHONUNBUFFERED 1
 
 RUN apt-get update
-RUN apt-get install -y nodejs npm
+RUN apt-get install -y nodejs-legacy npm
 RUN npm install -g bower
 
 RUN mkdir /code
