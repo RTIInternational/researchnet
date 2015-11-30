@@ -8,8 +8,12 @@ __pycache__/
 # C extensions
 *.so
 
+
 .DS_Store
 components/
+staticfiles/
+!staticfiles/research-32.png
+!staticfiles/favicon.ico
 
 
 # Distribution / packaging
