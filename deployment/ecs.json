@@ -1,11 +1,19 @@
 {
   "family": "researchnet_task",
-  "volumes": [],
+  "volumes": [
+        {
+            "name": "pg",
+            "host": {
+                "sourcePath": "/volumes/data"
+            }
+        }
+  ],
   "containerDefinitions": [
     {
       "name": "researchnet_web",
       "image": "researchtriangle/researchnet_web",
       "memory": 256,
+      "cpu": 512,
       "essential": true,
       "portMappings": [
         {
@@ -22,7 +30,15 @@
       "name": "postgres",
       "image": "postgres",
       "memory": 256,
-      "essential": true
+      "cpu": 512,
+      "essential": true,
+      "mountPoints": [
+        {
+          "sourceVolume": "pg",
+          "containerPath": "/var/lib/postgresql/data",
+          "readOnly": ""
+        }
+      ]
     }
   ]
 }
