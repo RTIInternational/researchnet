@@ -11,6 +11,8 @@ ADD requirements.txt /code/
 RUN pip install -r requirements.txt
 ADD . /code/
 
+# Make things right for bower
+RUN echo '{ "allow_root": true,"interactive": false }' > /root/.bowerrc
 
 WORKDIR /code/researchnet
 
