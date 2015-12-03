@@ -20,3 +20,8 @@ aws ecs update-service --cluster default --service ${SERVICE_NAME} --desired-cou
 sleep 10
 
 aws ecs update-service --cluster default --service ${SERVICE_NAME} --task-definition ${TASK_FAMILY}:${TASK_REVISION} --desired-count ${DESIRED_COUNT}
+
+# Deploy documentation (http://researchnet-documentation.s3-website-us-east-1.amazonaws.com/)
+cd documentation
+mkdocs build --clean
+aws s3 cp site/ s3://researchnet-documentation --recursive --acl public-read
