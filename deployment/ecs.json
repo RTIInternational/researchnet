@@ -22,7 +22,8 @@
         }
       ],
       "links": [
-        "postgres:db"
+        "postgres:db",
+        "mongo:mongo"
       ]
     },
     {
@@ -37,6 +38,12 @@
           "readOnly": false
         }
       ]
+    },
+    {
+      "name": "mongo",
+      "image": "mongo",
+      "memory": 256,
+      "essential": true
     }
   ]
 }
