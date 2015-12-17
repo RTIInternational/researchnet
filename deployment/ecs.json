@@ -38,12 +38,6 @@
           "readOnly": false
         }
       ]
-    },
-    {
-      "name": "mongo",
-      "image": "mongo",
-      "memory": 256,
-      "essential": true
     }
   ]
 }
