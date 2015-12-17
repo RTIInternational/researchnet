@@ -18,5 +18,5 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
 class SubmissionSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Submission
-        fields = ('username', 'timestamp', 'device_id', 'response')
+        fields = ('id','username', 'timestamp', 'device_id', 'response')
 
