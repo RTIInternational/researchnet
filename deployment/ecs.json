@@ -22,8 +22,7 @@
         }
       ],
       "links": [
-        "postgres:db",
-        "mongo:mongo"
+        "postgres:db"
       ]
     },
     {
