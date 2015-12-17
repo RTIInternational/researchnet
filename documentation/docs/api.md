@@ -77,8 +77,9 @@ Request Object
 ```
 {   
     "userid": 12222,
-    "time_start": "8:00:01pm",
-    "time_complete": "8:30:01pm",
+    "time_start": "2015-12-17T18:52:49.963458Z",
+    "time_complete": "2015-12-17T18:52:49.963458Z",
+    "device_id": "ADAMS_ANDROID",
     "response": {
     	"mood": "pretty good",
     	"wake_up_time": "7:10:00am"
