@@ -16,22 +16,23 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+from django.contrib.auth.views import login, logout
 from rest_framework import routers
 from core import views
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+import dashboard.views
 
 router = routers.DefaultRouter()
-router.register(r'users', views.UserViewSet)
-router.register(r'groups', views.GroupViewSet)
-
+#router.register(r'submission', views.SubmissionViewSet)
 
 urlpatterns = [
-    url(r'^$', 'dashboard.views.index'),
+    url(r'^$', dashboard.views.index),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^api/', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    url(r'^accounts/login/$', 'django.contrib.auth.views.login'),
-    url(r'^logout/$', 'django.contrib.auth.views.logout')
+    url(r'^accounts/login/$', login),
+    url(r'^logout/$', logout)
+
 ]   
 
 # Needed until the static file deployment situation is figured out
