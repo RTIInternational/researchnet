@@ -1,4 +1,5 @@
 from datetime import datetime
+from django.conf import settings
 from django.db import models
 from django.contrib.postgres.fields import JSONField
 from django.contrib.auth.models import User
@@ -12,4 +13,18 @@ class Submission(models.Model):
     device_id = models.TextField()
     response = JSONField()
 
+class StudyUser(models.Model):
+    user = models.OneToOneField(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+    )
+    gender = models.TextField()
+
+class Consent(models.Model):
+    user = models.OneToOneField(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+    )
+    scope = models.TextField()
+    consent_date = models.DateTimeField(default=datetime.now)
 
