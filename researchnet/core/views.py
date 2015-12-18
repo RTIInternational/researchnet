@@ -45,7 +45,7 @@ def submission_list(request, format=None):
     """
     if request.method == 'GET':
         submission = Submission.objects.all()
-        serializer = SubmissionSerializer(submission, many=True)
+        serializer = SubmissionSerializer(submission, many=True, context={'request': request})
         return Response(serializer.data)
 
     elif request.method == 'POST':
@@ -67,7 +67,7 @@ def submission_detail(request, pk, format=None):
         return Response(status=status.HTTP_404_NOT_FOUND)
 
     if request.method == 'GET':
-        serializer = SubmissionSerializer(submission)
+        serializer = SubmissionSerializer(submission, context={'request': request})
         return Response(serializer.data)
 
     elif request.method == 'PUT':
