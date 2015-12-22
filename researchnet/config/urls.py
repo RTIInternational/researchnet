@@ -3,16 +3,6 @@
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/1.8/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  url(r'^$', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  url(r'^$', Home.as_view(), name='home')
-Including another URLconf
-    1. Add an import:  from blog import urls as blog_urls
-    2. Add a URL to urlpatterns:  url(r'^blog/', include(blog_urls))
 """
 from django.conf.urls import include, url
 from django.contrib import admin
@@ -22,8 +12,8 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from rest_framework import routers
 from rest_framework.urlpatterns import format_suffix_patterns
 
-from core import views
 
+from core import views
 import dashboard.views
 
 router = routers.DefaultRouter()
@@ -41,11 +31,16 @@ urlpatterns = [
 ]  
 
 urlpatterns += format_suffix_patterns([
-    url(r'^submission/$', views.submission_list),
-    url(r'^submission/(?P<pk>[0-9]+)/$', views.submission_detail), 
-
+    url(r'^submission/$', views.SubmissionList.as_view()),
+    url(r'^submission/(?P<pk>[0-9]+)/$', views.SubmissionDetail.as_view()), 
+    url(r'^consent/$', views.ConsentList.as_view()),
 ])
 
+
+from rest_framework.authtoken import views
+urlpatterns += [
+    url(r'^api-token-auth/', views.obtain_auth_token)
+]
 
 
 # Needed until the static file deployment situation is figured out

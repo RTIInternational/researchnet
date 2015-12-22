@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import serializers
-from .models import Submission
+from .models import Submission, Consent
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
@@ -20,4 +20,10 @@ class SubmissionSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Submission
         fields = ('id','user', 'time_start', 'time_complete', 'timestamp', 'device_id', 'response')
+
+class ConsentSerializer(serializers.HyperlinkedModelSerializer):
+
+	class Meta:
+		model = Consent
+		fields = ('id', 'user', 'scope', 'consent_date')
 

@@ -42,6 +42,7 @@ INSTALLED_APPS = (
     'compressor',
     'django_extensions',
     'rest_framework',
+    'rest_framework.authtoken',
 
     # Mine
     'dashboard',
@@ -118,6 +119,10 @@ BOWER_INSTALLED_APPS = (
 
 REST_FRAMEWORK = {
     'PAGE_SIZE': 20,
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination'
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+
+    )
 }
 

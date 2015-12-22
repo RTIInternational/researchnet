@@ -1,25 +1,19 @@
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse
-from django.contrib.auth.models import User, Group
+from django.contrib.auth.models import User
+from django.http import Http404
 
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework import viewsets
 from rest_framework.decorators import api_view
+from rest_framework.views import APIView
+from rest_framework import permissions
+
 
 from .serializers import UserSerializer, SubmissionSerializer
 from .models import Submission
-
-
-class JSONResponse(HttpResponse):
-    """
-    An HttpResponse that renders its content into JSON.
-    """
-    def __init__(self, data, **kwargs):
-        content = JSONRenderer().render(data)
-        kwargs['content_type'] = 'application/json'
-        super(JSONResponse, self).__init__(content, **kwargs)
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -38,17 +32,18 @@ class SubmissionViewSet(viewsets.ModelViewSet):
     serializer_class = SubmissionSerializer
 
 
-@api_view(['GET', 'POST'])
-def submission_list(request, format=None):
+class SubmissionList(APIView):
     """
-    List all code submissions, or create a new submission.
+    List all submissions, or create a new submission.
     """
-    if request.method == 'GET':
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def get(self, request, format=None):
         submission = Submission.objects.all()
         serializer = SubmissionSerializer(submission, many=True, context={'request': request})
         return Response(serializer.data)
 
-    elif request.method == 'POST':
+    def post(self, request, format=None):
         serializer = SubmissionSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
@@ -56,21 +51,24 @@ def submission_list(request, format=None):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-@api_view(['GET', 'PUT'])
-def submission_detail(request, pk, format=None):
+class SubmissionDetail(APIView):
     """
-    Retrieve, update or delete a code submission.
+    Retrieve, update or delete a submission instance.
     """
-    try:
-        submission = Submission.objects.get(pk=pk)
-    except Submission.DoesNotExist:
-        return Response(status=status.HTTP_404_NOT_FOUND)
+    permission_classes = (permissions.IsAuthenticated,)
 
-    if request.method == 'GET':
+    def get_object(self, pk):
+        try:
+            return Submission.objects.get(pk=pk)
+        except Submission.DoesNotExist:
+            raise Http404
+
+    def get(self, request, pk, format=None):
+        submission = self.get_object(pk)
         serializer = SubmissionSerializer(submission, context={'request': request})
         return Response(serializer.data)
 
-    elif request.method == 'PUT':
+    def put(self, request, format=None):
         data = JSONParser().parse(request)
         serializer = SubmissionSerializer(submission, data=data)
         if serializer.is_valid():
@@ -79,5 +77,19 @@ def submission_detail(request, pk, format=None):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+class ConsentList(APIView):
+    """
+    Create a consent
+    """
+    permission_classes = (permissions.IsAuthenticated,)
+    
+    def post(self, request, format=None):
+        data = JSONParser().parse(request)
+        serializer = ConsentSerializer(submission, data=data)
+    
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-
+   

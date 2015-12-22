@@ -32,7 +32,7 @@ Request Object
 |  | 
 :----------- | :----------- 
 __Description__         | This is used to create a session.  The session token will be required for operations for an authenticated user.
-__Endpoint__         | /authenticate/loginin 
+__Endpoint__         | /authenticate/login
 __Method__        | GET       
 __Response Codes__          | 200 - Sucessful<br/>403 - Invalid Credentials
 
@@ -42,6 +42,31 @@ Request Object
 {   
     "username":"participant@mycompany.com",
     "password":"aadfadfdf"
+}
+```
+
+# API Token Authenticate
+
+|  | 
+:----------- | :----------- 
+__Description__         | provide a mechanism for clients to obtain a token given the username and password.
+__Endpoint__         | api-token-auth/
+__Method__        | GET       
+__Response Codes__          | 200 - Sucessful<br/>403 - Invalid Credentials
+
+
+Request Object
+```
+{   
+    "username":"participant",
+    "password":"aadfadfdf"
+}
+```
+
+Response Object
+```
+{
+    "token": "ffc0479b0021eed19271d51a803558e7d10ff286"
 }
 ```
 
