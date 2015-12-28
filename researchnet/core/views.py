@@ -12,8 +12,8 @@ from rest_framework.views import APIView
 from rest_framework import permissions
 
 
-from .serializers import UserSerializer, SubmissionSerializer
-from .models import Submission
+from .serializers import UserSerializer, SubmissionSerializer, ConsentSerializer
+from .models import Submission, Consent
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -68,8 +68,8 @@ class SubmissionDetail(APIView):
         serializer = SubmissionSerializer(submission, context={'request': request})
         return Response(serializer.data)
 
-    def put(self, request, format=None):
-        data = JSONParser().parse(request)
+    def put(self, request, pk, format=None):
+        submission = self.get_object(pk)
         serializer = SubmissionSerializer(submission, data=data)
         if serializer.is_valid():
             serializer.save()
@@ -79,17 +79,42 @@ class SubmissionDetail(APIView):
 
 class ConsentList(APIView):
     """
-    Create a consent
+    Create a consent record
     """
     permission_classes = (permissions.IsAuthenticated,)
-    
+
+    def get_object(self, pk):
+        try:
+            return Consent.objects.get(pk=pk)
+        except Consent.DoesNotExist:
+            raise Http404
+
     def post(self, request, format=None):
-        data = JSONParser().parse(request)
-        serializer = ConsentSerializer(submission, data=data)
-    
+        serializer = ConsentSerializer(data=request.data)
+
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-   
+    
+class ConsentDetail(APIView):
+    """
+    Update a consent record
+    """
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def get_object(self, pk):
+        try:
+            return Consent.objects.get(pk=pk)
+        except Consent.DoesNotExist:
+            raise Http404
+
+    def put(self, request, pk, format=None):
+        consent = self.get_object(pk)
+        serializer = ConsentSerializer(consent, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+

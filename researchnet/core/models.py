@@ -26,5 +26,6 @@ class Consent(models.Model):
         on_delete=models.CASCADE,
     )
     scope = models.TextField()
+    imageData = models.ImageField(blank=True)
     consent_date = models.DateTimeField(default=datetime.now)
 

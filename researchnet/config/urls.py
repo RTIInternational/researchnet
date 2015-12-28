@@ -34,6 +34,7 @@ urlpatterns += format_suffix_patterns([
     url(r'^submission/$', views.SubmissionList.as_view()),
     url(r'^submission/(?P<pk>[0-9]+)/$', views.SubmissionDetail.as_view()), 
     url(r'^consent/$', views.ConsentList.as_view()),
+    url(r'^consent/(?P<pk>[0-9]+)/$', views.ConsentDetail.as_view()), 
 ])
 
 

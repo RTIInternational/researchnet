@@ -21,7 +21,7 @@ class SubmissionSerializer(serializers.HyperlinkedModelSerializer):
         model = Submission
         fields = ('id','user', 'time_start', 'time_complete', 'timestamp', 'device_id', 'response')
 
-class ConsentSerializer(serializers.HyperlinkedModelSerializer):
+class ConsentSerializer(serializers.ModelSerializer):
 
 	class Meta:
 		model = Consent

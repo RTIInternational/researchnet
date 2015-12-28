@@ -75,9 +75,9 @@ Response Object
 |  | 
 :----------- | :----------- 
 __Description__         | This API establishes user consent to use submitted data within a scope (to be defined by study)
-__Endpoint__         | /consent   
-__Method__         | POST           
-__Response Codes__          | 200 - Sucessful<br/>403 - Invalid Credentials
+__Endpoint__         | /consent/   
+__Method__         | POST, PUT         
+__Response Codes__          | 200 - Sucessful<br/>401 - Unauthorized
 
 Request Object
 ```
@@ -87,6 +87,8 @@ Request Object
     "scope": "no_sharing"
 }
 ```
+
+
 
 
 # Survey Response
