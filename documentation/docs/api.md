@@ -1,6 +1,5 @@
 
-This is the core API for to be used primarily within a mobile client.
-
+This is the core API for to be used primarily within a mobile client. For token authentication a valid user token is required in the HTTP authorization header with a value of the user's token prepended with the word "Token" followed by a space.
 
 
 
@@ -8,52 +7,38 @@ This is the core API for to be used primarily within a mobile client.
 
  |  | 
 :----------- | :----------- 
-__Description__         | Using this API call, you need to supply the required fields for enrolling a user, which is usually what you see below
-__Endpoint__         | /enrollment       
+__Description__         | Using this API call, you need to supply the required fields for enrolling a study participant.
+__Endpoint__         | /participant/       
 __Method__         | POST
-__Response Codes__         | 200 - Sucessful<br/>403 - Request failed validation        
+__Authentication__         | Token  
+__Response Codes__         | 200 - Sucessful<br/>401 - Unauthorized <br/>400 - Bad Request        
 
 Request Object
 ```
 {   
-    "username":"participant@mycompany.com",
-    "password":"aadfadfdf",
-    "firstname": "Jane",
-    "lastname": "Doe",
-    "gender": "Female",
+    "username":"joeschmoe",
+    "password":"secretpassword",
+    "first_name": "Jane",
+    "last_name": "Doe",
+    "email": "joe@gmail.com",
+    "gender": "Male",
     "dob": "9/15/1985"
 }
 
 ```
 
 
-# Authenticate
 
-|  | 
-:----------- | :----------- 
-__Description__         | This is used to create a session.  The session token will be required for operations for an authenticated user.
-__Endpoint__         | /authenticate/login
-__Method__        | GET       
-__Response Codes__          | 200 - Sucessful<br/>403 - Invalid Credentials
-
-
-Request Object
-```
-{   
-    "username":"participant@mycompany.com",
-    "password":"aadfadfdf"
-}
-```
 
 # API Token Authenticate
 
 |  | 
 :----------- | :----------- 
-__Description__         | provide a mechanism for clients to obtain a token given the username and password.
-__Endpoint__         | api-token-auth/
-__Method__        | GET       
-__Response Codes__          | 200 - Sucessful<br/>403 - Invalid Credentials
-
+__Description__         | A mechanism for clients to obtain a token given a username and password.
+__Endpoint__         | /api-token-auth/
+__Method__        | GET  
+__Authentication__         | None       
+__Response Codes__         | 200 - Sucessful<br/>401 - Unauthorized <br/>400 - Bad Request        
 
 Request Object
 ```
@@ -76,8 +61,9 @@ Response Object
 :----------- | :----------- 
 __Description__         | This API establishes user consent to use submitted data within a scope (to be defined by study)
 __Endpoint__         | /consent/   
-__Method__         | POST, PUT         
-__Response Codes__          | 200 - Sucessful<br/>401 - Unauthorized
+__Method__         | POST, PUT 
+__Authentication__         | Token          
+__Response Codes__         | 200 - Sucessful<br/>401 - Unauthorized <br/>400 - Bad Request
 
 Request Object
 ```
@@ -90,15 +76,16 @@ Request Object
 
 
 
-
 # Survey Response
 
 |  | 
 :----------- | :----------- 
+__Description__         | Using this API call, as well as an optional array of answers.
 __Endpoint__         | /submission/  
 Method         | PUT        
-__Authentication__         | Center        
-__Description__         | Using this API call, as well as an optional array of answers.
+__Authentication__         | Token        
+__Response Codes__         | 200 - Sucessful<br/>401 - Unauthorized <br/>400 - Bad Request
+
 
 Request Object
 ```
@@ -111,8 +98,7 @@ Request Object
     	"mood": "pretty good",
     	"wake_up_time": "7:10:00am"
 	}
-
-    
+ 
 }
 ```
 

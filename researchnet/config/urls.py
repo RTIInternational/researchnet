@@ -27,14 +27,14 @@ urlpatterns = [
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^accounts/login/$', login),
     url(r'^logout/$', logout),
-
 ]  
 
 urlpatterns += format_suffix_patterns([
     url(r'^submission/$', views.SubmissionList.as_view()),
     url(r'^submission/(?P<pk>[0-9]+)/$', views.SubmissionDetail.as_view()), 
     url(r'^consent/$', views.ConsentList.as_view()),
-    url(r'^consent/(?P<pk>[0-9]+)/$', views.ConsentDetail.as_view()), 
+    url(r'^participant/$', views.ParticipantList.as_view()),
+    url(r'^participant/(?P<pk>[0-9]+)/$', views.ParticipantDetail.as_view()), 
 ])
 
 
@@ -42,6 +42,7 @@ from rest_framework.authtoken import views
 urlpatterns += [
     url(r'^api-token-auth/', views.obtain_auth_token)
 ]
+
 
 
 # Needed until the static file deployment situation is figured out

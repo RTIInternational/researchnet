@@ -10,10 +10,10 @@ from rest_framework import viewsets
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
 from rest_framework import permissions
+from .permissions import IsStaffOrTargetUser
 
-
-from .serializers import UserSerializer, SubmissionSerializer, ConsentSerializer
-from .models import Submission, Consent
+from .serializers import UserSerializer, SubmissionSerializer, ConsentSerializer, ParticipantSerializer
+from .models import Submission, Consent, ParticipantUser
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -23,10 +23,15 @@ class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all().order_by('-date_joined')
     serializer_class = UserSerializer
 
+    def get_permissions(self):
+        # allow non-authenticated user to create via POST
+        return (permissions.AllowAny() if self.request.method == 'POST'
+                else IsStaffOrTargetUser()),
+
 
 class SubmissionViewSet(viewsets.ModelViewSet):
     """
-    API endpoint that allows acccess to the current enrollments.
+    API endpoint that allows acccess to the current submission.
     """
     queryset = Submission.objects.all()
     serializer_class = SubmissionSerializer
@@ -34,7 +39,7 @@ class SubmissionViewSet(viewsets.ModelViewSet):
 
 class SubmissionList(APIView):
     """
-    List all submissions, or create a new submission.
+    List all submissions, or create a new submission
     """
     permission_classes = (permissions.IsAuthenticated,)
 
@@ -53,7 +58,7 @@ class SubmissionList(APIView):
 
 class SubmissionDetail(APIView):
     """
-    Retrieve, update or delete a submission instance.
+    Retrieve or update a submission
     """
     permission_classes = (permissions.IsAuthenticated,)
 
@@ -117,4 +122,44 @@ class ConsentDetail(APIView):
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class ParticipantList(APIView):
+    """
+    List all participants, or create a new participant
+    """
+    def get(self, request, format=None):
+        participant = Participant.objects.all()
+        serializer = ParticipantSerializer(participant, many=True, context={'request': request})
+        return Response(serializer.data)
+
+    def post(self, request, format=None):
+        serializer = ParticipantSerializer(data=request.data)
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class ParticipantDetail(APIView):
+    """
+    Update a study participant
+    """
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def get_object(self, pk):
+        try:
+            return Participant.objects.get(pk=pk)
+        except Participant.DoesNotExist:
+            raise Http404
+
+    def put(self, request, pk, format=None):
+        participant = self.get_object(pk)
+        serializer = ParticipantSerializer(consent, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 

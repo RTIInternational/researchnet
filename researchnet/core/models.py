@@ -13,12 +13,13 @@ class Submission(models.Model):
     device_id = models.TextField()
     response = JSONField()
 
-class StudyUser(models.Model):
+class ParticipantUser(models.Model):
     user = models.OneToOneField(
-        settings.AUTH_USER_MODEL,
+        User,
         on_delete=models.CASCADE,
     )
     gender = models.TextField()
+    dob = models.DateTimeField(blank=True)
 
 class Consent(models.Model):
     user = models.OneToOneField(
@@ -28,4 +29,5 @@ class Consent(models.Model):
     scope = models.TextField()
     imageData = models.ImageField(blank=True)
     consent_date = models.DateTimeField(default=datetime.now)
+
 
