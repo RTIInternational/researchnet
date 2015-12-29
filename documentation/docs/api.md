@@ -1,6 +1,28 @@
 
-This is the core API for to be used primarily within a mobile client. For token authentication a valid user token is required in the HTTP authorization header with a value of the user's token prepended with the word "Token" followed by a space.
+# Token Authenticate
 
+|  | 
+:----------- | :----------- 
+__Description__         | A mechanism for clients to obtain a token given a username and password.
+__Endpoint__         | /api-token-auth/
+__Method__        | GET  
+__Authentication__         | None       
+__Response Codes__         | 200 - Sucessful<br/>401 - Unauthorized <br/>400 - Bad Request        
+
+Request Object
+```
+{   
+    "username":"participant",
+    "password":"aadfadfdf"
+}
+```
+
+Response Object
+```
+{
+    "token": "ffc0479b0021eed19271d51a803558e7d10ff286"
+}
+```
 
 
 # Enrollment
@@ -28,32 +50,6 @@ Request Object
 ```
 
 
-
-
-# API Token Authenticate
-
-|  | 
-:----------- | :----------- 
-__Description__         | A mechanism for clients to obtain a token given a username and password.
-__Endpoint__         | /api-token-auth/
-__Method__        | GET  
-__Authentication__         | None       
-__Response Codes__         | 200 - Sucessful<br/>401 - Unauthorized <br/>400 - Bad Request        
-
-Request Object
-```
-{   
-    "username":"participant",
-    "password":"aadfadfdf"
-}
-```
-
-Response Object
-```
-{
-    "token": "ffc0479b0021eed19271d51a803558e7d10ff286"
-}
-```
 
 # Consent
 
