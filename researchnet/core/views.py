@@ -13,7 +13,7 @@ from rest_framework import permissions
 from .permissions import IsStaffOrTargetUser
 
 from .serializers import UserSerializer, SubmissionSerializer, ConsentSerializer, ParticipantSerializer
-from .models import Submission, Consent, ParticipantUser
+from .models import Submission, Consent, Participant
 
 
 class UserViewSet(viewsets.ModelViewSet):

@@ -1,34 +1,60 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import serializers
-from .models import Submission, Consent, ParticipantUser
+from .models import Submission, Consent, Participant
+import pdb
 
-
-class UserSerializer(serializers.HyperlinkedModelSerializer):
+class UserSerializer(serializers.ModelSerializer):
+    
     class Meta:
         model = User
-        fields = ('url', 'username', 'email', 'groups', 'password', 'first_name', 'last_name')
+        
+        fields = ('username', 'email', 'password', 'first_name', 'last_name')
         extra_kwargs = {'password': {'write_only': True}}
         read_only_fields = ('is_staff', 'is_superuser', 'is_active', 'date_joined',)
 
     def create(self, validated_data):
-        user = User(
-            email=validated_data['email'],
-            username=validated_data['username']
-        )
+        user = User(**validated_data)
         user.set_password(validated_data['password'])
         user.save()
         return user
 
 class GroupSerializer(serializers.HyperlinkedModelSerializer):
+    
     class Meta:
         model = Group
         fields = ('url', 'name')
 
-class ParticipantSerializer(serializers.HyperlinkedModelSerializer):
+class ParticipantSerializer(serializers.Serializer):
+    
     class Meta:
-        model = ParticipantUser
-        fields = ( 'gender', 'dob', 'user' )
-        depth = 1
+        extra_kwargs = {'password': {'write_only': True}}
+
+    username=serializers.CharField(source='user.username')
+    password=serializers.CharField(
+        style={'input_type': 'password'}, source='user.password'
+    )
+    first_name=serializers.CharField(source='user.first_name')
+    last_name=serializers.CharField(source='user.last_name')
+    email=serializers.EmailField(source='user.email')
+    gender=serializers.CharField()
+    dob=serializers.DateField()
+
+    def create(self, validated_data):
+            
+        user = User(
+            username=validated_data['user']['username'],
+            first_name=validated_data['user']['first_name'],
+            last_name=validated_data['user']['last_name'],
+            email=validated_data['user']['email']
+        )
+        user.set_password(validated_data['user']['password'])
+        user.save()
+
+        participant = Participant(user=user, gender=validated_data['gender'],dob=validated_data['dob'])
+        participant.save()
+
+        return participant
+
 
 class SubmissionSerializer(serializers.HyperlinkedModelSerializer):
 
