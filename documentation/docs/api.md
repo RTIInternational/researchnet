@@ -5,7 +5,7 @@
 :----------- | :----------- 
 __Description__         | A mechanism for clients to obtain a token given a username and password.
 __Endpoint__         | /api-token-auth/
-__Method__        | GET  
+__Method__        | POST  
 __Authentication__         | None       
 __Response Codes__         | 200 - Sucessful<br/>401 - Unauthorized <br/>400 - Bad Request        
 

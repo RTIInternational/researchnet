@@ -17,7 +17,7 @@ fi
 aws ecs update-service --cluster default --service ${SERVICE_NAME} --desired-count 0
 
 # wait just a litle bit before updating the service and try to avoid a port conflict
-sleep 20
+sleep 60
 
 aws ecs update-service --cluster default --service ${SERVICE_NAME} --task-definition ${TASK_FAMILY}:${TASK_REVISION} --desired-count ${DESIRED_COUNT}
 
