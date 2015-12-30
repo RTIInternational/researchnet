@@ -26,12 +26,11 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
 
 class ParticipantSerializer(serializers.Serializer):
     
-    class Meta:
-        extra_kwargs = {'password': {'write_only': True}}
+    
 
     username=serializers.CharField(source='user.username')
     password=serializers.CharField(
-        style={'input_type': 'password'}, source='user.password'
+        style={'input_type': 'password'}, source='user.password', write_only=True
     )
     first_name=serializers.CharField(source='user.first_name')
     last_name=serializers.CharField(source='user.last_name')

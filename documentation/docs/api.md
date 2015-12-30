@@ -78,7 +78,7 @@ Request Object
 :----------- | :----------- 
 __Description__         | Using this API call, as well as an optional array of answers.
 __Endpoint__         | /submission/  
-Method         | PUT        
+Method         | POST       
 __Authentication__         | Token        
 __Response Codes__         | 200 - Sucessful<br/>401 - Unauthorized <br/>400 - Bad Request
 
