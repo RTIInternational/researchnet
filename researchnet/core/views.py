@@ -163,3 +163,8 @@ class ParticipantDetail(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+def HeartBeat(request):
+    """
+    This method is for the AWS load balancer health check.
+    """
+    return HttpResponse('{\'data\': {\'status\': \'healthy\'}}')

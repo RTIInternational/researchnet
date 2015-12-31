@@ -16,6 +16,7 @@ from rest_framework.urlpatterns import format_suffix_patterns
 from core import views
 import dashboard.views
 
+
 router = routers.DefaultRouter()
 router.register(r'submission', views.SubmissionViewSet)
 router.register(r'users', views.UserViewSet)
@@ -27,6 +28,7 @@ urlpatterns = [
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^accounts/login/$', login),
     url(r'^logout/$', logout),
+    url(r'^heartbeat/$', views.HeartBeat, name='ambition.heartbeat')
 ]  
 
 urlpatterns += format_suffix_patterns([
