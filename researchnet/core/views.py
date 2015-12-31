@@ -17,6 +17,9 @@ from .models import Submission, Consent, Participant
 
 
 class UserViewSet(viewsets.ModelViewSet):
+    
+    permission_classes = (permissions.IsAuthenticated,)
+
     """
     API endpoint that allows users to be viewed.
     """
@@ -30,6 +33,9 @@ class UserViewSet(viewsets.ModelViewSet):
 
 
 class SubmissionViewSet(viewsets.ModelViewSet):
+    
+    permission_classes = (permissions.IsAuthenticated,)
+    
     """
     API endpoint that allows acccess to the current submission.
     """
