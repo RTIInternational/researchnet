@@ -1,5 +1,6 @@
 FROM python:3.4
 ENV PYTHONUNBUFFERED 1
+MAINTAINER Adam Preston
 
 RUN apt-get update
 RUN apt-get install -y nodejs-legacy npm python-dev
