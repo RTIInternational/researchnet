@@ -10,5 +10,6 @@ exec gunicorn config.wsgi:application \
     --name researchnet \
     --bind 0.0.0.0:8000 \
     --workers 3 \
-    --log-level=info \
+    --timeout 5 \
+	--log-level=debug \
     "$@"
