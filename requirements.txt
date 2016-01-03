@@ -5,7 +5,7 @@ django-bower==5.0.4
 django-compressor==1.6
 django-extensions==1.5.9
 djangorestframework==3.3.2
-gunicorn==19.2.1
+gunicorn==19.4.3
 Jinja2==2.8
 livereload==2.4.0
 Markdown==2.6.2

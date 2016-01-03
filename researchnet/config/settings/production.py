@@ -1,16 +1,6 @@
 from .base import *
 
-DEBUG = False
+# Obviously this shouldn't be true but until the web proxy is setup (and nginx serves up the static files) we have to run the app in debug mode.
+DEBUG = True
+ALLOWED_HOSTS = ['*']
 
-# Database
-# https://docs.djangoproject.com/en/1.8/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'HOST': 'db',
-        'PORT': 5432,
-    }
-}
