@@ -19,6 +19,7 @@ researchnet/config/staticfiles/*
 !researchnet/config/staticfiles/foundation-icons/
 researchnet/config/staticfiles/foundation-icons/.DS_Store
 
+
 # Distribution / packaging
 .Python
 env/

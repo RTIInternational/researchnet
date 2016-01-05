@@ -3,7 +3,7 @@ db:
   ports:
     - "5432:5432"
 web:
-  build: .
+  build: ./researchnet
   volumes:
     - .:/code
   ports:
@@ -18,3 +18,11 @@ juptyer:
     - "8888:8888"
   links:
     - db:db
+nginx:
+  build: ./nginx
+  volumes:
+    - .:/usr/src/app
+  links:
+    - web
+  ports:
+    - "80:80"
