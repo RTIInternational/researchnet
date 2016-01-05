@@ -16,6 +16,7 @@ researchnet/config/staticfiles/*
 !researchnet/config/staticfiles/research-32.png
 !researchnet/config/staticfiles/favicon.ico
 !researchnet/config/staticfiles/foundation-icons/
+researchnet/config/staticfiles/foundation-icons/.DS_Store
 
 
 # Distribution / packaging

@@ -19,10 +19,10 @@ juptyer:
   links:
     - db:db
 nginx:
-    build: ./nginx
-    volumes:
-        - .:/usr/src/app
-    links:
-        - web
-    ports:
-        - "80:80"
+  build: ./nginx
+  volumes:
+    - .:/usr/src/app
+  links:
+    - web
+  ports:
+    - "80:80"
