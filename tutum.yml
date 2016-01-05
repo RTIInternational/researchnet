@@ -1,0 +1,22 @@
+db:
+  image: 'postgres:latest'
+  ports:
+    - '5432:5432'
+  volumes:
+    - /volumes/data:/var/lib/postgresql/data
+web:
+  image: 'researchtriangle/researchnet_web:latest'
+  links:
+    - db
+  ports:
+    - '8000:8000'
+  volumes:
+    - /volumes/app:/code
+nginx:
+  image: 'researchtriangle/researchnet_nginx:latest'
+  volumes_from:
+    - web
+  links:
+    - web
+  ports:
+    - '80:80'
