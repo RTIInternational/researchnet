@@ -2,6 +2,8 @@ db:
   image: postgres
   ports:
     - "5432:5432"
+  volumes:
+    - /volumes/data:/var/lib/postgresql/data
 web:
   build: ./researchnet
   volumes:
@@ -20,8 +22,8 @@ juptyer:
     - db:db
 nginx:
   build: ./nginx
-  volumes:
-    - .:/usr/src/app
+  volumes_from:
+    - web
   links:
     - web
   ports:
