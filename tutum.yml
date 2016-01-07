@@ -10,8 +10,6 @@ web:
     - db
   ports:
     - '8000:8000'
-  volumes:
-    - /volumes/app:/code
 nginx:
   image: 'researchtriangle/researchnet_nginx:latest'
   volumes_from:

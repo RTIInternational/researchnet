@@ -1,25 +1,15 @@
 db:
-  image: postgres
+  image: 'postgres:latest'
   ports:
-    - "5432:5432"
+    - '5432:5432'
   volumes:
     - /volumes/data:/var/lib/postgresql/data
 web:
   build: ./researchnet
-  volumes:
-    - .:/code
-  ports:
-    - "8000:8000"
   links:
-    - db:db
-juptyer:
-  image: jupyter/datascience-notebook
-  volumes: 
-   - ./notebooks:/home/jovyan/work
+    - db
   ports:
-    - "8888:8888"
-  links:
-    - db:db
+    - '8000:8000'
 nginx:
   build: ./nginx
   volumes_from:
@@ -27,4 +17,12 @@ nginx:
   links:
     - web
   ports:
-    - "80:80"
+    - '80:80'
+juptyer:
+  image: jupyter/datascience-notebook
+  volumes: 
+   - ./notebooks:/home/jovyan/work
+  ports:
+    - '8888:8888'
+  links:
+    - db:db
