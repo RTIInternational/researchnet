@@ -5,3 +5,4 @@ pages:
 - 'API': 'api.md'
 - 'Background': 'background.md'
 - 'Governance': 'governance.md'
+- 'Technical Specifications': 'specifications.md'
