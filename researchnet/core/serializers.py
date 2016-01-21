@@ -26,8 +26,6 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
 
 class ParticipantSerializer(serializers.Serializer):
     
-    
-
     username=serializers.CharField(source='user.username')
     password=serializers.CharField(
         style={'input_type': 'password'}, source='user.password', write_only=True
@@ -56,10 +54,14 @@ class ParticipantSerializer(serializers.Serializer):
 
 
 class SubmissionSerializer(serializers.HyperlinkedModelSerializer):
-
+    
     class Meta:
         model = Submission
         fields = ('id','user', 'time_start', 'time_complete', 'timestamp', 'device_id', 'response')
+
+
+    user = serializers.CharField(required=False)
+
 
 class ConsentSerializer(serializers.ModelSerializer):
 

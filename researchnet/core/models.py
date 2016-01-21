@@ -16,6 +16,7 @@ class Submission(models.Model):
     device_id = models.TextField()
     response = JSONField()
 
+
 # a profile model
 class Participant(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
@@ -27,6 +28,7 @@ class Consent(models.Model):
     scope = models.TextField()
     imageData = models.ImageField(blank=True)
     consent_date = models.DateTimeField(default=datetime.now)
+
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
 def create_auth_token(sender, instance=None, created=False, **kwargs):

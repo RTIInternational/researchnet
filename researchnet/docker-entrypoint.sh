@@ -6,4 +6,4 @@ python manage.py bower install			  # install frontend assets
 
 # Start Gunicorn processes
 echo Starting Gunicorn
-exec gunicorn config.wsgi:application -c gunicorn.conf.py
+exec gunicorn config.wsgi:application -c gunicorn.conf.py --reload
