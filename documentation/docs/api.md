@@ -32,7 +32,7 @@ Response Object
 __Description__         | Using this API call, you need to supply the required fields for enrolling a study participant.
 __Endpoint__         | /participant/       
 __Method__         | POST
-__Authentication__         | Token  
+__Authentication__         | None  
 __Response Codes__         | 200 - Sucessful<br/>401 - Unauthorized <br/>400 - Bad Request        
 
 Request Object
@@ -64,7 +64,6 @@ __Response Codes__         | 200 - Sucessful<br/>401 - Unauthorized <br/>400 - B
 Request Object
 ```
 {   
-    "userid":"participant@mycompany.com",
     "imageData":"aadfadfdfadfadfafasdfas", // signature image
     "scope": "no_sharing"
 }
@@ -86,13 +85,14 @@ __Response Codes__         | 200 - Sucessful<br/>401 - Unauthorized <br/>400 - B
 Request Object
 ```
 {   
-    "userid": 12222,
+
     "time_start": "2015-12-17T18:52:49.963458Z",
     "time_complete": "2015-12-17T18:52:49.963458Z",
-    "device_id": "ADAMS_ANDROID",
+    "device_id": "ED2B101F-CC55-46FF-BEE5-60CC32EEC6C9",
     "response": {
-    	"mood": "pretty good",
-    	"wake_up_time": "7:10:00am"
+    	"mood category": "fine",
+        "mood scale": "8",
+        "mood image": "3"
 	}
  
 }
