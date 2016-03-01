@@ -1,9 +1,8 @@
 
 # Background
 
-Apple launched its ResearchKit framework for iOS on March 9, 2015. ResearchKit is an open source software framework designed to aid in the creation of mobile apps for biomedical and health research. ResearchKit simplifies construction of highly functional apps. Support is provided for various app modules, including informed consent, passive data collection, active tasks, surveys and data dashboards. 
-Apple iOS currently controls a little over 43% of the US smartphone market, providing access to more than 79 million iPhone users in the US. The ResearchKit platform immediately garnered a great deal of interest within the biomedical research community.   
- 
+Apple launched its ResearchKit framework for iOS on March 9, 2015. ResearchKit is an open source software framework designed to aid in the creation of mobile apps for biomedical and health research. ResearchKit simplifies construction of highly functional apps. Support is provided for various app modules, including informed consent, passive data collection, active tasks, surveys and data dashboards. Apple iOS currently controls a little over 43% of the US smartphone market, providing access to more than 79 million iPhone users in the US. The ResearchKit platform immediately garnered a great deal of interest within the biomedical research community.
+
 Five apps developed with ResearchKit were also released at the debut press event. In March Stanford University researchers found that 11,000 people had signed up for a cardiovascular study using Apple Inc.’s ResearchKit, less than 24 hours after the iPhone tool was introduced. The Michael J. Fox Foundation for Parkinson’s Research collaborated with nonprofit group Sage Bionetworks to develop The Parkinson’s app, which had 5,589 consenting users with 24 hours of launch. These early results suggest a healthy future for biomedical research using data gathered from mobile apps, and for the ResearchKit framework. RCD has already developed a very simple ResearchKit app, but currently has no backend data service to securely receive and manage the data collected. Exhibit 1 is a screenshot of this example app. With our rich capabilities in health research, research data management, statistical analysis, and data sciences, we need to explore the potential of ResearchKit for our business. 
 
 Deployed ResearchKit apps generate a great deal of data, presenting operational challenges for researchers.  Given the nature of the data, privacy and security concerns must be addressed with care. The ResearchKit framework provides no specific capabilities for dealing with these data, relying on built-in iOS functions. Apple offers no recommendations or backend service for storing, securing, managing and analyzing the data collected using ResearchKit apps. Researchers seeking to leverage this technology may not be able to easily develop deployable solutions without resolving significant technical challenges. 
@@ -29,7 +28,7 @@ Examples of RTI projects that could use the new capabilities developed by this I
 
 ---
 
-# Research Objectives
+### Research Objectives
 
 1. Develop the internal capability to design and develop ResearchKit framework apps, and to securely collect the data in an RTI-managed backend data service.
 
@@ -45,13 +44,13 @@ Examples of RTI projects that could use the new capabilities developed by this I
 
 ---
 
-# Statement of Work
+### Statement of Work
 
 Each iteration being set based on the full objectives as well as the results of the previous iterations and related stakeholder feedback. 
 
 The basic progression of tasks toward goals is listed here.  Note that these activities will be interleaved and concurrent, rather than consecutive.
 
-## Milestones
+### Milestones
 
 | October - January | Planned Activities | Notes/Comments      
 ----------- | ----------- | -----------
@@ -81,11 +80,11 @@ Task 14: Demo/Pilot of dashboard UI | Complete a demo/pilot of dashboard app usi
 
 ---
 
-# Budget Summary
+### Budget Summary
 
 Research and development hours to support the activities listed above.   
 
-### The basic skill categories
+#### The basic skill categories
 
 * System analysis and design
 * iOS development and publishing
@@ -93,13 +92,13 @@ Research and development hours to support the activities listed above.
 * Dashboard UI design and development
 * Project coordination
 
-### Labor assignments
+#### Labor assignments
 
 * Adam Preston, iOS prototype development, cloud services and coordination, 160 hours
 * Chris Siege, Data visualization, 60 hours
 * Ron Thigpen, Cloud services, analysis and coordination 100 hours
 
-### Other Direct Costs (ODCs)
+#### Other Direct Costs (ODCs)
 
 * Cloud hosting services, $100 / mo X 9 mos
 * SSL security certificate, $50 ea X 1
@@ -109,7 +108,7 @@ Research and development hours to support the activities listed above.
 
 ---
 
-# Expected Results
+### Expected Results
 1. A working pilot data service integrating with ResearchKit apps
 2. An available iOS component library for interaction with our data service
 3. A demonstrable app built using the ResearchKit framework, our iOS library, and our data service
@@ -119,6 +118,6 @@ Research and development hours to support the activities listed above.
 
 ---
 
-# Supporting Comments (from management)
+### Supporting Comments (from management)
 
 Apple Inc.’s ResearchKit is a new platform for advanced medical research using Apple’s leading edge mobile devices. This platform provides access to more than 40% of smartphone users in the US. Apple’s market share in other developed countries is similar. We should take advantage of this opportunity and add this capability to our existing set of research tools.

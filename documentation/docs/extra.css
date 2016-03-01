@@ -2,3 +2,10 @@ table {
 	table-layout: fixed;
 	width: 100%;
 }
+
+img[alt="research"] { 
+    float:right; 
+    margin:0 -2px; 
+    padding:1px; 
+    border:0px;
+}

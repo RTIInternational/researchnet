@@ -2,7 +2,6 @@ site_name: Researchnet
 theme: flatly
 pages:
 - 'Introduction': 'index.md'
-- 'API': 'api.md'
 - 'Background': 'background.md'
-- 'Governance': 'governance.md'
+- 'API': 'api.md'
 - 'Technical Specifications': 'specifications.md'

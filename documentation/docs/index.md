@@ -1,20 +1,12 @@
 
-## Introduction
-
-Put brief introductory paragraph here.
-
-
-## Architecture
-
 ## Overview
 
-The Researchnet service is composed to two things: one, a web application provides which an application programming interface (API), a management console, and a relational database.  The application flow begins with an authentication and when successful results in a session token which is used by the client for all subsequent requests. The database is a relational database used for storing users and groups as well storing the survey reponses.
+![research](images/research.png )
+Apple launched its ResearchKit framework for iOS on March 9, 2015. This open source software framework was designed to aid in the creation of mobile apps for biomedical and health research. ResearchKit simplifies construction of highly functional apps by providing support for various app modules, including informed consent, passive data collection, active tasks, surveys and data dashboards. 
 
-![Screenshot](images/flow.png)
+Apple iOS currently controls a little over 43% of the US smartphone market, providing access to more than 79 million iPhone users in the US. The ResearchKit platform immediately garnered a great deal of interest within the biomedical research community.   
+ 
+As exciting as this new framework is Apple provided no guidance on how the data collected was to be stored and managed.  This is where the Biomedical Data as a Service Internal Research and Development (IR&D) project comes in.  Designed and implmented by the Research Computing Division, this solution includes the following basic components: an iOS code library, a cloud-based data host, a service layer implementing data exchange application programming interfaces, and a dashboard UI for management.  Instrument developers simply include the iOS library in their IOS application code to connect to the data service via the REST based web API.  Study managers manage their datasets and perform exploratory analytics via the dashboard UI. The system design and implementation incorporates US legal and regulatory compliance with respect to data privacy and security. 
 
-
-## Deployment
-
-Currently we certify a HIPPA compliant configuration with using Docker containers and support the following cloud service providers: Amazon Web Services (AWS), Digital Ocean, Microsoft Azure, and IBM Softlayer.
 
 
