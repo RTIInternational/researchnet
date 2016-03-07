@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'dcjs/dc.css' %}"/>
+<link rel="stylesheet" type="text/css" href="{% static 'dashboard.css' %}"/>
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="row" >
+    <div class="main_display">
+        <div class="large-6 columns">
+          <div id="chart-hist-spend"></div>
+          	<img src="https://placehold.it/350x350">
+        </div>
+        <div class="large-6 columns">
+          <img src="https://placehold.it/350x350">
+        </div>
+    </div>
+  </div>
+
+
+  <div class="row main_table">
+      <table width="100%">
+      <thead>
+        <tr>
+          <th width="200">Enrollment Date</th>
+          <th>First Name</th>
+          <th width="350">Last Name</th>
+          <th>Gender</th>
+          <th>Date of Birth</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for participant in participant_list %}
+        <tr>
+          <td>Not Available</td>
+          <td>Not Available</td>
+          <td>Not Available</td>
+          <td>Not Available</td>
+          <td>Not Available</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+       
+           
+
+{% endblock %}
+
+{% block javascript %}
+
+ 
+
+
+{% endblock %}

@@ -1,0 +1,22 @@
+footer {
+
+}
+
+.export_link {
+	font-size: 10pt;
+}
+
+.main_display, .main_table {
+	margin-top: 40px;
+}
+footer p, .footer-menu {
+	font-size: 10pt;
+}
+
+#chart-ring-year {
+  margin-top: 15px;
+}
+
+#chart-hist-spend {
+  margin-top: 15px;
+}

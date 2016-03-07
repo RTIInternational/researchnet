@@ -4,103 +4,54 @@
 
 {% block head %}
 <link rel="stylesheet" type="text/css" href="{% static 'dcjs/dc.css' %}"/>
-
-<style type="text/css">
-
-#chart-ring-year {
-  margin-top: 15px;
-}
-
-#chart-hist-spend {
-  margin-top: 15px;
-}
-
-</style>
+<link rel="stylesheet" type="text/css" href="{% static 'dashboard.css' %}"/>
 
 {% endblock %}
 
 {% block content %}
 
-       
-        <nav class="top-bar" data-topbar>
-          <ul class="title-area">
-             
-            <li class="name">
-              <h1>
-                <a href="#">
-                  <img src="{% static 'research-32.png' %}"/>
-                  Researchnet
-                </a>
-              </h1>
-            </li>
-            
-          </ul>
-       
-          <section class="top-bar-section">
-             
-            <ul class="right">
-              <li class="divider"></li>
-              
-              <li class="divider"></li>
 
-              <li class="divider"></li>
-               <li class="has-dropdown">
-                <a href="#">My Account</a>
-                <ul class="dropdown">
-                  <li><a href="{% url 'django.contrib.auth.views.logout' %}">Logout</a></li>
-                </ul>
-              </li>
+  <div class="row" >
+    <div class="main_display">
+        <div class="large-6 columns">
+          <div id="chart-hist-spend"></div>
+        </div>
+        <div class="large-6 columns">
+          <div id="chart-ring-year"></div>
+        </div>
+    </div>
+  </div>
 
-            </ul>
-          </section>
-        </nav>
-       
 
-            <div class="row">
+  <div class="row main_table">
 
-              <div class="large-6 columns">
-                <div id="chart-hist-spend"></div>
-              </div>
-              <div class="large-6 columns">
-                <div id="chart-ring-year"></div>
-              </div>
-            </div>
-
-       
-            <div class="row">
-              <div class="large-12 columns show-for-small">
-       
-                <!-- nothing -->
-       
-              </div>
-            </div>
-            <br>
-
-            <div class="row">
-  <table width="100%">
-  <thead>
-    <tr>
-      <th width="200">Date</th>
-      <th>Device ID</th>
-      <th width="350">Username</th>
-      <th>Location</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for submission in submission_list %}
-    <tr>
-      <td>{{ submission.timestamp }}</td>
-      <td>{{ submission.device_id }}</td>
-      <td>{{ submission.user.username }}</td>
-      <td>Not Available</td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
-</div>
+      <div class="export_link right">
+        <i class="fi-download"></i> <a href="/export_submissions">Download</a>
+      </div>
+      
+      <table width="100%" class="hover">
+      <thead>
+        <tr>
+          <th width="200">Date</th>
+          <th>Device ID</th>
+          <th width="350">Username</th>
+          <th>Location</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for submission in submission_list %}
+        <tr>
+          <td>{{ submission.timestamp }}</td>
+          <td>{{ submission.device_id }}</td>
+          <td>{{ submission.user.username }}</td>
+          <td>Not Available</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
        
            
-
 {% endblock %}
 
 {% block javascript %}
