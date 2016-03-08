@@ -1,5 +1,5 @@
 
-{% extends "base.html" %}
+{% extends "plain.html" %}
 {% load staticfiles %}
 
 
@@ -12,44 +12,38 @@
 {% block content %}
 
 
-   <div class="row">
+<div class="row">
+  <div class="medium-6 medium-centered large-4 large-centered columns top-margin">
 
-    <div class="large-6 large-centered columns" id="login">
-
-      {% if form.errors %}
-      <p>Your username and password didn't match. Please try again.</p>
-      {% endif %}
-
-      <div class="signup-panel" >
-        <p class="welcome"> </p>
-        <form method="post" action="{% url 'django.contrib.auth.views.login' %}">
+    <form method="post" action="{% url 'django.contrib.auth.views.login' %}">
         {% csrf_token %}
-          <div class="row collapse">
-            <div class="small-2  columns">
-              <span class="prefix"><i class="fi-torso-female"></i></span>
-            </div>
-            <div class="small-10  columns">
 
-            {{ form.username }}
-            </div>
-          </div>
-
-          <div class="row collapse">
-            <div class="small-2 columns ">
-              <span class="prefix"><i class="fi-lock"></i></span>
-            </div>
-            <div class="small-10 columns ">
-              {{ form.password }}
-            </div>
-          </div>
-
-           <input type="submit" class="button" value="Login" >
-           <input type="hidden" name="next" value="{{ next }}" />
-        </form>
+      <div class="row column log-in-form">
         
+        <div id="logintitle">
+          <img src="{% static 'research-32.png' %}" class="left">
+          <h4>Welcome to Researchnet</h4>
+        </div>
+
+        <label>Username
+          {{ form.username }}
+        </label>
+        <label>Password
+          {{ form.username }}
+
+        </label>
+        <input id="show-password" type="checkbox"><label for="show-password">Show password</label>
+        <p>
+          <a type="submit" class="button expanded">Log In</a>
+          <input type="hidden" name="next" value="{{ next }}" />
+         </p>
+
+        <p class="text-center"><a href="/forgot">Forgot your password?</a></p>   
       </div>
-    </div>
-   </div>
+    </form>
+
+  </div>
+</div>
             
 
 {% endblock %}

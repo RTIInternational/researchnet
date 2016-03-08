@@ -1,0 +1,73 @@
+{% load staticfiles %}
+{% load compress %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+{% compress css %}
+<link type="text/css" rel="stylesheet" href="{% static 'foundation/css/foundation.css' %}">
+<link type="text/css" rel="stylesheet" href="{% static 'foundation-icons/foundation-icons.css' %}" >
+<link type="text/css" rel="stylesheet" href="{% static 'foundation/css/normalize.css' %}">
+{% endcompress %}
+
+
+<title>Researchnet</title>
+
+<link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+
+
+
+{% block head %}
+{% endblock %}
+
+</head>
+
+<body>
+
+{% block content %}
+{% endblock %}
+   
+            
+{% compress js %}
+  <script src="{% static 'jquery/dist/jquery.min.js' %}"></script>
+  <script src="{% static 'foundation/js/foundation.min.js' %}"></script>
+{% endcompress %}
+
+        <footer >
+              <div class="large-12 columns"><hr>
+                  <div class="row">
+       
+                    <div class="large-6 columns">
+                        <p>&copy; RTI International 2016</p>
+                    </div>
+       
+                    <div class="large-6 small-12 columns">
+                        <ul class="inline-list right">
+                          <li><a class="footer-menu" href="https://bitbucket.org/rcdrti/researchnet">Project</a></li>
+                          <li><a class="footer-menu" href="http://researchnet-documentation.s3-website-us-east-1.amazonaws.com/">Documentation</a></li>
+                        </ul>
+                    </div>
+       
+                  </div>
+              </div>
+            </footer>
+       
+          </div>
+        </div>
+       
+
+        <script>
+          $(document).foundation();
+        </script>
+
+        {% block javascript %}
+        {% endblock %}
+</body>
+</html>
