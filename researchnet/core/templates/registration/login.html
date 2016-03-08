@@ -15,6 +15,13 @@
 <div class="row">
   <div class="medium-6 medium-centered large-4 large-centered columns top-margin">
 
+    {% if form.errors %}
+    <div data-alert class="alert-box info radius">
+      Your username and password didn't match.
+      <a href="#" class="close">&times;</a>
+    </div>
+    {% endif %}
+
     <form method="post" action="{% url 'django.contrib.auth.views.login' %}">
         {% csrf_token %}
 
@@ -29,12 +36,12 @@
           {{ form.username }}
         </label>
         <label>Password
-          {{ form.username }}
+          {{ form.password }}
 
         </label>
         <input id="show-password" type="checkbox"><label for="show-password">Show password</label>
         <p>
-          <a type="submit" class="button expanded">Log In</a>
+          <input type="submit" class="button" value="Login" >
           <input type="hidden" name="next" value="{{ next }}" />
          </p>
 

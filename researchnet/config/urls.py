@@ -22,7 +22,7 @@ router.register(r'submission', views.SubmissionViewSet)
 router.register(r'users', views.UserViewSet)
 
 urlpatterns = [
-    url(r'^$', dashboard.views.index),
+    url(r'^$', dashboard.views.index, name='home'),
     url(r'^enrollments/$', dashboard.views.enrollment),
     url(r'^export_submissions/$', dashboard.views.export_submissions),
     url(r'^export_enrollees/$', dashboard.views.export_enrollees),
@@ -30,7 +30,7 @@ urlpatterns = [
     url(r'^api/', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^accounts/login/$', login),
-    url(r'^logout/$', logout),
+    url(r'^logout/$', dashboard.views.logout_view),
     url(r'^heartbeat/$', views.HeartBeat, name='ambition.heartbeat')
 ]  
 

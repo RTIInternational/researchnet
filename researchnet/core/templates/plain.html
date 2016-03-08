@@ -34,10 +34,13 @@
 {% block content %}
 {% endblock %}
    
-            
+
 {% compress js %}
   <script src="{% static 'jquery/dist/jquery.min.js' %}"></script>
   <script src="{% static 'foundation/js/foundation.min.js' %}"></script>
+  <script src="{% static 'foundation/js/vendor/modernizr.js' %}"></script>
+  <script src="{% static 'foundation/js/foundation/foundation.alert.js' %}"></script>
+
 {% endcompress %}
 
         <footer >
