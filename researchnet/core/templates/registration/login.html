@@ -1,38 +1,11 @@
 
 {% extends "base.html" %}
+{% load staticfiles %}
+
 
 {% block head %}
 
-<style type="text/css">
-
-.signup-panel {
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  padding: 15px;
-  margin-top: 30px;
-}
-.signup-panel i {
-  font-size: 30px;
-  line-height: 50px;
-  color: #999;
-}
-.signup-panel form input, .signup-panel form span {
-  height: 50px;
-}
-.signup-panel .welcome {
-  font-size: 26px;
-  text-align: center;
-  margin-left: 0;
-}
-.signup-panel p {
-  font-size: 13px;
-  font-weight: 200;
-  margin-left: 25%;
-}
-.signup-panel .button {
-  margin-left: 35%;
-}
-</style>
+<link rel="stylesheet" type="text/css" href="{% static 'login.css' %}"/>
 
 {% endblock %}
 
@@ -41,14 +14,14 @@
 
    <div class="row">
 
-    <div class="large-6 large-centered columns">
+    <div class="large-6 large-centered columns" id="login">
 
       {% if form.errors %}
       <p>Your username and password didn't match. Please try again.</p>
       {% endif %}
 
-      <div class="signup-panel">
-        <p class="welcome"> Welcome to Research.net</p>
+      <div class="signup-panel" >
+        <p class="welcome"> </p>
         <form method="post" action="{% url 'django.contrib.auth.views.login' %}">
         {% csrf_token %}
           <div class="row collapse">

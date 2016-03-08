@@ -20,3 +20,12 @@ footer p, .footer-menu {
 #chart-hist-spend {
   margin-top: 15px;
 }
+
+footer {
+
+position: fixed;
+bottom: 0;
+width: 100%;
+height: 100px; /* choose any height */
+
+}
