@@ -27,3 +27,5 @@ juptyer:
     - '8888:8888'
   links:
     - db
+    - web
+  
