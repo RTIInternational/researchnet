@@ -29,6 +29,38 @@ Response Object
 
  |  | 
 :----------- | :----------- 
+__Description__         | Get all study participants.
+__Endpoint__         | /participant/       
+__Method__         | GET
+__Authentication__         | Token  
+__Response Codes__         | 200 - Sucessful<br/>401 - Unauthorized <br/>400 - Bad Request        
+
+Response Object
+```
+[
+{
+    "username": "testuser1",
+    "first_name": "Sue",
+    "last_name": "Jones",
+    "email": "fakeemail@rti.org",
+    "gender": "Female",
+    "dob": "1979-12-19"
+  },
+  {
+    "username": "testuser2",
+    "first_name": "Jessie",
+    "last_name": "Thomas",
+    "email": "fakeemail@rti.org",
+    "gender": "Female",
+    "dob": "1979-10-06"
+  }
+  ...
+]
+
+```
+
+|  | 
+:----------- | :----------- 
 __Description__         | Using this API call, you need to supply the required fields for enrolling a study participant.
 __Endpoint__         | /participant/       
 __Method__         | POST
@@ -48,7 +80,6 @@ Request Object
 }
 
 ```
-
 
 
 # Consent
