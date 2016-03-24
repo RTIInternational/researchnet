@@ -1,4 +1,5 @@
 
+
 # Token Authenticate
 
 |  | 
@@ -128,5 +129,11 @@ Request Object
  
 }
 ```
+
+
+
+
+_If you are feeling adventurous, try running this in [Postman](https://app.getpostman.com/run-collection/6241de2d723c0c4b8780)._
+
 
 
