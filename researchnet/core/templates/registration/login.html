@@ -15,21 +15,21 @@
 <div class="row">
   <div class="medium-6 medium-centered large-4 large-centered columns top-margin">
 
+  <div id="errorblock">
     {% if form.errors %}
     <div data-alert class="alert-box info radius">
       Your username and password didn't match.
       <a href="#" class="close">&times;</a>
     </div>
     {% endif %}
-
+  </div>
     <form method="post" action="{% url 'django.contrib.auth.views.login' %}">
         {% csrf_token %}
 
       <div class="row column log-in-form">
         
         <div id="logintitle">
-          <img src="{% static 'research-32.png' %}" class="left">
-          <h4>Welcome to Researchnet</h4>
+          <span>Sign in</span>
         </div>
 
         <label>Username
@@ -39,13 +39,13 @@
           {{ form.password }}
 
         </label>
-        <input id="show-password" type="checkbox"><label for="show-password">Show password</label>
+       
         <p>
-          <input type="submit" class="button" value="Login" >
+          <input type="submit" class="button small" value="Login" >
           <input type="hidden" name="next" value="{{ next }}" />
          </p>
 
-        <p class="text-center"><a href="/forgot">Forgot your password?</a></p>   
+         
       </div>
     </form>
 

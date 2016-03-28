@@ -22,7 +22,19 @@
 
 <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
 
-
+<nav class="top-bar" data-topbar>
+          <ul class="title-area">
+             
+            <li class="name">
+              <h1>
+                <a href="/">
+                  <img src="{% static 'research-32.png' %}"/>
+                  Researchnet
+                </a>
+              </h1>
+            </li> 
+          </ul>         
+</nav>
 
 {% block head %}
 {% endblock %}
@@ -34,13 +46,11 @@
 {% block content %}
 {% endblock %}
    
-
+            
 {% compress js %}
   <script src="{% static 'jquery/dist/jquery.min.js' %}"></script>
   <script src="{% static 'foundation/js/foundation.min.js' %}"></script>
   <script src="{% static 'foundation/js/vendor/modernizr.js' %}"></script>
-  <script src="{% static 'foundation/js/foundation/foundation.alert.js' %}"></script>
-
 {% endcompress %}
 
         <footer >

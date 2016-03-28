@@ -1,18 +1,25 @@
 
-footer p, .footer-menu {
+footer  {
   font-size: 10pt;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 100px; /* choose any height */
 }
 
-
+#errorblock {
+	height: 60px;
+}
 
 .top-margin {
-  margin-top: 70px;
+  margin-top: 15px;
 }
 
 .log-in-form {
   border: 1px solid #cacaca;
   padding: 1rem;
   border-radius: 3px;
+  background-color: #F0F4F5;
 }
 
 input[type="text"] {
@@ -20,8 +27,10 @@ input[type="text"] {
 }
 
 #logintitle {
-  text-align: center;
+
   height: 55px;
+  font-weight: bold;
+  font-size: 30px;
 }
 
 
