@@ -109,7 +109,7 @@ Request Object
 :----------- | :----------- 
 __Description__         | Using this API call, as well as an optional array of answers.
 __Endpoint__         | /submission/  
-Method         | POST       
+__Method__         | POST       
 __Authentication__         | Token        
 __Response Codes__         | 200 - Sucessful<br/>401 - Unauthorized <br/>400 - Bad Request
 
@@ -121,6 +121,8 @@ Request Object
     "time_start": "2015-12-17T18:52:49.963458Z",
     "time_complete": "2015-12-17T18:52:49.963458Z",
     "device_id": "ED2B101F-CC55-46FF-BEE5-60CC32EEC6C9",
+    "lat": "40.5895466",
+    "long": "-105.0751243",
     "response": {
     	"mood category": "fine",
         "mood scale": "8",

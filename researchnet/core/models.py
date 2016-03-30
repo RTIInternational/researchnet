@@ -14,6 +14,8 @@ class Submission(models.Model):
     time_complete = models.DateTimeField(default=datetime.now)
     timestamp = models.DateTimeField(db_index=True, auto_now_add=True)
     device_id = models.TextField()
+    long = models.FloatField(null=True)
+    lat = models.FloatField(null=True)
     response = JSONField()
 
 

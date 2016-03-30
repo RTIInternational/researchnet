@@ -41,11 +41,11 @@
       <tbody>
         {% for participant in participant_list %}
         <tr>
-          <td>Not Available</td>
-          <td>Not Available</td>
-          <td>Not Available</td>
-          <td>Not Available</td>
-          <td>Not Available</td>
+          <td>{{ participant.user.date_joined }}</td>
+          <td>{{ participant.user.first_name }}</td>
+          <td>{{ participant.user.last_name }}</td>
+          <td>{{ participant.gender }}</td>
+          <td>{{ participant.dob }}</td>
         </tr>
         {% endfor %}
       </tbody>

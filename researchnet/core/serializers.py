@@ -57,7 +57,7 @@ class SubmissionSerializer(serializers.HyperlinkedModelSerializer):
     
     class Meta:
         model = Submission
-        fields = ('id','user', 'time_start', 'time_complete', 'timestamp', 'device_id', 'response')
+        fields = ('id','user', 'time_start', 'time_complete', 'timestamp', 'device_id', 'response','lat','long')
 
 
     user = serializers.CharField(required=False)
