@@ -16,8 +16,8 @@ class Submission(models.Model):
     device_id = models.TextField()
     long = models.FloatField(null=True)
     lat = models.FloatField(null=True)
+    place = models.TextField(null=True)
     response = JSONField()
-
 
 # a profile model
 class Participant(models.Model):
@@ -36,3 +36,5 @@ class Consent(models.Model):
 def create_auth_token(sender, instance=None, created=False, **kwargs):
     if created:
         Token.objects.create(user=instance)
+
+     

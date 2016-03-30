@@ -2,6 +2,7 @@ from django.contrib.auth.models import User, Group
 from rest_framework import serializers
 from .models import Submission, Consent, Participant
 import pdb
+import geocoder
 
 class UserSerializer(serializers.ModelSerializer):
     
@@ -57,10 +58,15 @@ class SubmissionSerializer(serializers.HyperlinkedModelSerializer):
     
     class Meta:
         model = Submission
-        fields = ('id','user', 'time_start', 'time_complete', 'timestamp', 'device_id', 'response','lat','long')
-
+        fields = ('id','user', 'time_start', 'time_complete', 'timestamp', 'device_id', 'response','lat','long', 'place')
 
     user = serializers.CharField(required=False)
+    
+    def create(self, validated_data):
+        submission = Submission(**validated_data)
+
+        submission.save()
+        return submission
 
 
 class ConsentSerializer(serializers.ModelSerializer):
