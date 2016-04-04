@@ -129,3 +129,20 @@ REST_FRAMEWORK = {
     )
 }
 
+# We recommend https://www.sparkpost.com
+
+if os.environ.get("EMAIL_HOST", None):
+    EMAIL_HOST = "EMAIL_HOST" in os.environ
+
+if os.environ.get("EMAIL_HOST_USER", None):
+    EMAIL_HOST_USER = "EMAIL_HOST_USER" in os.environ
+
+if os.environ.get("EMAIL_HOST_PASSWORD", None):
+    EMAIL_HOST_PASSWORD =  "EMAIL_HOST_PASSWORD" in os.environ
+
+if os.environ.get("EMAIL_PORT", None):
+    EMAIL_HOST_PASSWORD =  "EMAIL_PORT" in os.environ
+
+if os.environ.get("EMAIL_USE_TLS", None):
+    EMAIL_HOST_PASSWORD =  "EMAIL_USE_TLS" in os.environ
+
