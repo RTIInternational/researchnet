@@ -5,6 +5,7 @@ from core.models import Submission, Participant
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django.shortcuts import redirect
+from django.core.mail import send_mail
 
 
 # Create your views here.

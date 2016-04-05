@@ -1,6 +1,7 @@
 from django.test import TestCase
 from django.core.mail import send_mail
 from django.conf import settings
+from django.core import mail
 
 # Create your tests here.
 
@@ -9,6 +10,8 @@ class SendEmail(TestCase):
   
     def test_email(self):
     	send_mail('Whoa, this thing works', 'Here is the message.', 'researchnet@ictedge.org', ['adam704a@hotmail.com'], fail_silently=False)
+    	self.assertEquals(len(mail.outbox), 1)
+    	self.assertEquals(mail.outbox[0].subject, 'Whoa, this thing works')
 
     def test_confirm_settings(self):
     	self.assertIsNotNone(settings.EMAIL_HOST)

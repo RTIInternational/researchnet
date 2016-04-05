@@ -3,6 +3,8 @@ from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.http import Http404
+from django.core.mail import send_mail
+from django.template import loader
 
 from rest_framework import status
 from rest_framework.response import Response
@@ -146,6 +148,14 @@ class ParticipantList(APIView):
 
         if serializer.is_valid():
             serializer.save()
+            html_message = loader.render_to_string(
+            'welcome_email.html',
+            {
+                'user_name': 'put_variable_here'
+            }
+            )
+            send_mail('Welcome to RTI\'s Researchnet', 'Here is the message.', 'researchnet@ictedge.org', ['adamatlast@gmail.com'], fail_silently=True,html_message=html_message)
+    
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
