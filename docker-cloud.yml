@@ -10,6 +10,12 @@ web:
     - db
   ports:
     - '8000:8000'
+  environment:
+    - EMAIL_HOST=host.com
+    - EMAIL_HOST_USER=email_user
+    - EMAIL_HOST_PASSWORD=email_pass
+    - EMAIL_PORT=123
+    - EMAIL_USE_TLS=True
 nginx:
   image: 'researchtriangle/researchnet_nginx:latest'
   volumes_from:
