@@ -152,7 +152,11 @@ class ParticipantList(APIView):
         serializer = ParticipantSerializer(data=request.data)
 
         if serializer.is_valid():
-            serializer.save()
+            try:
+                serializer.save()
+            except:
+                return Response(serializer.errors, status=status.HTTP_403_FORBIDDEN)
+
             participant = serializer.data
             
         
