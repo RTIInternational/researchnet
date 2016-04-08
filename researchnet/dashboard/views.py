@@ -49,7 +49,7 @@ def export_enrollees(request):
     
     participants = Participant.objects.all()
     for participant in participants:
-        writer.writerow([participant.first_name, participant.last_name, participant.username, participant.email, participant.gender, participant.dob])
+        writer.writerow([participant.user.first_name, participant.user.last_name, participant.user.username, participant.user.email, participant.gender, participant.dob])
 
     return response
 
