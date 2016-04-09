@@ -29,9 +29,11 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^api/', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    url(r'^accounts/login/$', login),
-    url(r'^logout/$', dashboard.views.logout_view),
+    url(r'^accounts/login/$', dashboard.views.login_view, name='login'),
+    url(r'^logout/$', dashboard.views.logout_view, name='logout'),
+    url('', include('django.contrib.auth.urls')),
     url(r'^heartbeat/$', views.HeartBeat, name='ambition.heartbeat')
+
 ]  
 
 urlpatterns += format_suffix_patterns([
