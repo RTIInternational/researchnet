@@ -34,7 +34,7 @@ __Description__         | Get all study participants.
 __Endpoint__         | /participant/       
 __Method__         | GET
 __Authentication__         | Token  
-__Response Codes__         | 200 - Sucessful<br/>401 - Unauthorized <br/>400 - Bad Request        
+__Response Codes__         | 200 - Sucessful<br/>401 - Unauthorized <br/>400 - Bad Request   
 
 Response Object
 ```
@@ -66,7 +66,7 @@ __Description__         | Using this API call, you need to supply the required f
 __Endpoint__         | /participant/       
 __Method__         | POST
 __Authentication__         | None  
-__Response Codes__         | 200 - Sucessful<br/>401 - Unauthorized <br/>400 - Bad Request        
+__Response Codes__         | 200 - Sucessful<br/>401 - Unauthorized <br/>400 - Bad Request<br/>403 - Forbidden   
 
 Request Object
 ```
