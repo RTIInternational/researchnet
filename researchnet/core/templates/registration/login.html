@@ -19,11 +19,9 @@
     {% if form.errors %}
     <div data-alert class="alert-box info radius">
       
-      {% for field in form %}
-        {% if field.errors %}
+      {% if form.username.errors or form.password.errors %}
           Your username and password didn't match
-        {% endif %}
-      {% endfor %}
+      {% endif %}
 
       {% for error in form.non_field_errors %}
         {{ error|escape }}
