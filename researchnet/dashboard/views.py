@@ -3,20 +3,19 @@ from core.models import Submission, Participant
 
 from django.shortcuts import render
 from django.contrib.auth.models import User
-from django.http import HttpResponse
+from django.http import HttpResponse,HttpResponseRedirect
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout, authenticate, login
 from django.shortcuts import redirect
 from django.core.mail import send_mail
-from django.contrib.auth.forms import (
-    AuthenticationForm, PasswordChangeForm, PasswordResetForm, SetPasswordForm,
-)
+
 from django.contrib.auth import (
     REDIRECT_FIELD_NAME, get_user_model, login as auth_login,
     logout as auth_logout, update_session_auth_hash,
 )
 
+from core.forms import ResearchnetAuthForm
 
 # Create your views here.
 @login_required
@@ -63,23 +62,38 @@ def export_enrollees(request):
 
     return response
 
+
 def login_view(request, *args, **kwargs):
     
-    username = request.POST.get('username', False)
-    password = request.POST.get('password', False)
-    user = authenticate(username=username, password=password)
-    form = AuthenticationForm(request)
     redirect_to = request.POST.get(REDIRECT_FIELD_NAME, request.GET.get(REDIRECT_FIELD_NAME, ''))
 
+    if request.method == "POST":
+        
+        form = ResearchnetAuthForm(request, data=request.POST)
+
+        if form.is_valid():
+            print("form is valid")
+
+            user = authenticate(username=form.cleaned_data['username'], password=form.cleaned_data['password'])
+            
+            if user is not None :
+                
+                if user.has_perm('view_dashboard'):
+                    login(request, user)
+                    return HttpResponseRedirect(redirect_to)
+                else:
+                    form.add_error(None, "Participant login not supported")
+        else:
+            print("not valid form")
+
+    else: # not a post
+        form = ResearchnetAuthForm(request)
+
+    
     context = {
         'form': form,
-        REDIRECT_FIELD_NAME: redirect_to,
-        #'site': current_site,
-        #'site_name': current_site.name,
+        REDIRECT_FIELD_NAME: redirect_to
     }
-
-    if user is not None and user.has_perm('view_dashboard'):
-        login(request, user)
 
     return render(request, 'registration/login.html', context)
 

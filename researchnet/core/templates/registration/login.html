@@ -13,17 +13,27 @@
 
 
 <div class="row">
-  <div class="medium-6 medium-centered large-4 large-centered columns top-margin">
+  <div class="large-4 large-centered columns top-margin">
 
   <div id="errorblock">
     {% if form.errors %}
     <div data-alert class="alert-box info radius">
-      Your username and password didn't match. 
+      
+      {% for field in form %}
+        {% for error in field.errors %}
+          {{ error|escape }}
+        {% endfor %}
+      {% endfor %}
+
+      {% for error in form.non_field_errors %}
+        {{ error|escape }}
+      {% endfor %}
+
       <a href="#" class="close">&times;</a>
     </div>
     {% endif %}
   </div>
-    <form method="post" action="{% url 'django.contrib.auth.views.login' %}">
+    <form method="post" action="/accounts/login/">
         {% csrf_token %}
 
       <div class="row column log-in-form">
@@ -32,13 +42,11 @@
           <span>Sign in</span>
         </div>
 
-        <label>Username
-          {{ form.username }}
-        </label>
-        <label>Password
-          {{ form.password }}
-
-        </label>
+        <label>Username</label>
+        {{ form.username }}
+        
+        <label>Password</label>
+        {{ form.password }} 
        
         <p>
           <input type="submit" class="button small" value="Login" >

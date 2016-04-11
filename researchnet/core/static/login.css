@@ -12,7 +12,7 @@ footer p, .footer-menu {
 }
 
 #errorblock {
-	height: 60px;
+	height: 100px;
 }
 
 .top-margin {
@@ -37,4 +37,7 @@ input[type="text"] {
   font-size: 30px;
 }
 
+.error input, .error select {
+    border: 2px red solid;
+}
 
