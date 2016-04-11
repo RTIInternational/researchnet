@@ -85,6 +85,7 @@ def login_view(request, *args, **kwargs):
                     form.add_error(None, "Participant login not supported")
         else:
             print("not valid form")
+            form
 
     else: # not a post
         form = ResearchnetAuthForm(request)

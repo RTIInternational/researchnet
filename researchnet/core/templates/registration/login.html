@@ -20,9 +20,9 @@
     <div data-alert class="alert-box info radius">
       
       {% for field in form %}
-        {% for error in field.errors %}
-          {{ error|escape }}
-        {% endfor %}
+        {% if field.errors %}
+          Your username and password didn't match
+        {% endif %}
       {% endfor %}
 
       {% for error in form.non_field_errors %}

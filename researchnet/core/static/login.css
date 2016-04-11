@@ -37,7 +37,15 @@ input[type="text"] {
   font-size: 30px;
 }
 
-.error input, .error select {
-    border: 2px red solid;
+.glowing-border {
+    outline: none;
+    border-color: #9ecaed;
+    box-shadow: 0 0 10px #9ecaed;
+}
+
+.glowing-border:focus { 
+    outline: none;
+    border-color: #9ecaed;
+    box-shadow: 0 0 10px #9ecaed;
 }
 
