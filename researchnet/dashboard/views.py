@@ -31,7 +31,7 @@ def enrollment(request):
     context = {'participant_list': participants}
     return render(request, 'participant.html', context)
 
-
+@login_required
 def export_submissions(request):
     # Create the HttpResponse object with the appropriate CSV header.
     response = HttpResponse(content_type='text/csv')
@@ -47,7 +47,7 @@ def export_submissions(request):
 
     return response
 
-
+@login_required
 def export_enrollees(request):
     # Create the HttpResponse object with the appropriate CSV header.
     response = HttpResponse(content_type='text/csv')
