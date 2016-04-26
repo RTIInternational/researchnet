@@ -62,7 +62,7 @@ Response Object
 
 |  | 
 :----------- | :----------- 
-__Description__         | Using this API call, you need to supply the required fields for enrolling a study participant.
+__Description__         | Enroll a study participant.
 __Endpoint__         | /participant/       
 __Method__         | POST
 __Authentication__         | None  
@@ -87,7 +87,7 @@ Request Object
 
 |  | 
 :----------- | :----------- 
-__Description__         | This API establishes user consent to use submitted data within a scope (to be defined by study)
+__Description__         | Establishes user consent to use submitted data within a scope (to be defined by study)
 __Endpoint__         | /consent/   
 __Method__         | POST, PUT 
 __Authentication__         | Token          
@@ -107,7 +107,7 @@ Request Object
 
 |  | 
 :----------- | :----------- 
-__Description__         | Using this API call, as well as an optional array of answers.
+__Description__         | Submit a survey response.
 __Endpoint__         | /submission/  
 __Method__         | POST       
 __Authentication__         | Token        

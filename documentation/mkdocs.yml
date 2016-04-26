@@ -3,5 +3,6 @@ theme: flatly
 pages:
 - 'Introduction': 'index.md'
 - 'Background': 'background.md'
+- 'Governance': 'governance.md'
 - 'API': 'api.md'
 - 'Technical Specifications': 'specifications.md'
