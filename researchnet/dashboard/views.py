@@ -9,6 +9,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout, authenticate, login
 from django.shortcuts import redirect
 from django.core.mail import send_mail
+from pandas.io.json import json_normalize 
+import pandas as pd
 
 from django.contrib.auth import (
     REDIRECT_FIELD_NAME, get_user_model, login as auth_login,
@@ -33,17 +35,14 @@ def enrollment(request):
 
 @login_required
 def export_submissions(request):
-    # Create the HttpResponse object with the appropriate CSV header.
-    response = HttpResponse(content_type='text/csv')
-    response['Content-Disposition'] = 'attachment; filename="study_submisisons.csv"'
-
-    writer = csv.writer(response)
-    writer.writerow(['Username', 'Timestamp', 'Device Id', 'Location'])
     
     submissions = Submission.objects.all()
+    df = pd.DataFrame.from_records(json_normalize(submissions.values()))
 
-    for submission in submissions:
-        writer.writerow([submission.user.username, submission.timestamp, submission.device_id, 'Not Available'])
+    # Create the HttpResponse object with the appropriate CSV header.
+    export = df.to_csv()
+    response = HttpResponse(export, content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="study_submisisons.csv"'
 
     return response
 
