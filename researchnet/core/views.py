@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 from django.http import Http404
 from django.core.mail import send_mail
 from django.template import loader
-
+from django.conf import settings
 
 from rest_framework import status
 from rest_framework.response import Response
@@ -168,7 +168,7 @@ class ParticipantList(APIView):
             })
 
             # possibly put a check here to make sure this is a valid email address
-            send_mail('Welcome to RTI\'s Researchnet', 'Here is the message.', 'researchnet@ictedge.org', [participant['email']], fail_silently=True,html_message=html_message)
+            send_mail(settings.EMAIL_REGISTRATION_SUBJECT, 'Here is the message.', settings.DEFAULT_FROM_EMAIL, [participant['email']], fail_silently=True,html_message=html_message)
     
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

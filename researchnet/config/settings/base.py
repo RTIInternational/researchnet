@@ -28,6 +28,7 @@ SECRET_KEY = '!dfk(&=25el=cf!=tzm2m4q+ym8#f-c7=q_r)7#b1#!_%gokw@'
 ALLOWED_HOSTS = []
 
 
+
 # Application definition
 INSTALLED_APPS = (
     
@@ -129,6 +130,8 @@ REST_FRAMEWORK = {
     )
 }
 
+
+
 # We recommend https://www.sparkpost.com
 if 'EMAIL_HOST' in os.environ:
     EMAIL_HOST = os.environ['EMAIL_HOST'] 
@@ -145,5 +148,6 @@ if  'EMAIL_PORT' in os.environ:
 if 'EMAIL_USE_TLS' in os.environ:
     EMAIL_USE_TLS =  os.environ['EMAIL_USE_TLS']
 
-
+DEFAULT_FROM_EMAIL = 'researchnet@ictedge.org'
+EMAIL_REGISTRATION_SUBJECT = 'Welcome to RTI\'s Researchnet'
 
