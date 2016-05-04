@@ -8,13 +8,19 @@ from django.http import Http404
 from django.core.mail import send_mail
 from django.template import loader
 from django.conf import settings
+from django.core.exceptions import PermissionDenied
+
+from django.core.signals import request_finished
+from django.dispatch import receiver
 
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework import viewsets
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
-from rest_framework import permissions
+from rest_framework import permissions, generics
+
+
 from .permissions import IsStaffOrTargetUser
 
 from .serializers import UserSerializer, SubmissionSerializer, ConsentSerializer, ParticipantSerializer
@@ -39,36 +45,14 @@ class UserViewSet(viewsets.ModelViewSet):
                 else IsStaffOrTargetUser()),
 
 
-class SubmissionViewSet(viewsets.ModelViewSet):
-    
-    permission_classes = (permissions.IsAuthenticated,)
-    
-    """
-    API endpoint that allows acccess to the current submission.
-    """
-    queryset = Submission.objects.all()
-    serializer_class = SubmissionSerializer
-
-
-class SubmissionList(APIView):
+class SubmissionList(generics.ListCreateAPIView):
     """
     List all submissions, or create a new submission
     """
     permission_classes = (permissions.IsAuthenticated,)
 
-    def get(self, request, format=None):
-        submission = Submission.objects.all()
-        serializer = SubmissionSerializer(submission, many=True, context={'request': request})
-        return Response(serializer.data)
-
-    def post(self, request, format=None):
-        
-        serializer = SubmissionSerializer(data=request.data, context={'request': self.request})
-
-        if serializer.is_valid():
-            serializer.save(user=request.user)
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    queryset = Submission.objects.all()
+    serializer_class = SubmissionSerializer
 
 
 class SubmissionDetail(APIView):
@@ -139,39 +123,35 @@ class ConsentDetail(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-class ParticipantList(APIView):
+class ParticipantList(generics.ListCreateAPIView):
     """
     List all participants, or create a new participant
     """
-    def get(self, request, format=None):
-        participant = Participant.objects.all()
-        serializer = ParticipantSerializer(participant, many=True, context={'request': request})
-        return Response(serializer.data)
+    permission_classes = (permissions.IsAuthenticated,)
+    
+    queryset = Participant.objects.all()
+    serializer_class = ParticipantSerializer
 
-    def post(self, request, format=None):
-        serializer = ParticipantSerializer(data=request.data)
+    def perform_create(self, serializer):
 
         if serializer.is_valid():
             try:
                 serializer.save()
             except:
-                return Response(serializer.errors, status=status.HTTP_403_FORBIDDEN)
+                raise PermissionDenied
+                #return Response(serializer.errors, status=status.HTTP_403_FORBIDDEN)
 
-            participant = serializer.data
-            
-        
-            html_message = loader.render_to_string(
-            'welcome_email.html',
-            {
-                'first_name': participant['first_name'],
-                'last_name': participant['last_name']
-            })
 
-            # possibly put a check here to make sure this is a valid email address
-            send_mail(settings.EMAIL_REGISTRATION_SUBJECT, 'Here is the message.', settings.DEFAULT_FROM_EMAIL, [participant['email']], fail_silently=True,html_message=html_message)
+        participant = serializer.data
+        html_message = loader.render_to_string('welcome_email.html',
+        {
+            'first_name': participant['first_name'],
+            'last_name': participant['last_name']
+        })
+
+        # possibly put a check here to make sure this is a valid email address
+        send_mail(settings.EMAIL_REGISTRATION_SUBJECT, 'Here is the message.', settings.DEFAULT_FROM_EMAIL, [participant['email']], fail_silently=True,html_message=html_message)
     
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class ParticipantDetail(APIView):
@@ -200,3 +180,4 @@ def HeartBeat(request):
     This method is for the AWS load balancer health check.
     """
     return HttpResponse('{\'data\': {\'status\': \'healthy\'}}')
+

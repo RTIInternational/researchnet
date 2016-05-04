@@ -18,7 +18,6 @@ import dashboard.views
 
 
 router = routers.DefaultRouter()
-router.register(r'submission', views.SubmissionViewSet)
 router.register(r'users', views.UserViewSet)
 
 urlpatterns = [
