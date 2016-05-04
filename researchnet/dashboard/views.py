@@ -22,14 +22,14 @@ from core.forms import ResearchnetAuthForm
 # Create your views here.
 @login_required
 def index(request):
-    submissions = Submission.objects.order_by('-timestamp')[:10]
+    submissions = Submission.objects.order_by('-timestamp')[:100]
     context = {'submission_list': submissions}
     return render(request, 'index.html', context)
 
 
 @login_required
 def enrollment(request):
-    participants = Participant.objects.order_by('-user__date_joined')[:10]
+    participants = Participant.objects.order_by('-user__date_joined')[:100]
     context = {'participant_list': participants}
     return render(request, 'participant.html', context)
 

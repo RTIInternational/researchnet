@@ -6,6 +6,8 @@
 <link rel="stylesheet" type="text/css" href="{% static 'dcjs/dc.css' %}"/>
 <link rel="stylesheet" type="text/css" href="{% static 'dashboard.css' %}"/>
 
+<link rel="stylesheet" type="text/css" href="{% static 'datatables/media/css/dataTables.foundation.min.css' %}"/>
+
 {% endblock %}
 
 {% block content %}
@@ -28,12 +30,13 @@
         <i class="fi-download"></i> <a href="/export_enrollees">Download</a>
       </div>
 
-      <table width="100%" class="hover">
+      <table id="participants" class="display" cellspacing="0" width="100%">
+      
       <thead>
         <tr>
-          <th width="200">Enrollment Date</th>
+          <th>Enrollment Date</th>
           <th>First Name</th>
-          <th width="350">Last Name</th>
+          <th>Last Name</th>
           <th>Gender</th>
           <th>Date of Birth</th>
         </tr>
@@ -58,7 +61,25 @@
 
 {% block javascript %}
 
- 
+  <script src="{% static 'jquery/dist/jquery.min.js' %}"></script>
+  <script src="{% static 'datatables/media/js/jquery.dataTables.js' %}"></script>
+  <script src="{% static 'datatables/media/js/dataTables.foundation.min.js' %}"></script>
+
+  <script type="text/javascript">
+
+
+  $(document).ready(function() {
+    
+    $('#participants').DataTable(
+      { searching: false,
+
+      }
+      );
+  
+
+  } );
+
+  </script>
 
 
 {% endblock %}
