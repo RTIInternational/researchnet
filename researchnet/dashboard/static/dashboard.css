@@ -1,7 +1,8 @@
 
 
 .export_link {
-	font-size: 10pt;
+	text-align: center;
+	padding-bottom: 50px;
 }
 
 .main_display, .main_table {

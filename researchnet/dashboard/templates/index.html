@@ -24,12 +24,9 @@
   </div>
 
 
+
   <div class="row main_table">
 
-      <div class="export_link right">
-        <i class="fi-download"></i> <a href="/export_submissions">Download</a>
-      </div>
-      
       <table id="submissions" class="display" cellspacing="0" width="100%">
 
       <thead>
@@ -46,11 +43,17 @@
           <td>{{ submission.timestamp }}</td>
           <td>{{ submission.device_id }}</td>
           <td>{{ submission.user.username }}</td>
-          <td>Not Available</td>
+          <td>{{ submission.place }}</td>
         </tr>
         {% endfor %}
       </tbody>
     </table>
+  </div>
+
+  <div class="row main_table">
+      <div class="export_link">
+        <i class="fi-download"></i> <a href="/export_submissions">Download this as a CSV</a>
+      </div>
   </div>
        
            
