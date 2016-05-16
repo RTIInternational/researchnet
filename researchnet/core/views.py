@@ -54,6 +54,10 @@ class SubmissionList(generics.ListCreateAPIView):
     queryset = Submission.objects.all()
     serializer_class = SubmissionSerializer
 
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+
+
 
 class SubmissionDetail(APIView):
     """
