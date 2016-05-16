@@ -2,7 +2,6 @@ from django.contrib.auth.models import User, Group
 from rest_framework import serializers
 from .models import Submission, Consent, Participant
 import pdb
-import geocoder
 
 class UserSerializer(serializers.ModelSerializer):
     
