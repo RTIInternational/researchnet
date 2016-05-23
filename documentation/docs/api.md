@@ -4,11 +4,11 @@
 
 |  | 
 :----------- | :----------- 
-__Description__         | A mechanism for clients to obtain a token given a username and password.
+__Description__         | Obtain a token given a username and password. Subsequently, this token is used to authenticate all requests using the following authorization HTTP header `Authorization: Token [TOKEN_ID]`
 __Endpoint__         | /api-token-auth/
 __Method__        | POST  
 __Authentication__         | None       
-__Response Codes__         | 200 - Sucessful<br/>401 - Unauthorized <br/>400 - Bad Request        
+__Response Codes__         | 200 - Successful<br/>401 - Unauthorized <br/>400 - Bad Request        
 
 Request Object
 ```
@@ -26,37 +26,43 @@ Response Object
 ```
 
 
-# Enrollment
+# Participant
 
  |  | 
 :----------- | :----------- 
-__Description__         | Get all study participants.
+__Description__         | Get study participants.
 __Endpoint__         | /participant/       
 __Method__         | GET
+__Pagination__         | Limit Offset: This pagination style mirrors the syntax used when looking up multiple database records. The client includes both a `limit` and an `offset` query parameter. The limit indicates the maximum number of items to return, and defaults to 20 records. The offset indicates the starting position of the query in relation to the complete set of unpaginated items.  
 __Authentication__         | Token  
 __Response Codes__         | 200 - Sucessful<br/>401 - Unauthorized <br/>400 - Bad Request   
 
 Response Object
 ```
-[
 {
-    "username": "testuser1",
-    "first_name": "Sue",
-    "last_name": "Jones",
-    "email": "fakeemail@rti.org",
-    "gender": "Female",
-    "dob": "1979-12-19"
-  },
-  {
-    "username": "testuser2",
-    "first_name": "Jessie",
-    "last_name": "Thomas",
-    "email": "fakeemail@rti.org",
-    "gender": "Female",
-    "dob": "1979-10-06"
-  }
-  ...
-]
+  "count": 20,
+  "next": null,
+  "previous": null,
+  "results": [
+    {
+      "username": "testuser0",
+      "first_name": "Chris",
+      "last_name": "Smith",
+      "email": "fakeemail@rti.org",
+      "gender": "Male",
+      "dob": "1971-09-04"
+    },
+    {
+      "username": "testuser1",
+      "first_name": "Sue",
+      "last_name": "Smith",
+      "email": "fakeemail@rti.org",
+      "gender": "Female",
+      "dob": "1983-03-04"
+    },
+    ...
+    ]
+}
 
 ```
 
@@ -83,7 +89,7 @@ Request Object
 ```
 
 
-# Consent
+# Participant Consent
 
 |  | 
 :----------- | :----------- 
@@ -103,7 +109,7 @@ Request Object
 
 
 
-# Survey Response
+# Survey Submission
 
 |  | 
 :----------- | :----------- 
@@ -132,7 +138,59 @@ Request Object
 }
 ```
 
+|  | 
+:----------- | :----------- 
+__Description__         | Get survey submissions.
+__Endpoint__         | /submission/  
+__Method__         | GET       
+__Pagination__         | Limit Offset: This pagination style mirrors the syntax used when looking up multiple database records. The client includes both a `limit` and an `offset` query parameter. The limit indicates the maximum number of items to return, and defaults to 20 records. The offset indicates the starting position of the query in relation to the complete set of unpaginated items.  
+__Authentication__         | Token        
+__Response Codes__         | 200 - Sucessful<br/>401 - Unauthorized <br/>400 - Bad Request
 
+Response Object
+```
+{
+  "count": 54,
+  "next": "http://researchnet.ictedge.org/submission/?limit=20&offset=20",
+  "previous": null,
+  "results": [
+    {
+      "id": 51,
+      "user": "testuser0",
+      "time_start": "2016-05-16T21:35:59.957043Z",
+      "time_complete": "2016-05-16T21:35:59.957054Z",
+      "timestamp": "2016-05-16T21:35:59.984477Z",
+      "device_id": "TEST-49D5-4CAD-AE42-E5CE922A3346",
+      "response": {
+        "mood scale": "5",
+        "mood image": "4",
+        "mood cateogry": "unsure"
+      },
+      "lat": 45.5423508,
+      "long": -122.7945071,
+      "place": "Portland, OR US"
+    },
+    {
+      "id": 52,
+      "user": "testuser0",
+      "time_start": "2016-05-16T21:36:05.678664Z",
+      "time_complete": "2016-05-16T21:36:05.678673Z",
+      "timestamp": "2016-05-16T21:36:05.679262Z",
+      "device_id": "TEST-49D5-4CAD-AE42-E5CE922A3346",
+      "response": {
+        "mood scale": "9",
+        "mood image": "3",
+        "mood cateogry": "good"
+      },
+      "lat": 45.5423508,
+      "long": -122.7945071,
+      "place": "Portland, OR US"
+    },
+    ...
+    ]
+}
+
+```
 
 
 _If you are feeling adventurous, try running this in [Postman](https://app.getpostman.com/run-collection/6241de2d723c0c4b8780)._
