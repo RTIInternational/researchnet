@@ -46,6 +46,7 @@ INSTALLED_APPS = (
     'django_extensions',
     'rest_framework',
     'rest_framework.authtoken',
+    'corsheaders',
 
     # Mine
     'dashboard',
@@ -61,7 +62,10 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 )
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 ROOT_URLCONF = 'config.urls'
 
