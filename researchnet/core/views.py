@@ -143,8 +143,6 @@ class ParticipantList(generics.ListCreateAPIView):
                 serializer.save()
             except:
                 raise PermissionDenied
-                #return Response(serializer.errors, status=status.HTTP_403_FORBIDDEN)
-
 
         participant = serializer.data
         html_message = loader.render_to_string('welcome_email.html',
@@ -169,15 +167,17 @@ class ParticipantDetail(APIView):
             return Participant.objects.get(pk=pk)
         except Participant.DoesNotExist:
             raise Http404
-
-    def put(self, request, pk, format=None):
-        participant = self.get_object(pk)
-        serializer = ParticipantSerializer(consent, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
+      
+    def get(self, request, pk, format=None):
+        try:
+            participant = self.get_object(pk)
+            serializer = ParticipantSerializer(participant, context={'request': request})
             return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        except Participant.DoesNotExist:
+            raise Http404
 
+
+    
 
 def HeartBeat(request):
     """
