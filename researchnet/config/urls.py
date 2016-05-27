@@ -17,8 +17,6 @@ from core import views
 import dashboard.views
 
 
-router = routers.DefaultRouter()
-router.register(r'users', views.UserViewSet)
 
 urlpatterns = [
     url(r'^$', dashboard.views.index, name='home'),
@@ -38,6 +36,7 @@ urlpatterns += format_suffix_patterns([
     url(r'^submission/$', views.SubmissionList.as_view()),
     url(r'^submission/(?P<pk>[0-9]+)/$', views.SubmissionDetail.as_view()), 
     url(r'^consent/$', views.ConsentList.as_view()),
+    url(r'^users/$', views.UserViewSet),
     url(r'^participant/$', views.ParticipantList.as_view()),
     url(r'^participant/(?P<pk>[0-9]+)/$', views.ParticipantDetail.as_view()), 
 ])

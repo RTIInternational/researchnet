@@ -3,26 +3,28 @@ from rest_framework import serializers
 from .models import Submission, Consent, Participant
 import pdb
 
-class UserSerializer(serializers.ModelSerializer):
+
+class ParticipantUserSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = User
         
-        fields = ('username', 'email', 'password', 'first_name', 'last_name')
+        fields = ('username', 'email', 'password', 'first_name', 'last_name','gender', 'dob')
+        
         extra_kwargs = {'password': {'write_only': True}}
         read_only_fields = ('is_staff', 'is_superuser', 'is_active', 'date_joined',)
+    
+    gender=serializers.CharField(source='participant.gender')
+    dob=serializers.CharField(source='participant.dob')
 
+
+    
     def create(self, validated_data):
         user = User(**validated_data)
         user.set_password(validated_data['password'])
         user.save()
         return user
 
-class GroupSerializer(serializers.HyperlinkedModelSerializer):
-    
-    class Meta:
-        model = Group
-        fields = ('url', 'name')
 
 class ParticipantSerializer(serializers.Serializer):
     
@@ -53,19 +55,19 @@ class ParticipantSerializer(serializers.Serializer):
         return participant
 
 
-class SubmissionSerializer(serializers.HyperlinkedModelSerializer):
+class SubmissionSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Submission
-        fields = ('id','user', 'time_start', 'time_complete', 'timestamp', 'device_id', 'response','lat','long', 'place')
+        fields = ('id', 'participant', 'time_start', 'time_complete', 'timestamp', 'device_id', 'response','lat','long', 'place')
 
-    user = serializers.CharField(required=False)
-    
+    participant = ParticipantUserSerializer(many=False, read_only=True, source='user')
+
     def create(self, validated_data):
         submission = Submission(**validated_data)
-
         submission.save()
         return submission
+
 
 
 class ConsentSerializer(serializers.ModelSerializer):

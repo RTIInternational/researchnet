@@ -23,7 +23,7 @@ from rest_framework import permissions, generics
 
 from .permissions import IsStaffOrTargetUser
 
-from .serializers import UserSerializer, SubmissionSerializer, ConsentSerializer, ParticipantSerializer
+from .serializers import ParticipantUserSerializer, SubmissionSerializer, ConsentSerializer, ParticipantSerializer
 from .models import Submission, Consent, Participant
 
 
@@ -37,7 +37,7 @@ class UserViewSet(viewsets.ModelViewSet):
     API endpoint that allows users to be viewed.
     """
     queryset = User.objects.all().order_by('-date_joined')
-    serializer_class = UserSerializer
+    serializer_class = ParticipantUserSerializer
 
     def get_permissions(self):
         # allow non-authenticated user to create via POST

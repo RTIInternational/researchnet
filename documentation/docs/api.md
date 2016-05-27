@@ -150,41 +150,55 @@ __Response Codes__         | 200 - Sucessful<br/>401 - Unauthorized <br/>400 - B
 Response Object
 ```
 {
-  "count": 54,
-  "next": "http://researchnet.ictedge.org/submission/?limit=20&offset=20",
+  "count": 105,
+  "next": "http://localhost:8000/submission/?limit=20&offset=20",
   "previous": null,
   "results": [
     {
-      "id": 51,
-      "user": "testuser0",
-      "time_start": "2016-05-16T21:35:59.957043Z",
-      "time_complete": "2016-05-16T21:35:59.957054Z",
-      "timestamp": "2016-05-16T21:35:59.984477Z",
+      "id": 23,
+      "participant": {
+        "username": "testuser0",
+        "email": "fakeemail@rti.org",
+        "first_name": "Piper",
+        "last_name": "Walters",
+        "gender": "Male",
+        "dob": "1984-05-23"
+      },
+      "time_start": "2016-03-30T20:54:17.142617Z",
+      "time_complete": "2016-03-30T20:54:17.142632Z",
+      "timestamp": "2016-03-30T20:54:17.164977Z",
       "device_id": "TEST-49D5-4CAD-AE42-E5CE922A3346",
       "response": {
-        "mood scale": "5",
-        "mood image": "4",
-        "mood cateogry": "unsure"
+        "mood image": "6",
+        "mood cateogry": "fine",
+        "mood scale": "2"
       },
       "lat": 45.5423508,
       "long": -122.7945071,
       "place": "Portland, OR US"
     },
     {
-      "id": 52,
-      "user": "testuser0",
-      "time_start": "2016-05-16T21:36:05.678664Z",
-      "time_complete": "2016-05-16T21:36:05.678673Z",
-      "timestamp": "2016-05-16T21:36:05.679262Z",
+      "id": 24,
+      "participant": {
+        "username": "testuser0",
+        "email": "fakeemail@rti.org",
+        "first_name": "Piper",
+        "last_name": "Walters",
+        "gender": "Male",
+        "dob": "1984-05-23"
+      },
+      "time_start": "2016-03-30T20:54:17.291626Z",
+      "time_complete": "2016-03-30T20:54:17.291638Z",
+      "timestamp": "2016-03-30T20:54:17.292202Z",
       "device_id": "TEST-49D5-4CAD-AE42-E5CE922A3346",
       "response": {
-        "mood scale": "9",
-        "mood image": "3",
-        "mood cateogry": "good"
+        "mood image": "9",
+        "mood cateogry": "good",
+        "mood scale": "7"
       },
-      "lat": 45.5423508,
-      "long": -122.7945071,
-      "place": "Portland, OR US"
+      "lat": 39.1490189,
+      "long": -107.1444289,
+      "place": "Marble, CO US"
     },
     ...
     ]
