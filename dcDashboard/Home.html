@@ -1,0 +1,871 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <!--        
+        Title and Description
+        ---------------------
+        ResearchNet Dashboard    
+        This page displays interactive charts using ResearchNet data.
+        
+
+        Development tools
+        -----------------
+        1. Microsoft Visual Studio Community 2015, update 2
+            Project setup:
+                - New website
+                - ASP.Net Empty Web Site
+
+            Visual Studio Community 2015 bug work-arounds
+            ---------------------------------------------
+             1. Changes made to sample.json are not kept if app is running!!
+
+        2. NuGet packages installed:
+            - bootstrap 3.3.6
+                - this installed jQuery 1.9.1 which is updated to 2.2.3
+            - d3 3.5.17
+            - dc 1.7.0
+                - this installed Crossfilter 1.3.9
+            - fileSaver 1.1.20
+            - Moment 2.13.0
+                - this installed Moment.Timezone 0.5.3
+            - jQuery.BlockUI 2.70.0
+
+
+            Notes: JavaScript stack (what each library depends on - just listed here for reference)
+             A   dc
+             |   CrossFilter
+             |   d3
+             |   bootstrap
+             |   jQuery      (bottom)
+
+            Other libraries:
+            - FileSaver
+
+        Description of JS libraries
+        ---------------------------
+        D3.js:
+            - JS library to manipulate graphical objects
+
+        Crossfilter.js:
+            - JS library for exploring large datasets that include many variables. Slice and dice data. Developed for Square.
+            - Crossfilter doesn't draw the graphs, it manipulates data.
+            - creates coordinated views (visualizations)
+            - Includes a map-reduce function
+              Map-reduce - large data set having one dimension (could be a column or more complicated) mapped or loaded into memory ready
+              to be worked on. The reduce function takes that dimension and reduces it by grouping it according to a specific aspect.
+
+        Dc.js:
+            - JS library that is an enabler for both libraries above. Takes the crossfilter data manipulation capabilities and integrates the
+              graphical capabilities of D3
+            - creates different chart types, limited than what can be created in D3, but simpler and supports crossfilter
+            - Supports bar, pie, row (horizontal bar chart), line, bubble (type of scatter), geo cloropleth (geo areas shaded in proportion to
+              measurement of some variable), data table
+            - Examples of dc charts - http://dc-js.github.io/dc.js/examples/
+
+
+        References:
+        https://leanpub.com/D3-Tips-and-Tricks/read#leanpub-auto-crossfilter-dcjs-and-d3js-for-data-discovery
+        http://getbootstrap.com/css/#overview
+    -->
+
+    <title>ResearchNet - Home</title>
+    <meta charset="utf-8" />
+
+    <!-- Load JavaScript libaries -->
+    <!-- Order the scripts load is important - e.g. jQuery must be loaded first for bootstrap to work -->
+    <script src="Scripts/d3/d3.min.js"></script>
+    <script src="Scripts/CrossFilter/crossfilter.min.js"></script>
+    <script src="Scripts/DC/dc.min.js"></script>
+    <script src="Scripts/jquery-2.2.3.min.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
+    <script src="Scripts/moment.min.js"></script>
+    <script src="Scripts/jquery.blockUI.js"></script> <!-- http://malsup.com/jquery/block/ -->
+    <script src="Scripts/FileSaver.min.js"></script> 
+    
+          
+    <!-- Load CSS -->
+    <!--Note that dc.css is required or display with be incorrect with wrong colors and widths -->
+    <link href="Content/dc.css" rel="stylesheet" type="text/css" />
+    <link href="Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="Content/bootstrap-theme.min.css" rel="stylesheet" type="text/css" />
+    <link href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" rel="stylesheet">
+
+    <!-- Page CSS styling -->
+    <style>
+        #dc-age-chart svg    {margin-left:40px;}  /* Note this is moving the svg element */
+        #dc-sub-chart svg    {margin-left:30px;}
+        #dc-user-chart svg   {margin-left:30px;}
+        #dc-place-chart svg  {margin-left:10px;}
+        #dc-gender-chart svg {margin-left:0px;}
+        .dc-chart .pie-slice {font-size: 10pt; font-weight:normal;}
+        #dc-table-graph      {margin-left:44px;width:87%;}
+        .errorMessage        {padding: 15px; background-color: darkred; color: white; font-size: 14pt; text-align: left; margin-top:30px; }
+
+        .pageSectionHeading {
+            border-radius: 2px !important;
+            width:90%;
+            background: white;
+            border-bottom: 2px solid whitesmoke;
+            padding: 5px;
+            margin:60px 60px 30px 45px;
+            font-family:'Segoe UI';
+            font-size:16pt;
+        }
+
+        .VisualizationHeading {
+            width:70%;
+            background-color:white;
+            font-family:'Segoe UI';
+            padding:5px;
+            font-size:15pt;                
+            margin-left:50px;
+            margin-bottom:-10px;
+        }
+
+        .VisualizationSubHeading {
+            width:70%;
+            font-family:'Segoe UI';
+            color:GrayText;
+            padding:5px;
+            font-size:10pt;                
+            margin-left:50px;
+        }
+
+        /* add the word Filter: before the filter output */
+        .VisualizationFilter:before {
+            content: "Filter: ";
+        }
+
+        .VisualizationFilter {
+            width:70%;
+            font-family:'Segoe UI';
+            color:GrayText;            
+            border-bottom: 1px solid whitesmoke;
+            padding:5px;
+            font-size:8pt;                
+            margin-top:-10px;
+            margin-bottom:20px;
+            margin-left:50px;
+        }
+
+        .LeftChartIndent {
+            margin-left:50px;
+        }
+
+        /*
+        Work-around for bootstrap 3 horizontal scrollbar when container-fluid used issue
+        http://stackoverflow.com/questions/18392477/how-to-make-bootstrap-3-fluid-layout-without-horizontal-scrollbar
+        */
+        body { overflow-x: hidden;}
+
+    </style>
+
+</head>
+
+
+<body>
+    <!-- bootstrap top level div (either container or container-fluid)-->
+    <div class="container-fluid">
+
+
+        <!-- Display Page Header - icon, title, subtitle, and about button as well as about this page content -->
+        <div class="row" style="background-color:steelblue; padding:17px 17px 17px 0px;">
+            <div class="col-sm-9" >
+                <div>
+                    <span class="glyphicon glyphicon-th-large" style="color:darkorange;font-size:40px;"></span>
+                    <span style="color:white;font-family:'Segoe UI';font-size:28px;vertical-align:top;">
+                    ResearchNet <span style="letter-spacing:2px;vertical-align:top;">Dashboard</span></span><br />
+                </div>
+                <div style="margin-left:48px;margin-top:-10px">
+                    <span style="color:white;font-family:'Segoe UI';font-size:15px;">Visualizations for ResearchNet participant data</span><br />
+                </div>
+            </div>
+            <div class="col-sm-3 text-right">
+                <!-- About this page modal popup implemented in bootstrap, see http://www.w3schools.com/bootstrap/bootstrap_modal.asp -->
+                <!-- Buttons are styled using bootstrap - http://www.w3schools.com/bootstrap/bootstrap_ref_comp_glyphs.asp -->
+                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal" 
+                        style="width:120px;margin-right:1px;margin-top:13px;" onclick="javascript:StartExecution();">
+                    <span class="glyphicon glyphicon-info-sign"></span><span style="margin-left:7px;">About this page</span>
+                </button>
+                <!-- About this page dialog -->
+                <div id="myModal" class="modal fade text-left" role="dialog">
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header" style="background-color:darkorange;color:white;">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">About the ResearchNet Dashboard</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div style="margin:15px;">
+                                    This dashboard was created using client-side JavaScript and the following JavaScript libraries:<br/><br />
+                                    <ul>
+                                        <li>Bootstrap.js</li>
+                                        <li>Crossfilter.js</li>
+                                        <li>D3.js</li>
+                                        <li>DC.js</li>
+                                        <li>Filesaver.js</li>
+                                        <li>jQuery.js</li>
+                                        <li>jQueryUI.js</li>
+                                        <li>Moment.js</li>
+                                    </ul>
+                                </div>
+                                <div style="margin:15px;">
+                                    The charts were programmed in 
+                                    <a href="http://dc-js.github.io/dc.js/">DC.js</a> which is a charting tool built on top of 
+                                    D3.js and Crossfilter.js which provides the filtering and interactivity                                     
+                                    when you click on a chart data element.
+                                </div>
+                                <div style="margin:15px;">
+                                    To learn how to make a dashboard page like this, right click on the page and select
+                                    your browser's view source command. The source code includes numerous comments and
+                                    links to get you started.
+                                </div>
+                                <div style="margin:15px;">                                    
+                                    To get more information or help for this page, please visit the 
+                                    <a href="http://researchnet-documentation.s3-website-us-east-1.amazonaws.com/">ResearchNet</a> 
+                                    web site.
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Display error message line (only visible if there is an caught error) -->
+        <div class="row" style="">
+            <div id="messageLine" class="col-sm-12">
+            </div>
+        </div>
+
+
+        <!--Display filter and record count, reset, refresh and download buttons -->
+        <div class="row" style="margin-top:25px;margin-left:33px;">
+            <div class="col-sm-8">
+                <div class="dc-data-count" style="margin-top:0px;">
+                    <span class='filter-count'></span>
+                    selected out of
+                    <span class='total-count'></span>
+                    records. 
+                    <!-- Buttons are styled using bootstrap - http://www.w3schools.com/bootstrap/bootstrap_ref_comp_glyphs.asp -->
+                    <!-- Reset Filter button -->
+                    <button type="button" class="btn btn-default btn-sm" style="width:110px;margin-left:5px;margin-right:5px;" onclick="javascript: dc.filterAll(); dc.renderAll();">
+                        <span class="glyphicon glyphicon-filter"></span><span style="margin-left:7px;">Reset Filter</span>
+                    </button>
+                    <!-- Refresh Data button -->
+                    <button type="button" class="btn btn-default btn-sm" style="width:110px;margin-right:10px;" onclick="javascript: StartExecution();">
+                        <span class="glyphicon glyphicon-refresh"></span><span style="margin-left:7px;">Refresh Data</span>
+                    </button>
+                </div>
+            </div>
+            <div class="col-sm-4 text-right">
+                <!-- Download Data button -->
+                <button type="button" id="download" class="btn btn-default btn-sm" style="width:120px;margin-right:14px;"
+                        title="Records matching the current filter are downloaded as a CSV file.">
+                    <span class="glyphicon glyphicon-download-alt"></span><span style="margin-left:7px;">Download Data</span>
+                </button>
+            </div>
+        </div>
+
+
+        <!--Display demographics section -->
+        <!-- Section heading -->
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="pageSectionHeading"><span class="glyphicon glyphicon-user"></span>&nbsp;Demographics</div>
+            </div>
+        </div>
+
+        <!-- Display participants by AGE, top CITIES participants live in, and GENDER of participants -->
+        <!-- Note: Fixefox show max width of 1519px on 1920 display - limit size for this to prevent wrapping on large displays - not ideal, need to investigate -->
+        <div class="row">
+            <div class="span4 LeftChartIndent" id="dc-age-chart" style="max-width:500px;">
+                <div class="VisualizationHeading">Age</div>
+                <div class="VisualizationSubHeading">Number of participants by age </div>
+                <!-- dc.js will also automatically inject the current filter value into any html element with its css class set to "filter" -->
+                <!-- See https://dc-js.github.io/dc.js/docs/stock.html and http://dc-js.github.io/dc.js/examples/filtering.html -->                
+                <div class="VisualizationFilter"><span class="filter"></span></div>    
+            </div>
+            <div class="span4" id="dc-place-chart" style="max-width:450px;">
+                <div class="VisualizationHeading">Users by City</div>
+                <div class="VisualizationSubHeading">The top 5 cities where users live</div>
+                <div class="VisualizationFilter"><span class="filter"></span></div>    
+            </div>
+            <div class="span4" id="dc-gender-chart" style="max-width:450px;">
+                <div class="VisualizationHeading">Gender</div>
+                <div class="VisualizationSubHeading">&nbsp;</div>
+                <div class="VisualizationFilter"><span class="filter"></span></div>    
+            </div>
+        </div>
+
+        <!-- Display users by STATE on US map -->
+        <div class="row">
+            <div class="col-md-12 LeftChartIndent" id="dc-us-chart" style="margin-top:10px;">
+                <div class="VisualizationHeading">Users by State</div>
+                <div class="VisualizationSubHeading">Darker colors indicate more users</div>
+                <div class="VisualizationFilter"><span class="filter"></span></div>    
+            </div>
+        </div>
+        
+
+        <!--Display usage section -->
+        <!-- Section heading -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="pageSectionHeading"><span class="glyphicon glyphicon-time"></span>&nbsp;Usage</div>
+            </div>
+        </div>
+
+        <!-- Display usage by MONTH and top USERS by usage  -->
+        <div class="row">
+            <div class="span8 LeftChartIndent" id="dc-sub-chart">
+                <div class="VisualizationHeading">By Date</div>
+                <div class="VisualizationSubHeading">Date range based on data</div>
+                <div class="VisualizationFilter"><span class="filter"></span></div>    
+            </div>
+            <div class="span4" id="dc-user-chart">
+                <div class="VisualizationHeading">Top Users</div>
+                <div class="VisualizationSubHeading">Top 3 users by submission</div>
+                <div class="VisualizationFilter"><span class="filter"></span></div>    
+            </div>
+        </div>
+
+
+        <!--Display submissions section -->
+        <!-- Section heading -->
+        <div class="row">
+            <div class="span12">
+                <div class="pageSectionHeading"><span class="glyphicon glyphicon-th-list"></span>&nbsp;Submissions</div>                
+            </div>
+        </div>
+
+        <!-- Display submissions Data TABLE -->
+        <div class="row">
+            <div class="col-md-12 LeftChartIndent">
+                <table class="table table-hover" id="dc-table-graph">
+                    <thead>
+                        <tr class="header">
+                            <th>Record ID</th>
+                            <th>Date</th>
+                            <th>Device ID</th>
+                            <th>User Name</th>
+                            <th>Location</th>
+                            <th>Map</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+
+        <!-- add vertical space at the bottom for margin -->
+        <div class="row" style="height:60px;">
+            <div class="col-md-12"></div>
+        </div>
+
+
+    </div> <!-- <div class="container-fluid">-->
+
+
+    <script>
+
+        // https://learn.jquery.com/using-jquery-core/document-ready/
+        // jquery - using .ready() - method makes sure the DOM is loaded before starting the script 
+        $(document).ready(function () {
+
+            var token;
+            var submissionDimension;
+
+            // GetResearchNetToken() calls the ResearchNet API ap-token-auth method with a user name and password. The method returns a 
+            // token which is used to authenticate subsequent calls to the API. This is also an example of how to make a REST based API
+            // call using jQuery. 
+            function GetResearchNetToken(username, password) {
+
+                $.ajax({
+                    url: 'https://researchnet.ictedge.org/api-token-auth/',
+                    data: {
+                        'username': username,
+                        'password': password
+                    },
+                    error: function () {
+                        //alert('failed');
+                        $('#messageLine').html('<p class="errorMessage">An error has occurred retrieving the token.' + ' ' + '</p>');
+                    },
+                    success: function (data) {
+                        // display token on page - debug only                       
+                        //var $description = $('<p>').text(data.token);
+                        //$('#messageLine')
+                        //   .append('Token: ')
+                        //   .append($description);
+
+                        // because this call is async, need to set token variable here vs. after the call to this function.
+                        // otherwise, the variable assignment can/will occur before the async call is complete and the value
+                        // will be undefined.
+                        //alert('Token retrieved: ' + token);
+                        token = data.token;
+
+                        LoadDataAndRenderCharts(token);
+                    },
+                    type: 'POST'
+                });
+
+            } // end function GetResearchNetToken()
+
+
+            // LoadDataAndRenderCharts() calls the ResearchNet API to get the data to visualize and then renders each of the dc charts.
+            function LoadDataAndRenderCharts(token) {
+
+                // Create the dc chart objects passing in where on the page they should be rendered
+                // To see a list of all dc chart types, go to http://dc-js.github.io/dc.js/examples/
+                var dataTable = dc.dataTable("#dc-table-graph");
+                var subLineChart = dc.lineChart("#dc-sub-chart");
+                var ageBarChart = dc.barChart("#dc-age-chart");
+                var userBarChart = dc.barChart("#dc-user-chart");
+                var placePieChart = dc.pieChart("#dc-place-chart");
+                var genderPieChart = dc.pieChart("#dc-gender-chart");
+                var usChoroplethChart = dc.geoChoroplethChart("#dc-us-chart");
+
+
+                // example of reading from a file on the site
+                //d3.json('data/sample3.json', function (error, data) {
+
+                // get data from API call - GET method passing in the token as a header parameter
+                // http://stackoverflow.com/questions/23993671/how-to-add-authorization-header-while-accessing-json-in-d3
+                // https://github.com/d3/d3/wiki/Requests#header
+                d3.json('https://researchnet.ictedge.org/submission/')
+                  .header('Authorization', 'Token ' + token)
+                  .get(function (error, data) {
+
+                    // if an exception occured calling the submission endpoint
+                    if (error) {
+                        $('#messageLine').html(
+                            '<p class="errorMessage">An error has occurred that may prevent this page from working correctly. '
+                            + 'Please use the support information under About this page to get help.<br/>Details:'
+                            + error.toString()
+                            + '</p>');
+                        return console.warn(error);
+                    }
+
+                    // if no data returned
+                    if (data.count == 0) {
+                        $('#messageLine').html(
+                            '<p class="errorMessage">An error has occurred that may prevent this page from working correctly. '
+                            + 'Please use the support information under About this page to get help.<br/>Details:'
+                            + 'No records returned from the API call.'
+                            + '</p>');
+                        return console.warn(error);
+                    }
+
+
+                    // TODO: why does this need to go here? 
+                    // https://github.com/dc-js/dc.js/issues/852
+                    d3.json("data/us-states.json", function (error, statesJson) {
+
+                        if (error) {
+                            $('#messageLine').html(
+                                '<p class="errorMessage">An error has occurred that may prevent this page from working correctly. '
+                                + 'Please use the support information under About this page to get help.<br/>Details:'
+                                + error.toString()
+                                + '</p>');
+                            return console.warn(error);
+                        }
+
+
+                        // create a format function? for dates
+                        var dtgFormat = d3.time.format("%Y-%m-%dT%H:%M:%S");
+
+                        // debug
+                        //alert(xinspect(data));
+
+                        // variables can be formatted or new variables based on the data can be created
+                        data.results.forEach(function (d) {
+
+                            //d.dtstart = dtgFormat.parse(d.time_start);
+                            d.dtstart = dtgFormat.parse(d.time_start.substr(0, 19));
+                            //console.log('date');
+                            //console.log(moment(d.dtstart).format('m'));
+                            // moment formats - http://momentjs.com/docs/#/parsing/string-format/
+                            d.dtstartformatted = moment(d.dtstart).format('MMM Do, YYYY hh:mm:ss A');
+                            //d.dtstart = moment(d.time_start.substr(0, 19), "%Y-%m-%dT%H:%M:%S");
+                            d.lat = +d.lat;
+                            d.long = +d.long;
+                        });
+
+
+                        // load data into crossfilter 
+                        var facts = crossfilter(data.results);
+
+
+                        // count all the facts
+                        //http://jsfiddle.net/neilsatt/6Zk9v/1/
+                        var all = facts.groupAll();
+                        dc.dataCount(".dc-data-count")
+                        .dimension(facts)
+                        .group(all);
+
+
+                        // define the facts in crossfilter
+                        // For each chart:
+                        //    X AXIS - create a <data>.dimension to hold X axis values
+                        //    Y AXIS - use a dc group map-reduce function to calculate Y axis values - https://github.com/square/crossfilter/wiki/API-Reference#group_reduce
+                        //          Examples of map-reduce functions:
+                        //              group.size() - number of distinct values regardless of filter applied
+                        //              group.reduceCount() - counts records
+                        //              group.reduceSum() - adds values
+                        //              group.order() - specifies order value for computing top groups
+                        //              group.top(k) - returns array containing top k groups desc according to the group order
+                        //              group.all() - returns array of all groups. Returned objects contain key and value attributes
+
+
+                        // ------------------------------------------
+                        // define user AGE dimension - Age bar chart
+                        // X Axis - list of ages for all the participants
+                        var ageValue = facts.dimension(function (d) {
+                            //console.log('user age');
+                            //console.log(d);
+                            //http://stackoverflow.com/questions/14057497/moment-js-how-do-i-get-the-number-of-years-since-a-date-not-rounded-up
+                            var years = moment().diff(d.participant.dob, 'years');
+                            //console.log(years);
+                            return years;
+                        });
+                        // Y Axis - count ages of each participant
+                        var ageGroup = ageValue.group()
+                            .reduceCount(function (d) {
+                                var years = moment().diff(d.participant.dob, 'years');
+                                return years;
+                            });
+                        // ------------------------------------------
+
+
+                        // ------------------------------------------
+                        // define user CITY dimension - City pie chart
+                        // X Axis - list of locations where participants live
+                        pieDimension = facts.dimension(function (d) {
+                            return d.place;
+                        });
+                        // Y Axis - count location
+                        pieSumGroup = pieDimension.group().reduceCount(function (d) {
+                            //console.log(JSON.stringify(d));
+                            return d.place;
+                        });
+
+
+                        // ------------------------------------------
+                        // define user GENDER dimension - Gender pie chart
+                        // X Axis - male or female
+                        genderPieDimension = facts.dimension(function (d) {
+                            return d.participant.gender;
+                        });
+                        // Y Axis - count gender of each participant
+                        genderPieSumGroup = genderPieDimension.group().reduceCount(function (d) {
+                            //console.log(d);
+                            return d.participant.gender;
+                        });
+
+
+                        // ------------------------------------------
+                        // define user STATE dimension - US state map chart
+                        // X Axis - State as 2 letter code
+                        var stateDimension = facts.dimension(function (d) {
+                            // note state code is part of a larger string that include city and country
+                            //alert(d.place);
+                            // test parse code at https://jsfiddle.net/vhzf3am3/
+                            var stateString = d.place.substr(d.place.length - 5, 2);
+                            //alert(myString);
+                            //alert(myString.length);
+                            //alert(myString.substr(myString.length - 5, 2));
+                            //alert(stateString);
+                            return stateString;
+                        });
+                        // Y Axis - count state for each participant
+                        var stateUserCount = stateDimension.group().reduceCount(function (d) {
+                            var stateString = d.place.substr(d.place.length - 5, 2);
+                            return stateString;
+                        });
+
+
+                        // ------------------------------------------
+                        // define user submission DATE dimension - Date line chart
+                        // X Axis - Month date
+                        var dateUsageDimension = facts.dimension(function (d) {
+                            //console.log('usage date');
+                            //console.log(d.dtstart);
+                            var monthNumber = moment(d.dtstart).get('month');
+                            //alert(monthNumber);
+                            return d3.time.month(d.dtstart);
+                            //return monthNumber;
+                        });
+                        // Y Axis - count month for each participant
+                        var dateUsageCount = dateUsageDimension.group()
+                            .reduceCount(function (d) {
+                                var monthNumber = moment(d.dtstart).get('month');
+                                //return monthNumber;
+                                return d.dtstart;
+                            });
+                        // get min and max date range for chart based on actual data
+                        // http://www.codeproject.com/Articles/697043/Making-Dashboards-with-Dc-js-Part-Graphing
+                        console.log('usage min date');
+                        var dateUsageMinDate = dateUsageDimension.bottom(1)[0].dtstart;
+                        console.log(dateUsageMinDate);
+                        //console.log('usage max date');
+                        var dateUsageMaxDate = dateUsageDimension.top(1)[0].dtstart;
+                        //console.log(dateUsageMaxDate);
+
+
+                        // ------------------------------------------
+                        // define TOP USERS by number of submissions - bar chart
+                        // X Axis - list of user names
+                        var userValue = facts.dimension(function (d) {
+                            //console.log(d3.time.second(d.dtstart).getSeconds());
+                            //console.log('user');
+                            //console.log(d.participant.username);
+                            return d.participant.username;
+                        });
+                        // Y Axis - count of username for each of the participants
+                        var userValueGroupCount = userValue.group()
+                            .reduceCount(function (d) {
+                                return d.participant.username;
+                        });
+                        // how to get the top # in a group
+                        // http://stackoverflow.com/questions/30977987/plotting-top-values-of-a-group-on-dc-js-bar-chart
+                        // then pass topUsersGroup to chart
+                        var topUsersGroup = getTops(userValueGroupCount, 3);
+                        function getTops(source_group, num) {
+                            return {
+                                all: function () {
+                                    return source_group.top(num);
+                                }
+                            };
+                        }
+
+
+                        // ------------------------------------------
+                        // define submission DATA TABLE - table
+                        // X Axis - list of record ids
+                        submissionDimension = facts.dimension(function (d) {
+                            return d.id;
+                        });
+
+
+
+                        // Define the charts passing in the calculated dimensions and groupings 
+
+
+                        // Demographics ------------------------------
+
+                        // USER AGE bar chart
+                        // dc ordinal scales - https://github.com/d3/d3/wiki/Ordinal-Scales
+                        ageBarChart.width(500)
+                            .height(300)
+                            .margins({ top: 10, right: 0, bottom: 20, left: 20 })
+                            .dimension(ageValue)
+                            .group(ageGroup)
+                            .transitionDuration(500)
+                            .centerBar(true)
+                            .gap(65)
+                            .x(d3.scale.ordinal())
+                            .xUnits(dc.units.ordinal)
+                            .elasticY(true)
+                            .xAxisLabel('Age')
+                            .yAxisLabel('Count')
+                            .xAxis().tickFormat();
+
+
+                        // USER LOCATION (top locations) pie chart
+                        placePieChart
+                            .width(450)
+                            .height(300)
+                            .slicesCap(5)
+                            .innerRadius(40)
+                            .dimension(pieDimension)
+                            .group(pieSumGroup) // by default, pie charts will use group.key as the label
+                            .renderLabel(true)
+                            .title(function (d) {
+                                // parse city from place string - http://stackoverflow.com/questions/13341016/get-first-and-rest-of-string-from-comma-separated-values-in-javascript
+                                var place = d.data.key;
+                                var placeArray = place.split(",");
+                                var city = placeArray.splice(0, 1).join("");
+                                var percent = (d.data.value / facts.groupAll().reduceCount().value() * 100).toFixed(0) + "%";
+                                return city + '  (' + d.data.value + ' - ' + percent + ')';   // found by looking at log in console !@#
+                            })
+                            .label(function (d) {
+                                //console.log('label');
+                                //console.log(d);
+                                // parse city from place string - http://stackoverflow.com/questions/13341016/get-first-and-rest-of-string-from-comma-separated-values-in-javascript
+                                var place = d.data.key;
+                                var placeArray = place.split(",");
+                                var city = placeArray.splice(0, 1).join("");
+                                var percent = (d.data.value / facts.groupAll().reduceCount().value() * 100).toFixed(0) + "%";
+                                return city + ' ' + percent + '';   // found by looking at log in console !@#
+                            });
+
+
+                        // USER GENDER pie chart
+                        genderPieChart
+                              .width(450)
+                              .height(300)
+                              .slicesCap(5)
+                              .innerRadius(40)
+                              .dimension(genderPieDimension)
+                              .group(genderPieSumGroup) // by default, pie charts will use group.key as the label
+                              .renderLabel(true)
+                              .title(function (d) {
+                                  // parse city from place string - http://stackoverflow.com/questions/13341016/get-first-and-rest-of-string-from-comma-separated-values-in-javascript
+                                  var percent = (d.data.value / facts.groupAll().reduceCount().value() * 100).toFixed(0) + "%";
+                                  return d.data.key + '  (' + d.data.value + ' - ' + percent + ')';   // found by looking at log in console !@#
+                              })
+                              .label(function (d) {
+                                  //console.log('label');
+                                  //console.log(d);
+                                  var percent = (d.data.value / facts.groupAll().reduceCount().value() * 100).toFixed(0) + "%";
+                                  return d.data.key + ' ' + percent + '';   // found by looking at log in console !@#
+                              });
+
+
+                        // US Map chart - user count by state
+                        // Note: removed .colors property from example - wasn't working - without it, d3 colors by default
+                        usChoroplethChart.width(990)
+                              .height(500)
+                              .dimension(stateDimension)
+                              .group(stateUserCount)
+                              .colorCalculator(function (d) { return d ? usChoroplethChart.colors()(d) : '#ddd'; })
+                              .overlayGeoJson(statesJson.features, "state", function (d) {
+                                  return d.properties.name;
+                              })
+                              .title(function (d) {
+                                  //alert(d);
+                                  return "State: " + d.key + "- \nCount: " + (d.value || 0);
+                              });
+
+
+
+                        // Usage ---------------------------------
+
+                        // submission line chart
+                        //d3 time formatting - https://github.com/d3/d3/wiki/Time-Formatting
+                        // Notes: elasticX because x domain set to use min/max values
+                        subLineChart.width(800)
+                              .height(300)
+                              .margins({ top: 10, right: 10, bottom: 20, left: 40 })
+                              .dimension(dateUsageDimension)
+                              .group(dateUsageCount)
+                              .transitionDuration(500)
+                              .xAxisLabel('')
+                              .yAxisLabel('Count')
+                              .renderHorizontalGridLines(true)
+                              .elasticY(true)
+                              .x(d3.time.scale().domain([dateUsageMinDate, dateUsageMaxDate]))
+                              .xAxis().ticks(d3.time.months).tickFormat(d3.time.format("%b-%Y"));
+
+
+                        // USER TOP [X] SUBMISSIONS bar chart
+                        userBarChart.width(480)
+                              .height(300)
+                              .margins({ top: 10, right: 10, bottom: 20, left: 40 })
+                              .dimension(userValue)
+                              .group(topUsersGroup)
+                              .transitionDuration(500)
+                              .centerBar(true)
+                              .gap(65)
+                              .x(d3.scale.ordinal())
+                              .xUnits(dc.units.ordinal)
+                              .elasticY(true)
+                              .elasticX(true)
+                              .yAxisLabel('Count')
+                              .ordering(function (d) { return -d.value })  // how to sort top x - https://github.com/dc-js/dc.js/issues/384
+                              .xAxis().tickFormat();
+
+
+                        // setup the datatable chart
+                        //http://dc-js.github.io/dc.js/docs/html/dc.dataTable.html
+                        // Note: Pagination is not included in this demo, but can be done - see http://dc-js.github.io/dc.js/examples/table-pagination.html
+                        dataTable.width(400)
+                                   .height(800)
+                                   .dimension(submissionDimension)
+                                      .group(function (d) {
+                                          return "Up to 100 records shown. Records cannot be filtered by clicking on the table. dc.js limitation."
+                                      })
+                                      .size(100)
+                                   .columns([
+                                       function (d) { return d.id; },
+                                       function (d) { return d.dtstartformatted; },
+                                       function (d) { return d.device_id; },
+                                       function (d) { return d.participant.username; },
+                                       function (d) { return d.place; },
+                                       // map link from https://leanpub.com/D3-Tips-and-Tricks/read#leanpub-auto-crossfilter-dcjs-and-d3js-for-data-discovery
+                                       function (d) {
+                                           return '<a href=\"http://maps.google.com/maps?z=12&t=m&q=loc:' +
+                                               d.lat + '+' + d.long + "\" target=\"_blank\">Google Map</a>"
+                                       }
+
+                                   ])
+                                   .sortBy(function (d) { return d.dtstart; })
+                                   .order(d3.ascending);
+
+                        dc.renderAll();
+
+
+                    }); // d3.json us-states.json
+
+                }) // d3.json()
+
+            } // LoadDataAndRenderCharts()
+
+
+            // utility method to debug JavaScript - displays properties of an object
+            //http://stackoverflow.com/questions/5357442/how-to-inspect-javascript-objects
+            function xinspect(o, i) {
+                if (typeof i == 'undefined') i = '';
+                if (i.length > 50) return '[MAX ITERATIONS]';
+                var r = [];
+                for (var p in o) {
+                    var t = typeof o[p];
+                    r.push(i + '"' + p + '" (' + t + ') => ' + (t == 'object' ? 'object:' + xinspect(o[p], i + '  ') : o[p] + ''));
+                }
+                return r.join(i + '\n');
+            }
+
+
+            // add a click event handler to the download button (identified via ID)
+            // Uses the filesaver library - https://github.com/eligrey/FileSaver.js/
+            d3.select('#download')
+                .on('click', function () {
+                    var blob = new Blob([d3.csv.format(submissionDimension.top(Infinity))], { type: "text/csv;charset=utf-8" });
+                    saveAs(blob, 'ResearchNetData.csv');
+                });
+
+
+            // Define a function to start the execution (arbitrarily called StartExecution)
+            // This way of declaring this function allows the method StartExecution to be callable
+            // from outside the jQuery .ready() function which would otherwise limit the scope to be callable only
+            // within the ready() function. In order words, it makes the scope of the method global.
+            // This is done so the method is callable when the user clicks Refresh Data button on the page.
+            //http://stackoverflow.com/questions/2379529/how-to-call-a-function-within-document-ready-from-outside-it
+            window.StartExecution = function () {
+
+                // display loading message - http://malsup.com/jquery/block/
+                // The message will automatically display here and undisplay when the ajax calls are complete :-)
+                $(document).ajaxStart($.blockUI({
+                    message: '<h2><img src="images/ajax-loader.gif" />&nbsp;Getting ResearchNet data...</h2>',
+                    css: { backgroundColor: '#666666', color: '#fff', border: '0px', padding: '10px' }
+                })).ajaxStop($.unblockUI);
+
+                GetResearchNetToken("researcher", "1234thumbwar");
+            }
+
+
+            // start execution of the script
+            StartExecution();
+
+        }); //$(document).ready(function () {
+
+    </script>
+
+</body>
+</html>
