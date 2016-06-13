@@ -115,8 +115,7 @@ Request Object
 :----------- | :----------- 
 __Description__         | Submit a survey response.
 __Endpoint__         | /submission/  
-__Method__         | POST
-__Pagination__         | Limit Offset: This pagination style mirrors the syntax used when looking up multiple database records. The client includes both a `limit` and an `offset` query parameter. The limit indicates the maximum number of items to return, and defaults to 20 records. The offset indicates the starting position of the query in relation to the complete set of unpaginated items.      
+__Method__         | POST       
 __Authentication__         | Token        
 __Response Codes__         | 200 - Sucessful<br/>401 - Unauthorized <br/>400 - Bad Request
 
