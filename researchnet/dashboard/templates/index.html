@@ -21,7 +21,8 @@
   
 <!--Display filter and record count, reset, refresh and download buttons -->
 <div class="row" style="margin-top:25px;margin-left:33px;">
-    <div class="col-sm-8">
+    
+    <div class="small-8 small-centered columns">
         <div class="dc-data-count" style="margin-top:0px;">
             <span class='filter-count'></span>
             selected out of
@@ -37,20 +38,26 @@
             
         </div>
     </div>
-    <div class="col-sm-4 text-right">
-        <!-- Download Data button -->
-      <a id="download" class="button small" >Download Data</a>
-
-    </div>
 </div>  
+
+
+<!-- Display users by STATE on US map -->
+<div class="row">
+    <div class="col-md-12 LeftChartIndent" id="dc-us-chart" style="margin-top:10px;">
+        <div class="VisualizationFilter">
+            <span class="filter"></span>
+        </div>    
+    </div>
+</div>
+
 
 <!--Display demographics section -->
 <!-- Section heading -->
 <div class="row">
     <div class="col-sm-12">
-        <div class="pageSectionHeading">
-        <i class="fi-torsos"/>
-        Demographics
+        <div class="">
+        <h3>Demographics</h3>
+        <hr/>
         </div>
     </div>
 </div>
@@ -60,40 +67,37 @@
 
 <!-- Note: Fixefox show max width of 1519px on 1920 display - limit size for this to prevent wrapping on large displays - not ideal, need to investigate -->
 <div class="row">
-    <div class="span4 LeftChartIndent" id="dc-age-chart" style="max-width:500px;">
-        <div class="VisualizationHeading">Age</div>
-        <div class="VisualizationSubHeading">Number of participants by age </div>
+    <div class="span4" id="dc-age-chart" style="max-width:500px;">
+        <h4>Age</h4>
+        <div>Number of participants by age </div>
         <!-- dc.js will also automatically inject the current filter value into any html element with its css class set to "filter" -->
         <!-- See https://dc-js.github.io/dc.js/docs/stock.html and http://dc-js.github.io/dc.js/examples/filtering.html -->                
         <div class="VisualizationFilter"><span class="filter"></span></div>    
     </div>
     <div class="span4" id="dc-place-chart" style="max-width:450px;">
-        <div class="VisualizationHeading">Users by City</div>
-        <div class="VisualizationSubHeading">The top 5 cities where users live</div>
-        <div class="VisualizationFilter"><span class="filter"></span></div>    
+        <h4>Users by City</h4>
+        <div>The top 5 cities where users live</div>
+        <div class="VisualizationFilter">
+            <span class="filter"></span>
+        </div>    
     </div>
     <div class="span4" id="dc-gender-chart" style="max-width:450px;">
-        <div class="VisualizationHeading">Gender</div>
-        <div class="VisualizationSubHeading">&nbsp;</div>
-        <div class="VisualizationFilter"><span class="filter"></span></div>    
+        <h4>Gender</h4>
+        <div class="VisualizationFilter">
+            <span class="filter"></span>
+        </div>    
     </div>
 </div>
 
 
-<!-- Display users by STATE on US map -->
-<div class="row">
-    <div class="col-md-12 LeftChartIndent" id="dc-us-chart" style="margin-top:10px;">
-        <div class="VisualizationHeading">Users by State</div>
-        <div class="VisualizationSubHeading">Darker colors indicate more users</div>
-        <div class="VisualizationFilter"><span class="filter"></span></div>    
-    </div>
-</div>
+
 
 <!--Display usage section -->
 <!-- Section heading -->
 <div class="row">
-    <div class="col-md-12">
-        <div class="pageSectionHeading"><span class="glyphicon glyphicon-time"></span>&nbsp;Usage</div>
+    <div >
+        <h3>Usage</h3>
+        <hr/>
     </div>
 </div>
 
@@ -102,12 +106,16 @@
     <div class="span8 LeftChartIndent" id="dc-sub-chart">
         <div class="VisualizationHeading">By Date</div>
         <div class="VisualizationSubHeading">Date range based on data</div>
-        <div class="VisualizationFilter"><span class="filter"></span></div>    
+        <div class="VisualizationFilter">
+            <span class="filter"></span>
+        </div>    
     </div>
     <div class="span4" id="dc-user-chart">
-        <div class="VisualizationHeading">Top Users</div>
+        <h4>Top Users</h4>
         <div class="VisualizationSubHeading">Top 3 users by submission</div>
-        <div class="VisualizationFilter"><span class="filter"></span></div>    
+        <div class="VisualizationFilter">
+            <span class="filter"></span>
+        </div>    
     </div>
 </div>
        
@@ -142,9 +150,14 @@
 
 <!-- add vertical space at the bottom for margin -->
 <div class="row" style="height:60px;">
-    <div class="col-md-12"></div>
+    <div></div>
 </div>
 
+ <div class="row main_table">
+      <div class="export_link">
+        <i class="fi-download"></i> <a href="/export_submissions">Download this as a CSV</a>
+      </div>
+  </div>
 
            
 {% endblock %}
@@ -563,7 +576,7 @@
                                    .height(800)
                                    .dimension(submissionDimension)
                                       .group(function (d) {
-                                          return "Up to 100 records shown. Records cannot be filtered by clicking on the table. dc.js limitation."
+                                          return ""
                                       })
                                       .size(100)
                                    .columns([
@@ -625,10 +638,7 @@
 
                 // display loading message - http://malsup.com/jquery/block/
                 // The message will automatically display here and undisplay when the ajax calls are complete :-)
-                $(document).ajaxStart($.blockUI({
-                    message: '<h4><img src="{% static 'ajax-loader.gif' %}" />&nbsp;Getting ResearchNet data...</h4>',
-                    css: { backgroundColor: '#666666', color: '#fff', border: '0px', padding: '5px' }
-                })).ajaxStop($.unblockUI);
+                $(document).ajaxStart($.blockUI).ajaxStop($.unblockUI);
 
                 LoadDataAndRenderCharts();
             }
