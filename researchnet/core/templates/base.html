@@ -18,7 +18,7 @@
 {% endcompress %}
 
 
-<title>Researchnet</title>
+<title>ResearchNet</title>
 
 <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
 
@@ -29,7 +29,7 @@
               <h1>
                 <a href="/">
                   <img src="{% static 'research-32.png' %}"/>
-                  Researchnet
+                  ResearchNet
                 </a>
               </h1>
             </li> 
@@ -45,7 +45,7 @@
 
               <li class="divider"></li>
                <li class="has-dropdown">
-                <a href="#">My Account</a>
+                <a href="#"> {{request.user.username}} </a>
                 <ul class="dropdown">
                   <li><a href="/logout/">Logout</a></li>
                 </ul>
