@@ -155,7 +155,7 @@
 
  <div class="row main_table">
       <div class="export_link">
-        <i class="fi-download"></i> <a href="/export_submissions">Download this as a CSV</a>
+        <i class="fi-download"></i> <a href="/export_submissions">Download all records as a CSV</a>
       </div>
   </div>
 
@@ -203,8 +203,8 @@
                 // get data from API call - GET method passing in the token as a header parameter
                 // http://stackoverflow.com/questions/23993671/how-to-add-authorization-header-while-accessing-json-in-d3
                 // https://github.com/d3/d3/wiki/Requests#header
-                d3.json('/submission/')
-                  .header('Authorization', 'Token {{ request.user.auth_token.key }}')
+                d3.json('/submission/?limit=1000')
+                  .header('Authorization', 'Token {{request.user.auth_token.key }}')
                   .get(function (error, data) {
 
                     // if an exception occured calling the submission endpoint
