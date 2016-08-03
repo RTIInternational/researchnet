@@ -20,9 +20,10 @@
 
   
 <!--Display filter and record count, reset, refresh and download buttons -->
-<div class="row" style="margin-top:25px;margin-left:33px;">
+<div class="row" style="margin-top:25px; margin-bottom:35px">
     
-    <div class="small-8 small-centered columns">
+
+    <div style="text-align: right">
         <div class="dc-data-count" style="margin-top:0px;">
             <span class='filter-count'></span>
             selected out of
@@ -31,10 +32,7 @@
             <!-- Buttons are styled using bootstrap - http://www.w3schools.com/bootstrap/bootstrap_ref_comp_glyphs.asp -->
             
             <!-- Reset Filter button -->
-            <a href="#" class="button small" onclick="javascript: dc.filterAll(); dc.renderAll();">Reset Filter</a>
-
-            <!-- Refresh Data button -->
-            <a href="#" class="button small" onclick="javascript: StartExecution();">Refresh Data</a>
+            <a href="#"  onclick="javascript: dc.filterAll(); dc.renderAll();">Reset Filter</a>
             
         </div>
     </div>
@@ -43,98 +41,53 @@
 
 <!-- Display users by STATE on US map -->
 <div class="row">
-    <div class="col-md-12 LeftChartIndent" id="dc-us-chart" style="margin-top:10px;">
+    
+</div>
+
+
+<div class="row">
+  <div class="medium-4 columns">
+  <div id="dc-gender-chart" class="VisualSection" =>
+        <h4>Users by Gender</h4>
         <div class="VisualizationFilter">
             <span class="filter"></span>
         </div>    
     </div>
-</div>
-
-
-<!--Display demographics section -->
-<!-- Section heading -->
-<div class="row">
-    <div class="col-sm-12">
-        <div class="">
-        <h3>Demographics</h3>
-        <hr/>
-        </div>
-    </div>
-</div>
-
-
-<!-- Display participants by AGE, top CITIES participants live in, and GENDER of participants -->
-
-<!-- Note: Fixefox show max width of 1519px on 1920 display - limit size for this to prevent wrapping on large displays - not ideal, need to investigate -->
-<div class="row">
-    <div class="span4" id="dc-age-chart" style="max-width:500px;">
-        <h4>Age</h4>
-        <div>Number of participants by age </div>
-        <!-- dc.js will also automatically inject the current filter value into any html element with its css class set to "filter" -->
-        <!-- See https://dc-js.github.io/dc.js/docs/stock.html and http://dc-js.github.io/dc.js/examples/filtering.html -->                
-        <div class="VisualizationFilter"><span class="filter"></span></div>    
-    </div>
-    <div class="span4" id="dc-place-chart" style="max-width:450px;">
-        <h4>Users by City</h4>
-        <div>The top 5 cities where users live</div>
+  </div>
+  
+  <div class="medium-8 columns">
+    <div id="dc-us-chart" class="VisualSection">
+        <h4>Geographic Distribution</h4>
         <div class="VisualizationFilter">
             <span class="filter"></span>
         </div>    
     </div>
-    <div class="span4" id="dc-gender-chart" style="max-width:450px;">
-        <h4>Gender</h4>
-        <div class="VisualizationFilter">
-            <span class="filter"></span>
-        </div>    
-    </div>
+  </div>
+
 </div>
 
 
-
-
-<!--Display usage section -->
-<!-- Section heading -->
-<div class="row">
-    <div >
-        <h3>Usage</h3>
-        <hr/>
-    </div>
-</div>
 
 <!-- Display usage by MONTH and top USERS by usage  -->
 <div class="row">
-    <div class="span8 LeftChartIndent" id="dc-sub-chart">
-        <div class="VisualizationHeading">By Date</div>
-        <div class="VisualizationSubHeading">Date range based on data</div>
+    <div class="medium-12 columns">
+    <div class="VisualSection" id="dc-sub-chart">
+        <h4>Submission by Date</h4>
+        <div>Date range based on submission date</div>
         <div class="VisualizationFilter">
             <span class="filter"></span>
         </div>    
     </div>
-    <div class="span4" id="dc-user-chart">
-        <h4>Top Users</h4>
-        <div class="VisualizationSubHeading">Top 3 users by submission</div>
-        <div class="VisualizationFilter">
-            <span class="filter"></span>
-        </div>    
-    </div>
-</div>
-       
-<!--Display submissions section -->
-<!-- Section heading -->
-<div class="row">
-    <div class="span12">
-        <div class="pageSectionHeading"><span class="glyphicon glyphicon-th-list"></span>&nbsp;Submissions</div>                
     </div>
 </div>
 
 
 <!-- Display submissions Data TABLE -->
 <div class="row">
-    <div class="col-md-12 LeftChartIndent">
-        <table class="table table-hover" id="dc-table-graph">
+    <div class="medium-12 columns">
+        <table class="table table-hover" id="dc-table-graph" >
             <thead>
                 <tr class="header">
-                    <th>Record ID</th>
                     <th>Date</th>
                     <th>Device ID</th>
                     <th>User Name</th>
@@ -144,6 +97,8 @@
             </thead>
         </table>
     </div>
+
+    
 </div>
 
 
@@ -190,8 +145,6 @@
                 // To see a list of all dc chart types, go to http://dc-js.github.io/dc.js/examples/
                 var dataTable = dc.dataTable("#dc-table-graph");
                 var subLineChart = dc.lineChart("#dc-sub-chart");
-                var ageBarChart = dc.barChart("#dc-age-chart");
-                var userBarChart = dc.barChart("#dc-user-chart");
                 var placePieChart = dc.pieChart("#dc-place-chart");
                 var genderPieChart = dc.pieChart("#dc-gender-chart");
                 var usChoroplethChart = dc.geoChoroplethChart("#dc-us-chart");
@@ -380,7 +333,7 @@
                             });
                         // get min and max date range for chart based on actual data
                         // http://www.codeproject.com/Articles/697043/Making-Dashboards-with-Dc-js-Part-Graphing
-                        console.log('usage min date');
+ 
                         var dateUsageMinDate = dateUsageDimension.bottom(1)[0].dtstart;
                         console.log(dateUsageMinDate);
                         //console.log('usage max date');
@@ -429,76 +382,27 @@
 
                         // Demographics ------------------------------
 
-                        // USER AGE bar chart
-                        // dc ordinal scales - https://github.com/d3/d3/wiki/Ordinal-Scales
-                        ageBarChart.width(500)
-                            .height(300)
-                            .margins({ top: 10, right: 0, bottom: 20, left: 20 })
-                            .dimension(ageValue)
-                            .group(ageGroup)
-                            .transitionDuration(500)
-                            .centerBar(true)
-                            .gap(65)
-                            .x(d3.scale.ordinal())
-                            .xUnits(dc.units.ordinal)
-                            .elasticY(true)
-                            .xAxisLabel('Age')
-                            .yAxisLabel('Count')
-                            .xAxis().tickFormat();
+                        
 
 
                         // USER LOCATION (top locations) pie chart
                         placePieChart
-                            .width(450)
-                            .height(300)
+                            .width(375)
+                            .height(150)
                             .slicesCap(5)
-                            .innerRadius(40)
                             .dimension(pieDimension)
+                            .legend(dc.legend())
+
                             .group(pieSumGroup) // by default, pie charts will use group.key as the label
-                            .renderLabel(true)
-                            .title(function (d) {
-                                
-                                // parse city from place string - http://stackoverflow.com/questions/13341016/get-first-and-rest-of-string-from-comma-separated-values-in-javascript
-                                
-                                var place = d.data.key;
-
-                                if (place) {
-                                    var placeArray = place.split(",");
-                                    
-                                    var city = placeArray.splice(0, 1).join("");
-                                    var percent = (d.data.value / facts.groupAll().reduceCount().value() * 100).toFixed(0) + "%";
-                                    return city + '  (' + d.data.value + ' - ' + percent + ')';   // found by looking at log in console !@#
-                               }
-
-                               return
-
-                            })
-                            .label(function (d) {
-                                //console.log('label');
-                                //console.log(d);
-                                // parse city from place string - http://stackoverflow.com/questions/13341016/get-first-and-rest-of-string-from-comma-separated-values-in-javascript
-                                var place = d.data.key;
-                                
-                                if(place){
-                                 
-                                  var placeArray = place.split(",");
-                                  var city = placeArray.splice(0, 1).join("");
-                                  var percent = (d.data.value / facts.groupAll().reduceCount().value() * 100).toFixed(0) + "%";
-                                  return city + ' ' + percent + '';   // found by looking at log in console !@#
-
-                                }
-
-                                return
-                                
-                            });
+                            
+                            
 
 
                         // USER GENDER pie chart
                         genderPieChart
-                              .width(450)
-                              .height(300)
+                              .width(275)
+                              .height(250)
                               .slicesCap(5)
-                              .innerRadius(40)
                               .dimension(genderPieDimension)
                               .group(genderPieSumGroup) // by default, pie charts will use group.key as the label
                               .renderLabel(true)
@@ -514,11 +418,13 @@
                                   return d.data.key + ' ' + percent + '';   // found by looking at log in console !@#
                               });
 
+                         
+
 
                         // US Map chart - user count by state
                         // Note: removed .colors property from example - wasn't working - without it, d3 colors by default
-                        usChoroplethChart.width(990)
-                              .height(500)
+                        usChoroplethChart.width(495)
+                              .height(250)
                               .dimension(stateDimension)
                               .group(stateUserCount)
                               .colorCalculator(function (d) { return d ? usChoroplethChart.colors()(d) : '#ddd'; })
@@ -530,7 +436,10 @@
                                   return "State: " + d.key + "- \nCount: " + (d.value || 0);
                               });
 
-
+                        // create a projection from d3
+                        var albers=d3.geo.albersUsa();
+                        albers.scale(550).translate([250,125]);
+                        usChoroplethChart.projection(albers); //these are sample numbers, will make the map about half the size
 
                         // Usage ---------------------------------
 
@@ -538,7 +447,7 @@
                         //d3 time formatting - https://github.com/d3/d3/wiki/Time-Formatting
                         // Notes: elasticX because x domain set to use min/max values
                         subLineChart.width(800)
-                              .height(300)
+                              .height(150)
                               .margins({ top: 10, right: 10, bottom: 20, left: 40 })
                               .dimension(dateUsageDimension)
                               .group(dateUsageCount)
@@ -551,36 +460,18 @@
                               .xAxis().ticks(d3.time.months).tickFormat(d3.time.format("%b-%Y"));
 
 
-                        // USER TOP [X] SUBMISSIONS bar chart
-                        userBarChart.width(480)
-                              .height(300)
-                              .margins({ top: 10, right: 10, bottom: 20, left: 40 })
-                              .dimension(userValue)
-                              .group(topUsersGroup)
-                              .transitionDuration(500)
-                              .centerBar(true)
-                              .gap(65)
-                              .x(d3.scale.ordinal())
-                              .xUnits(dc.units.ordinal)
-                              .elasticY(true)
-                              .elasticX(true)
-                              .yAxisLabel('Count')
-                              .ordering(function (d) { return -d.value })  // how to sort top x - https://github.com/dc-js/dc.js/issues/384
-                              .xAxis().tickFormat();
-
-
+                    
                         // setup the datatable chart
                         //http://dc-js.github.io/dc.js/docs/html/dc.dataTable.html
                         // Note: Pagination is not included in this demo, but can be done - see http://dc-js.github.io/dc.js/examples/table-pagination.html
-                        dataTable.width(400)
-                                   .height(800)
+                        dataTable.height(800)
                                    .dimension(submissionDimension)
                                       .group(function (d) {
                                           return ""
                                       })
                                       .size(100)
                                    .columns([
-                                       function (d) { return d.id; },
+                      
                                        function (d) { return d.dtstartformatted; },
                                        function (d) { return d.device_id; },
                                        function (d) { return d.participant.username; },

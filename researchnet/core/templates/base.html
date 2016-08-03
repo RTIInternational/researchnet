@@ -15,6 +15,8 @@
 <link type="text/css" rel="stylesheet" href="{% static 'foundation/css/foundation.css' %}">
 <link type="text/css" rel="stylesheet" href="{% static 'foundation-icons/foundation-icons.css' %}" >
 <link type="text/css" rel="stylesheet" href="{% static 'foundation/css/normalize.css' %}">
+
+
 {% endcompress %}
 
 
@@ -41,7 +43,7 @@
               
             <li class="divider"></li>
              <li class="has-dropdown">
-              <a href="#"> {{request.user.username}} </a>
+              <a href="#"> Logged in as: {{request.user.username}} </a>
               <ul class="dropdown">
                 <li><a href="/logout/">Logout</a></li>
               </ul>
@@ -67,27 +69,26 @@
   <script src="{% static 'foundation/js/foundation.min.js' %}"></script>
 {% endcompress %}
 
-        <footer >
-              <div class="large-12 columns"><hr>
-                  <div class="row">
+        
        
-                    <div class="large-6 columns">
-                        <p>&copy; RTI International 2016</p>
-                    </div>
-       
-                    <div class="large-6 small-12 columns">
-                        <ul class="inline-list right">
-                          <li><a class="footer-menu" href="https://bitbucket.org/rcdrti/researchnet">Project</a></li>
-                          <li><a class="footer-menu" href="http://researchnet-documentation.s3-website-us-east-1.amazonaws.com/">Documentation</a></li>
-                        </ul>
-                    </div>
-       
-                  </div>
-              </div>
-            </footer>
-       
-          </div>
-        </div>
+         <!-- Footer -->
+<footer class="footer">
+  <div class="row full-width">
+
+    <div class="small-12 large-6 columns">
+      &copy; RTI International 2016</p>
+    </div>
+
+    <div class="small-6 columns">
+      <ul class="inline-list right">
+          <li><a class="footer-menu" href="https://bitbucket.org/rcdrti/researchnet">Project</a></li>
+          <li><a class="footer-menu" href="http://researchnet-documentation.s3-website-us-east-1.amazonaws.com/">Documentation</a></li>
+        </ul>
+    </div>
+
+    
+  </div>
+</footer>
        
 
         <script>

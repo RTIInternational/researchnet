@@ -1,0 +1,7 @@
+body
+{
+    margin-bottom: 10px;
+    font-size: .9rem;
+    background-color: #F9F9F9;
+    background-image: url('/static/noise.gif');
+}

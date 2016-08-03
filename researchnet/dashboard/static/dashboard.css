@@ -2,17 +2,52 @@
 .main_display, .main_table {
     margin-top: 40px;
 }
-footer p, .footer-menu {
-    font-size: 10pt;
-}
 
 .export_link {
     text-align: center;
     padding-bottom: 50px;
 }
 
+.full-width {
+  max-width: 1400px;
+}
 
+.footer {
+  background-color: #404040;
+  padding: 2rem 4rem;
+  text-align: center;
+  color: #fff;
+}
+.footer i {
+  font-size: 100px;
+}
 
+.footer h4 {
+  color: #fff;
+  font-size: 1em;
+  font-weight: 400;
+  text-transform: uppercase;
+  margin-top: 2.5rem;
+  margin-bottom: 10px;
+}
+.footer p, .footer a {
+  font-weight: 300;
+  font-size: .8em;
+  color: #fff;
+}
+
+@media only screen and (min-width: 40.063em) {
+  .footer .columns:nth-child(n+2) {
+    border-left: 1px solid #b3b3b3;
+
+  }
+}
+.footer-links {
+  list-style-type: none;
+}
+.footer-links li {
+  margin-top: .5em;
+}
 
 #dc-age-chart svg    {margin-left:40px;}  /* Note this is moving the svg element */
 #dc-sub-chart svg    {margin-left:30px;}
@@ -20,7 +55,7 @@ footer p, .footer-menu {
 #dc-place-chart svg  {margin-left:10px;}
 #dc-gender-chart svg {margin-left:0px;}
 .dc-chart .pie-slice {font-size: 10pt; font-weight:normal;}
-#dc-table-graph      {margin-left:44px;width:87%;}
+#dc-table-graph      {margin-left:0;width:100%;}
 .errorMessage        {padding: 15px; background-color: darkred; color: white; font-size: 14pt; text-align: left; margin-top:30px; }
 
 .pageSectionHeading {
@@ -74,8 +109,31 @@ footer p, .footer-menu {
     margin-left:50px;
 }
 
+.VisualSection {
+    background: white;
+    padding: 20px;
+    border: 1px solid #e1e1e1;
+    border-top: 3px solid #e1e1e1;
+    margin-bottom: 24px;
+}
+
 /*
 Work-around for bootstrap 3 horizontal scrollbar when container-fluid used issue
 http://stackoverflow.com/questions/18392477/how-to-make-bootstrap-3-fluid-layout-without-horizontal-scrollbar
 */
-body { overflow-x: hidden;}
+
+body
+{
+    overflow-x: hidden;
+    margin-bottom: 10px;
+    font-size: .9rem;
+    background-color: #F9F9F9;
+    background-image: url('/static/noise.gif');
+    font-family: 'Raleway' , sans-serif;
+}
+
+
+h1, h2, h3, h5, h6, h4, body {
+    
+    color: #5f6f81;
+}
