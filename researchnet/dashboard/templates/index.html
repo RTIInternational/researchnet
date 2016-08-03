@@ -96,11 +96,7 @@
             </thead>
         </table>
     </div>
-    <div id="paging">
-    Showing <span id="begin"></span>-<span id="end"></span> of <span id="size"></span>.
-    <input id="last" class="btn" type="Button" value="Last" onclick="javascript:last()" />
-    <input id="next" class="btn" type="button" value="Next" onclick="javascript:next()"/>
-  </div>
+   
 
 </div>
 
@@ -494,8 +490,8 @@
                                    .sortBy(function (d) { return d.dtstart; })
                                    .order(d3.descending);
 
-                        chart.render();
-                        //dc.renderAll();
+                        
+                        dc.renderAll();
 
 
                     }); // d3.json us-states.json
