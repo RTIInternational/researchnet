@@ -204,7 +204,7 @@
                 // http://stackoverflow.com/questions/23993671/how-to-add-authorization-header-while-accessing-json-in-d3
                 // https://github.com/d3/d3/wiki/Requests#header
                 d3.json('/submission/')
-                  .header('Authorization', 'Token {{ token }}')
+                  .header('Authorization', 'Token {{ request.user.auth_token.key }}')
                   .get(function (error, data) {
 
                     // if an exception occured calling the submission endpoint
