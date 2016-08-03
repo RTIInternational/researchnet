@@ -73,7 +73,6 @@
     <div class="medium-12 columns">
     <div class="VisualSection" id="dc-sub-chart">
         <h4>Submission by Date</h4>
-        <div>Date range based on submission date</div>
         <div class="VisualizationFilter">
             <span class="filter"></span>
         </div>    
@@ -97,8 +96,12 @@
             </thead>
         </table>
     </div>
+    <div id="paging">
+    Showing <span id="begin"></span>-<span id="end"></span> of <span id="size"></span>.
+    <input id="last" class="btn" type="Button" value="Last" onclick="javascript:last()" />
+    <input id="next" class="btn" type="button" value="Next" onclick="javascript:next()"/>
+  </div>
 
-    
 </div>
 
 
@@ -133,17 +136,22 @@
 
       // https://learn.jquery.com/using-jquery-core/document-ready/
         // jquery - using .ready() - method makes sure the DOM is loaded before starting the script 
+
+        var chart = dc.dataTable("#dc-table-graph");
+
         $(document).ready(function () {
 
             var token;
             var submissionDimension;
+            
+
 
             // LoadDataAndRenderCharts() calls the ResearchNet API to get the data to visualize and then renders each of the dc charts.
             function LoadDataAndRenderCharts() {
 
                 // Create the dc chart objects passing in where on the page they should be rendered
                 // To see a list of all dc chart types, go to http://dc-js.github.io/dc.js/examples/
-                var dataTable = dc.dataTable("#dc-table-graph");
+               
                 var subLineChart = dc.lineChart("#dc-sub-chart");
                 var placePieChart = dc.pieChart("#dc-place-chart");
                 var genderPieChart = dc.pieChart("#dc-gender-chart");
@@ -464,12 +472,12 @@
                         // setup the datatable chart
                         //http://dc-js.github.io/dc.js/docs/html/dc.dataTable.html
                         // Note: Pagination is not included in this demo, but can be done - see http://dc-js.github.io/dc.js/examples/table-pagination.html
-                        dataTable.height(800)
-                                   .dimension(submissionDimension)
+
+                                  chart.dimension(submissionDimension)
                                       .group(function (d) {
                                           return ""
                                       })
-                                      .size(100)
+                                    .size(Infinity)
                                    .columns([
                       
                                        function (d) { return d.dtstartformatted; },
@@ -484,9 +492,10 @@
 
                                    ])
                                    .sortBy(function (d) { return d.dtstart; })
-                                   .order(d3.ascending);
+                                   .order(d3.descending);
 
-                        dc.renderAll();
+                        chart.render();
+                        //dc.renderAll();
 
 
                     }); // d3.json us-states.json
@@ -494,6 +503,8 @@
                 }) // d3.json()
 
             } // LoadDataAndRenderCharts()
+
+
 
 
             // utility method to debug JavaScript - displays properties of an object
@@ -538,7 +549,40 @@
             // start execution of the script
             StartExecution();
 
+
+
         }); //$(document).ready(function () {
+
+         var ofs = 0, pag = 17;
+          function display() {
+              d3.select('#begin')
+                  .text(ofs);
+              d3.select('#end')
+                  .text(ofs+pag-1);
+              d3.select('#last')
+                  .attr('disabled', ofs-pag<0 ? 'true' : null);
+              d3.select('#next')
+                  .attr('disabled', ofs+pag>=ndx.size() ? 'true' : null);
+              d3.select('#size').text(ndx.size());
+          }
+          function update() {
+              chart.beginSlice(ofs);
+              chart.endSlice(ofs+pag);
+              display();
+          }
+        function next(){
+            alert("heloo")
+            ofs += pag;
+            update();
+            chart.redraw();
+        }
+          function last() {
+              ofs -= pag;
+              update();
+              chart.redraw();
+          }
+
+        
 
     </script>
 

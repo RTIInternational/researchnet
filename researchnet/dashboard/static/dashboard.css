@@ -1,4 +1,6 @@
 
+
+
 .main_display, .main_table {
     margin-top: 40px;
 }
@@ -15,7 +17,6 @@
 .footer {
   background-color: #404040;
   padding: 2rem 4rem;
-  text-align: center;
   color: #fff;
 }
 .footer i {
