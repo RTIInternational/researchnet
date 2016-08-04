@@ -20,6 +20,7 @@ researchnet/config/staticfiles/*
 !researchnet/config/staticfiles/ajax-loader.gif
 !researchnet/config/staticfiles/foundation-icons/
 researchnet/config/staticfiles/foundation-icons/.DS_Store
+!researchnet/config/staticfiles/noise.gif
 
 
 # Distribution / packaging
