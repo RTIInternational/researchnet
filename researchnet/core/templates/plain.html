@@ -18,7 +18,7 @@
 {% endcompress %}
 
 
-<title>Researchnet</title>
+<title>ResearchNet</title>
 
 <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
 
@@ -29,7 +29,7 @@
               <h1>
                 <a href="/">
                   <img src="{% static 'research-32.png' %}"/>
-                  Researchnet
+                  ResearchNet
                 </a>
               </h1>
             </li> 
@@ -53,34 +53,43 @@
   <script src="{% static 'foundation/js/vendor/modernizr.js' %}"></script>
 {% endcompress %}
 
-        <footer >
-              <div class="large-12 columns"><hr>
-                  <div class="row">
-       
-                    <div class="large-6 columns">
-                        <p>&copy; RTI International 2016</p>
-                    </div>
-       
-                    <div class="large-6 small-12 columns">
-                        <ul class="inline-list right">
-                          <li><a class="footer-menu" href="https://bitbucket.org/rcdrti/researchnet">Project</a></li>
-                          <li><a class="footer-menu" href="http://researchnet-documentation.s3-website-us-east-1.amazonaws.com/">Documentation</a></li>
-                        </ul>
-                    </div>
-       
-                  </div>
-              </div>
-            </footer>
-       
-          </div>
-        </div>
+<!-- Footer -->
+<footer class="footer">
+  <div class="row full-width">
+
+    <div class="medium-8 columns left">
+      <div>
+      &copy; RTI International 2016</p>
+      </div>
+    </div>
+
+    <div class="medium-4 columns">
+      <ul class="inline-list">
+          <li>
+          <p>
+              <i class="fi-book"></i> 
+              <a class="footer-menu" href="http://researchnet-documentation.s3-website-us-east-1.amazonaws.com/">Documentation</a>
+          </p>
+          </li>
+          <li>
+              <p>
+                <i class="fi-torsos"></i>
+                <a class="footer-menu" href="https://bitbucket.org/rcdrti/researchnet">Project</a>
+              </p> 
+          </li>
+        </ul>
+    </div>
+  </div>
+</footer>
        
 
-        <script>
-          $(document).foundation();
-        </script>
+<script>
+  $(document).foundation();
+</script>
 
-        {% block javascript %}
-        {% endblock %}
+{% block javascript %}
+{% endblock %}
+
+
 </body>
 </html>
