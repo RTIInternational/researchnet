@@ -30,10 +30,9 @@
             selected out of
             <span class='total-count'></span>
             records. 
-            <!-- Buttons are styled using bootstrap - http://www.w3schools.com/bootstrap/bootstrap_ref_comp_glyphs.asp -->
-            
+
             <!-- Reset Filter button -->
-            <a href="#"  onclick="javascript: dc.filterAll(); dc.renderAll();">Reset Filter</a>
+            <a href="#"  onclick="javascript: dc.filterAll(); dc.renderAll();">Reset Filter</a> 
             
         </div>
     </div>
@@ -97,8 +96,12 @@
             </thead>
         </table>
     </div>
-   
+    <div id="paging">
+    Showing <span id="begin"></span>-<span id="end"></span> of <span id="size"></span>.
+    <a  id="last" class="button info tiny" onclick="javascript:last()">Last</a>
+    <a  id="next" class="button info tiny" onclick="javascript:next()">Next</a>
 
+  </div>
 </div>
 
 
@@ -122,7 +125,6 @@
   <script src="{% static 'd3/d3.min.js' %}"></script>
   <script src="{% static 'crossfilter/crossfilter.js' %}"></script>
   <script src="{% static 'dcjs/dc.js' %}"></script>
-  
   <script src="{% static 'jquery/dist/jquery.min.js' %}"></script>
   <script src="{% static 'file-saver/FileSaver.min.js' %}"></script>
   <script src="{% static 'blockUI/jquery.blockUI.js' %}"></script>
@@ -135,13 +137,12 @@
         // jquery - using .ready() - method makes sure the DOM is loaded before starting the script 
 
         var chart = dc.dataTable("#dc-table-graph");
+        var facts; 
 
         $(document).ready(function () {
 
             var token;
             var submissionDimension;
-            
-
 
             // LoadDataAndRenderCharts() calls the ResearchNet API to get the data to visualize and then renders each of the dc charts.
             function LoadDataAndRenderCharts() {
@@ -164,6 +165,7 @@
                 d3.json('/submission/?limit=1000')
                   .header('Authorization', 'Token {{request.user.auth_token.key }}')
                   .get(function (error, data) {
+
 
                     // if an exception occured calling the submission endpoint
                     if (error) {
@@ -222,7 +224,7 @@
 
 
                         // load data into crossfilter 
-                        var facts = crossfilter(data.results);
+                        facts = crossfilter(data.results);
 
 
                         // count all the facts
@@ -413,14 +415,15 @@
                               .renderLabel(true)
                               .title(function (d) {
                                   // parse city from place string - http://stackoverflow.com/questions/13341016/get-first-and-rest-of-string-from-comma-separated-values-in-javascript
-                                  var percent = (d.data.value / facts.groupAll().reduceCount().value() * 100).toFixed(0) + "%";
-                                  return d.data.key + '  (' + d.data.value + ' - ' + percent + ')';   // found by looking at log in console !@#
+                                  
+                                  var percent = (d.value / facts.groupAll().reduceCount().value() * 100).toFixed(0) + "%";
+                                  return d.key + '  (' + d.value + ' - ' + percent + ')';   // found by looking at log in console !@#
                               })
                               .label(function (d) {
                                   //console.log('label');
                                   //console.log(d);
-                                  var percent = (d.data.value / facts.groupAll().reduceCount().value() * 100).toFixed(0) + "%";
-                                  return d.data.key + ' ' + percent + '';   // found by looking at log in console !@#
+                                  var percent = (d.value / facts.groupAll().reduceCount().value() * 100).toFixed(0) + "%";
+                                  return d.key + ' ' + percent + '';   // found by looking at log in console !@#
                               });
 
                          
@@ -491,7 +494,7 @@
                                    .sortBy(function (d) { return d.dtstart; })
                                    .order(d3.descending);
 
-                        
+                        update();
                         dc.renderAll();
 
 
@@ -559,8 +562,8 @@
               d3.select('#last')
                   .attr('disabled', ofs-pag<0 ? 'true' : null);
               d3.select('#next')
-                  .attr('disabled', ofs+pag>=ndx.size() ? 'true' : null);
-              d3.select('#size').text(ndx.size());
+                  .attr('disabled', ofs+pag>=facts.size() ? 'true' : null);
+              d3.select('#size').text(facts.size());
           }
           function update() {
               chart.beginSlice(ofs);
@@ -568,7 +571,6 @@
               display();
           }
         function next(){
-            alert("heloo")
             ofs += pag;
             update();
             chart.redraw();
