@@ -1,13 +1,12 @@
 
 
-
 .main_display, .main_table {
     margin-top: 40px;
 }
 
 .export_link {
     text-align: center;
-    padding-bottom: 50px;
+    padding-bottom: 20px;
 }
 
 .full-width {
