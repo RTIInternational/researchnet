@@ -6,7 +6,6 @@
 <link rel="stylesheet" type="text/css" href="{% static 'dcjs/dc.css' %}"/>
 <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}"/>
 <link rel="stylesheet" type="text/css" href="{% static 'dashboard.css' %}"/>
-<link rel="stylesheet" type="text/css" href="{% static 'datatables/media/css/dataTables.foundation.min.css' %}"/>
 
 {% endblock %}
 
@@ -26,13 +25,15 @@
 
     <div style="text-align: right">
         <div class="dc-data-count" style="margin-top:0px;">
+            <p>
             <span class='filter-count'></span>
             selected out of
             <span class='total-count'></span>
             records. 
-
-            <!-- Reset Filter button -->
+            
+            <i class="fi-refresh"></i>
             <a href="#"  onclick="javascript: dc.filterAll(); dc.renderAll();">Reset Filter</a> 
+            </p> 
             
         </div>
     </div>
@@ -43,7 +44,6 @@
 <div class="row">
     
 </div>
-
 
 <div class="row">
   <div class="medium-4 columns">
@@ -106,10 +106,7 @@
 
 
 
-<!-- add vertical space at the bottom for margin -->
-<div class="row" style="height:60px;">
-    <div></div>
-</div>
+
 
  <div class="row main_table">
       <div class="export_link">
@@ -123,7 +120,7 @@
 {% block javascript %}
 
   <script src="{% static 'd3/d3.min.js' %}"></script>
-  <script src="{% static 'crossfilter/crossfilter.js' %}"></script>
+  <script src="{% static 'crossfilter2/crossfilter.js' %}"></script>
   <script src="{% static 'dcjs/dc.js' %}"></script>
   <script src="{% static 'jquery/dist/jquery.min.js' %}"></script>
   <script src="{% static 'file-saver/FileSaver.min.js' %}"></script>
@@ -550,10 +547,9 @@
             StartExecution();
 
 
-
         }); //$(document).ready(function () {
 
-         var ofs = 0, pag = 17;
+         var ofs = 0, pag = 12;
           function display() {
               d3.select('#begin')
                   .text(ofs);
@@ -579,11 +575,8 @@
               ofs -= pag;
               update();
               chart.redraw();
-          }
+          }      
 
-        
-
-    </script>
 
 </script>
 
