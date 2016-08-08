@@ -29,14 +29,12 @@
     border-bottom: 2px solid whitesmoke;
     padding: 5px;
     margin:60px 60px 30px 45px;
-    font-family:'Segoe UI';
     font-size:16pt;
 }
 
 .VisualizationHeading {
     width:70%;
     background-color:white;
-    font-family:'Segoe UI';
     padding:5px;
     font-size:15pt;                
     margin-left:50px;
@@ -45,7 +43,6 @@
 
 .VisualizationSubHeading {
     width:70%;
-    font-family:'Segoe UI';
     color:GrayText;
     padding:5px;
     font-size:10pt;                
@@ -59,7 +56,6 @@
 
 .VisualizationFilter {
     width:70%;
-    font-family:'Segoe UI';
     color:GrayText;            
     border-bottom: 1px solid whitesmoke;
     padding:5px;
@@ -93,11 +89,7 @@ body
     font-size: .9rem;
     background-color: #F9F9F9;
     background-image: url('/static/noise.gif');
-    font-family: 'Raleway' , sans-serif;
 }
 
 
-h1, h2, h3, h5, h6, h4, body {
-    
-    color: #5f6f81;
-}
+

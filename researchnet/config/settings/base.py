@@ -123,7 +123,8 @@ BOWER_INSTALLED_APPS = (
     'font-awesome#4.4.0',
     'dcjs#2.0.0-beta.32',
     'filesaver#1.3.1',
-    'jquery.blockUI'
+    'jquery.blockUI',
+    'open-sans-fontface#1.4.2'
 )
 
 REST_FRAMEWORK = {

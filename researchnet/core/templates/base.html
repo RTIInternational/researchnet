@@ -15,7 +15,7 @@
 <link type="text/css" rel="stylesheet" href="{% static 'foundation/css/foundation.css' %}">
 <link type="text/css" rel="stylesheet" href="{% static 'foundation-icons/foundation-icons.css' %}" >
 <link type="text/css" rel="stylesheet" href="{% static 'foundation/css/normalize.css' %}">
-
+<link rel="stylesheet" type="text/css" href="{% static 'app.css' %}"/>
 
 {% endcompress %}
 
@@ -25,13 +25,11 @@
 <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
 
 <nav class="top-bar" data-topbar>
-
-
           <ul class="title-area">
             <li class="name">
               <h1>
                 <a href="/">
-                  <img src="{% static 'research-32.png' %}"/>
+                  <img class="site_logo" src="{% static 'research-32.png' %}"/>
                   ResearchNet
                 </a>
               </h1>
