@@ -47,7 +47,7 @@ def add_place(sender, instance=None, created=False, **kwargs):
             
             if g.ok:
                 if g.city is not None and g.state is not None and g.country is not None :
-                    place = city+", "+state +" "+ country
+                    place = g.city+", "+g.state +" "+ g.country
 
             instance.place = place
             instance.save()
