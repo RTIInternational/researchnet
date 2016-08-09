@@ -25,34 +25,31 @@
 <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
 
 <nav class="top-bar" data-topbar>
-          <ul class="title-area">
-            <li class="name">
-              <h1>
-                <a href="/">
-                  <img class="site_logo" src="{% static 'research-32.png' %}"/>
-                  ResearchNet
-                </a>
-              </h1>
-            </li> 
-
-          </ul>
+  <ul class="title-area">
+    <li class="name">
+      <h1>
+        <a href="/">
+          <i class="fi-lightbulb style3"></i>
+          researchnet
+        </a>
+      </h1>
+    </li> 
+  </ul>
           
        
-          <section class="top-bar-section">
-             
-            <ul class="right">
-              
-            <li class="divider"></li>
-             <li class="has-dropdown">
-              <a href="#"> Logged in as: {{request.user.username}} </a>
-              <ul class="dropdown">
-                <li><a href="/logout/">Logout</a></li>
-              </ul>
-            </li>
+  <section class="top-bar-section"> 
+    <ul class="right">
+    <li class="divider"></li>
+     <li class="has-dropdown">
+      <a href="#"> Logged in as: {{request.user.username}} </a>
+      <ul class="dropdown">
+        <li><a href="/logout/">Logout</a></li>
+      </ul>
+    </li>
 
-            </ul>
-          </section>
-        </nav>
+    </ul>
+  </section>
+</nav>
 
 {% block head %}
 {% endblock %}

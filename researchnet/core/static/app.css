@@ -37,14 +37,10 @@ body {
   font-family: 'Open Sans', sans-serif;
 }
 
-h1, h2, h3, h5, h6, h4, body {
-  color: #5f6f81;
-  font-family: 'Open Sans', sans-serif;
-}
-
 .top-bar .name h1 a, .top-bar .name h2 a, .top-bar .name h3 a, .top-bar .name h4 a, .top-bar .name p a, .top-bar .name span a {
     color: #FFFFFF;
-    font-weight: 200;
+    font-weight: 400;
+    line-height: 2.8125rem;
 
 }
 
@@ -52,7 +48,7 @@ h1, h2, h3, h5, h6, h4, body {
     font-family: 'Open Sans', sans-serif;
     color: #FFFFFF;
     display: block;
-    font-size: 0.8125rem;
+    font-size: 0.9125rem;
     padding-left: 0.9375rem;
     padding: 12px 0 12px 0.9375rem;
     text-transform: none;
@@ -67,6 +63,12 @@ h1, h2, h3, h5, h6, h4, body {
     margin: 0; 
 }
 
-img .site_logo {
-    margin-bottom: 20px;
+.dashboard-control {
+  margin-top:25px;
+}
+
+.style3 {
+    font-size: 25px;
+    color: #ffdf80; 
+
 }
