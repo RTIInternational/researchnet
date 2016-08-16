@@ -15,6 +15,8 @@
 <link type="text/css" rel="stylesheet" href="{% static 'foundation/css/foundation.css' %}">
 <link type="text/css" rel="stylesheet" href="{% static 'foundation-icons/foundation-icons.css' %}" >
 <link type="text/css" rel="stylesheet" href="{% static 'foundation/css/normalize.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'app.css' %}"/>
+
 {% endcompress %}
 
 
@@ -23,33 +25,31 @@
 <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
 
 <nav class="top-bar" data-topbar>
-          <ul class="title-area">
-             
-            <li class="name">
-              <h1>
-                <a href="/">
-                  <img src="{% static 'research-32.png' %}"/>
-                  ResearchNet
-                </a>
-              </h1>
-            </li> 
-          </ul>
+  <ul class="title-area">
+    <li class="name">
+      <h1>
+        <a href="/">
+          <i class="fi-lightbulb style3"></i>
+          researchnet
+        </a>
+      </h1>
+    </li> 
+  </ul>
+          
        
-          <section class="top-bar-section">
-             
-            <ul class="right">
-              
-            <li class="divider"></li>
-             <li class="has-dropdown">
-              <a href="#"> {{request.user.username}} </a>
-              <ul class="dropdown">
-                <li><a href="/logout/">Logout</a></li>
-              </ul>
-            </li>
+  <section class="top-bar-section"> 
+    <ul class="right">
+    <li class="divider"></li>
+     <li class="has-dropdown">
+      <a href="#"> Logged in as: {{request.user.username}} </a>
+      <ul class="dropdown">
+        <li><a href="/logout/">Logout</a></li>
+      </ul>
+    </li>
 
-            </ul>
-          </section>
-        </nav>
+    </ul>
+  </section>
+</nav>
 
 {% block head %}
 {% endblock %}
@@ -67,27 +67,36 @@
   <script src="{% static 'foundation/js/foundation.min.js' %}"></script>
 {% endcompress %}
 
-        <footer >
-              <div class="large-12 columns"><hr>
-                  <div class="row">
+        
        
-                    <div class="large-6 columns">
-                        <p>&copy; RTI International 2016</p>
-                    </div>
-       
-                    <div class="large-6 small-12 columns">
-                        <ul class="inline-list right">
-                          <li><a class="footer-menu" href="https://bitbucket.org/rcdrti/researchnet">Project</a></li>
-                          <li><a class="footer-menu" href="http://researchnet-documentation.s3-website-us-east-1.amazonaws.com/">Documentation</a></li>
-                        </ul>
-                    </div>
-       
-                  </div>
-              </div>
-            </footer>
-       
-          </div>
-        </div>
+<!-- Footer -->
+<footer class="footer">
+  <div class="row full-width">
+
+    <div class="medium-8 columns left">
+      <div>
+      &copy; RTI International 2016</p>
+      </div>
+    </div>
+
+    <div class="medium-4 columns">
+      <ul class="inline-list">
+          <li>
+          <p>
+              <i class="fi-book"></i> 
+              <a class="footer-menu" href="http://http://documentation.researchnet.ictedge.org/">Documentation</a>
+          </p>
+          </li>
+          <li>
+              <p>
+                <i class="fi-torsos"></i>
+                <a class="footer-menu" href="https://bitbucket.org/rcdrti/researchnet">Project</a>
+              </p> 
+          </li>
+        </ul>
+    </div>
+  </div>
+</footer>
        
 
         <script>

@@ -30,7 +30,7 @@ TASK_FAMILY="researchnet_task"
 # Deploy documentation (http://researchnet-documentation.s3-website-us-east-1.amazonaws.com/)
 cd documentation
 /usr/local/bin/mkdocs build --clean
-aws s3 cp site/ s3://researchnet-documentation --recursive --acl public-read
+aws s3 cp site/ s3://documentation.researchnet.ictedge.org --recursive --acl public-read
 
 #clean up containers
 #docker rmi -f $(docker images -q)

@@ -23,9 +23,7 @@ from core.forms import ResearchnetAuthForm
 @login_required
 def index(request):
 
-
-    context = {'token': "9a1194980e9e15da451d9ab68a5b8801e6704c18"}
-    return render(request, 'index.html', context)
+    return render(request, 'index.html')
 
 
 @login_required
