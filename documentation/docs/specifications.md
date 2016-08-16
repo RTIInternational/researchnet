@@ -20,7 +20,7 @@ Researchnet extends the Django User Model to support an entity called the 'Parti
 
 ## Deployment
 
-Currently we working towards a HIPAA compliant configuration on Amazon Web Services (AWS).
+Currently we are working towards a HIPAA compliant configuration on Amazon Web Services (AWS).
 
 
 
