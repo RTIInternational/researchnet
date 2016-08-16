@@ -536,7 +536,11 @@
 
                 // display loading message - http://malsup.com/jquery/block/
                 // The message will automatically display here and undisplay when the ajax calls are complete :-)
-                $(document).ajaxStart($.blockUI).ajaxStop($.unblockUI);
+                $(document).ajaxStart($.blockUI({
+                    message: '<h2><img src="{% static 'ajax-loader.gif'%}" />&nbsp;Getting ResearchNet data...</h2>',
+                    css: { backgroundColor: '#666666', color: '#fff', border: '0px', padding: '10px' }
+                })).ajaxStop($.unblockUI);
+                
 
                 LoadDataAndRenderCharts();
             }
