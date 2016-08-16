@@ -1,0 +1,167 @@
+{
+  "count": 20,
+  "next": null,
+  "previous": null,
+  "results": [
+    {
+      "username": "testuser0",
+      "first_name": "Chris",
+      "last_name": "Smith",
+      "email": "fakeemail@rti.org",
+      "gender": "Male",
+      "dob": "1971-09-04"
+    },
+    {
+      "username": "testuser1",
+      "first_name": "Sue",
+      "last_name": "Smith",
+      "email": "fakeemail@rti.org",
+      "gender": "Female",
+      "dob": "1983-03-04"
+    },
+    {
+      "username": "testuser2",
+      "first_name": "Sue",
+      "last_name": "Thomas",
+      "email": "fakeemail@rti.org",
+      "gender": "Male",
+      "dob": "1986-08-24"
+    },
+    {
+      "username": "testuser3",
+      "first_name": "Piper",
+      "last_name": "Roberts",
+      "email": "fakeemail@rti.org",
+      "gender": "Male",
+      "dob": "1980-07-14"
+    },
+    {
+      "username": "testuser4",
+      "first_name": "Pat",
+      "last_name": "Jones",
+      "email": "fakeemail@rti.org",
+      "gender": "Male",
+      "dob": "1981-06-04"
+    },
+    {
+      "username": "testuser5",
+      "first_name": "Piper",
+      "last_name": "Smith",
+      "email": "fakeemail@rti.org",
+      "gender": "Female",
+      "dob": "1984-08-05"
+    },
+    {
+      "username": "testuser6",
+      "first_name": "Same",
+      "last_name": "Walters",
+      "email": "fakeemail@rti.org",
+      "gender": "Female",
+      "dob": "1974-08-24"
+    },
+    {
+      "username": "testuser7",
+      "first_name": "Jessie",
+      "last_name": "Thomas",
+      "email": "fakeemail@rti.org",
+      "gender": "Female",
+      "dob": "1968-11-26"
+    },
+    {
+      "username": "testuser8",
+      "first_name": "Chris",
+      "last_name": "Jones",
+      "email": "fakeemail@rti.org",
+      "gender": "Male",
+      "dob": "1970-06-19"
+    },
+    {
+      "username": "testuser9",
+      "first_name": "Same",
+      "last_name": "Walters",
+      "email": "fakeemail@rti.org",
+      "gender": "Female",
+      "dob": "1982-04-14"
+    },
+    {
+      "username": "asas",
+      "first_name": "Asa",
+      "last_name": "Smith",
+      "email": "asa@rti.org",
+      "gender": "male",
+      "dob": "1977-05-18"
+    },
+    {
+      "username": "adam123",
+      "first_name": "Asa",
+      "last_name": "Smith",
+      "email": "apreston@rti.org",
+      "gender": "male",
+      "dob": "1977-05-18"
+    },
+    {
+      "username": "adap",
+      "first_name": "Adam",
+      "last_name": "Preston",
+      "email": "adam704a@hotmail.com",
+      "gender": "male",
+      "dob": "1977-05-18"
+    },
+    {
+      "username": "adfadfasfd",
+      "first_name": "Asa",
+      "last_name": "Smith",
+      "email": "asa@rti.org",
+      "gender": "male",
+      "dob": "1977-05-18"
+    },
+    {
+      "username": "adam1239",
+      "first_name": "Adam",
+      "last_name": "Preston",
+      "email": "adam704a@hotmail.com",
+      "gender": "male",
+      "dob": "1977-05-18"
+    },
+    {
+      "username": "adam12399",
+      "first_name": "Adam",
+      "last_name": "Preston",
+      "email": "adam704a@hotmail.com",
+      "gender": "male",
+      "dob": "1977-05-18"
+    },
+    {
+      "username": "adampreston2",
+      "first_name": "Adam",
+      "last_name": "Preston",
+      "email": "adam704a@hotmail.com",
+      "gender": "male",
+      "dob": "1977-05-18"
+    },
+    {
+      "username": "medicfurby",
+      "first_name": "robt",
+      "last_name": "furberg",
+      "email": "rfurberg@rti.org",
+      "gender": "m",
+      "dob": "1977-05-18"
+    },
+    {
+      "username": "asap333",
+      "first_name": "Asa",
+      "last_name": "Smith",
+      "email": "apreston@rti.org",
+      "gender": "male",
+      "dob": "1977-05-18"
+    },
+    {
+      "username": "asas2",
+      "first_name": "Asa",
+      "last_name": "Smith",
+      "email": "apreston@rti.org",
+      "gender": "male",
+      "dob": "1977-05-18"
+    }
+  ]
+}

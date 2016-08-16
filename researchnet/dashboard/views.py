@@ -22,9 +22,8 @@ from core.forms import ResearchnetAuthForm
 # Create your views here.
 @login_required
 def index(request):
-    submissions = Submission.objects.order_by('-timestamp')[:100]
-    context = {'submission_list': submissions}
-    return render(request, 'index.html', context)
+
+    return render(request, 'index.html')
 
 
 @login_required

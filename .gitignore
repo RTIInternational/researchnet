@@ -15,9 +15,12 @@ __pycache__/
 components/
 researchnet/config/staticfiles/*
 !researchnet/config/staticfiles/research-32.png
+!researchnet/config/staticfiles/us-states.json
 !researchnet/config/staticfiles/favicon.ico
+!researchnet/config/staticfiles/ajax-loader.gif
 !researchnet/config/staticfiles/foundation-icons/
 researchnet/config/staticfiles/foundation-icons/.DS_Store
+!researchnet/config/staticfiles/noise.gif
 
 
 # Distribution / packaging

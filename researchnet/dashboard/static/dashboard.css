@@ -1,22 +1,95 @@
 
 
-.export_link {
-	text-align: center;
-	padding-bottom: 50px;
-}
-
 .main_display, .main_table {
-	margin-top: 40px;
-}
-footer p, .footer-menu {
-	font-size: 10pt;
+    margin-top: 40px;
 }
 
-#chart-ring-year {
-  margin-top: 15px;
+.export_link {
+    text-align: center;
+    padding-bottom: 20px;
 }
 
-#chart-hist-spend {
-  margin-top: 15px;
+.full-width {
+  max-width: 1400px;
 }
+
+#dc-age-chart svg    {margin-left:40px;}  /* Note this is moving the svg element */
+#dc-sub-chart svg    {margin-left:30px;}
+#dc-user-chart svg   {margin-left:30px;}
+#dc-place-chart svg  {margin-left:10px;}
+#dc-gender-chart svg {margin-left:0px;}
+.dc-chart .pie-slice {font-size: 10pt; font-weight:normal;}
+#dc-table-graph      {margin-left:0;width:100%;}
+.errorMessage        {padding: 15px; background-color: darkred; color: white; font-size: 14pt; text-align: left; margin-top:30px; }
+
+.pageSectionHeading {
+    border-radius: 2px !important;
+    width:90%;
+    background: white;
+    border-bottom: 2px solid whitesmoke;
+    padding: 5px;
+    margin:60px 60px 30px 45px;
+    font-size:16pt;
+}
+
+.VisualizationHeading {
+    width:70%;
+    background-color:white;
+    padding:5px;
+    font-size:15pt;                
+    margin-left:50px;
+    margin-bottom:-10px;
+}
+
+.VisualizationSubHeading {
+    width:70%;
+    color:GrayText;
+    padding:5px;
+    font-size:10pt;                
+    margin-left:50px;
+}
+
+/* add the word Filter: before the filter output */
+.VisualizationFilter:before {
+    content: "Filter: ";
+}
+
+.VisualizationFilter {
+    width:70%;
+    color:GrayText;            
+    border-bottom: 1px solid whitesmoke;
+    padding:5px;
+    font-size:8pt;                
+    margin-top:-10px;
+    margin-bottom:20px;
+    margin-left:20px;
+}
+
+.LeftChartIndent {
+    margin-left:50px;
+}
+
+.VisualSection {
+    background: white;
+    padding: 20px;
+    border: 1px solid #e1e1e1;
+    border-top: 3px solid #e1e1e1;
+    margin-bottom: 24px;
+}
+
+/*
+Work-around for bootstrap 3 horizontal scrollbar when container-fluid used issue
+http://stackoverflow.com/questions/18392477/how-to-make-bootstrap-3-fluid-layout-without-horizontal-scrollbar
+*/
+
+body
+{
+    overflow-x: hidden;
+    margin-bottom: 10px;
+    font-size: .9rem;
+    background-color: #F9F9F9;
+    background-image: url('/static/noise.gif');
+}
+
+
 
