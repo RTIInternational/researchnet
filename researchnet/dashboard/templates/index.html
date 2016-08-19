@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load staticfiles %}
+{% load compress %}
 
 
 {% block head %}
@@ -118,6 +119,9 @@
 
 {% block javascript %}
 
+
+{% compress js %}
+
   <script src="{% static 'd3/d3.min.js' %}"></script>
   <script src="{% static 'crossfilter2/crossfilter.js' %}"></script>
   <script src="{% static 'dcjs/dc.js' %}"></script>
@@ -125,6 +129,7 @@
   <script src="{% static 'file-saver/FileSaver.min.js' %}"></script>
   <script src="{% static 'blockUI/jquery.blockUI.js' %}"></script>
   <script src="{% static 'moment/moment.js' %}"></script>
+
 
   <script type="text/javascript">
 
@@ -592,6 +597,6 @@
 
 
 </script>
-
+{% endcompress %}
 
 {% endblock %}
