@@ -188,6 +188,8 @@
                     // https://github.com/dc-js/dc.js/issues/852
                     d3.json("{% static 'us-states.json' %}", function (error, statesJson) {
 
+                        
+
                         if (error) {
                             $('#messageLine').html(
                                 '<p class="errorMessage">An error has occurred that may prevent this page from working correctly. '
@@ -490,17 +492,17 @@
                                    .sortBy(function (d) { return d.dtstart; })
                                    .order(d3.descending);
 
-                        update();
+                        update();                    
                         dc.renderAll();
-
+                        $.unblockUI();
 
                     }); // d3.json us-states.json
 
                 }) // d3.json()
 
+  
+
             } // LoadDataAndRenderCharts()
-
-
 
 
             // utility method to debug JavaScript - displays properties of an object
@@ -534,10 +536,18 @@
             //http://stackoverflow.com/questions/2379529/how-to-call-a-function-within-document-ready-from-outside-it
             window.StartExecution = function () {
 
+                
                 // display loading message - http://malsup.com/jquery/block/
                 // The message will automatically display here and undisplay when the ajax calls are complete :-)
-                $(document).ajaxStart($.blockUI).ajaxStop($.unblockUI);
+
+                //$(document).ajaxStart($.blockUI).ajaxStop($.unblockUI);
+                $.blockUI({
+                    message: '<h4><img src="static/ajax-loader.gif" />hang on</h4>',
+                    css: { backgroundColor: '#666666', color: '#fff', border: '0px', padding: '10px' }
+                })
+
                 LoadDataAndRenderCharts();
+                
             }
 
 
@@ -545,7 +555,12 @@
             StartExecution();
 
 
+
+
         }); //$(document).ready(function () {
+
+
+         
 
          var ofs = 0, pag = 12;
           function display() {
