@@ -20,7 +20,7 @@ _PRO TIP_: Because python is running as a container, anytime you install a modul
 
 Documentation
 ----------------
-We use MkDocs for our documentation.  Just go to the documentation folder and run `mkdocs serve`.  After you do this you can get to the documentation for this project locally here: 'http://127.0.0.1:8000' or here 'http://researchnet.org.s3-website-us-east-1.amazonaws.com/'
+We use MkDocs for our documentation.  Just go to the documentation folder and run `mkdocs serve`.  After you do this you can get to the documentation for this project locally here: 'http://127.0.0.1:8000' s
 
 
 Front-end assets
@@ -36,8 +36,7 @@ To run interactive commands in a notebook run this:  `python researchnet/manage.
 
 Bugs, new requests or contribution
 --------------
-Please submit bugs, gripes and feature requests at https://bitbucket.org/rcdrti/researchnet/issues
+Please submit bugs, gripes and feature requests as an issue
 
-Any other questions contact Adam Preston at apreston@rti.org or on Twitter here @adam704a 
 
-![research_sm.png](https://bitbucket.org/repo/B6bG6n/images/661596335-research_sm.png)
+
