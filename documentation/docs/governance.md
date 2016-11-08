@@ -1,6 +1,6 @@
 
 
-# Introduction
+# Governance
 
 
 In recognition of the importance of keeping Protected Health Information (PHI) secure, RTI has implemented all applicable requirements of the Health Insurance Portability and Accountability Act of 1996 (HIPAA), including the Omnibus Rule enacted in 2013. As a Hybrid Entity, RTI places great importance on the effective operation of HIPAA Privacy, Security, Breach Notification and Enforcement Rules including the privacy and security provisions of the Health Information Technology for Economic and Clinical Health Act (HITECH Act) to protect PHI.
