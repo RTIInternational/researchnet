@@ -1,7 +1,7 @@
 
 ## Overview
 
-![research](images/research.png )
+![research](images/bulb-logo-sm1.png )
 
 
 ResearchNet is an online platform designed to empower medical researchers to use Apple's ResearchKit to enroll participants and conduct studies. 
