@@ -1,5 +1,4 @@
-A ResearchKit Backend
-=====================
+![ResearchNet](researchnet/config/staticfiles/researchnet.png)
 
 
 This document describes the process for running the Researchnet server using [docker](https://www.docker.com/) containers.
@@ -27,11 +26,6 @@ Front-end assets
 ----------------
 
 Front-end assets are managed by [Bower](http://bower.io). You have to run this in order to make the dashboard work `python manage.py bower install`
-
-
-Notebooks
-----------------
-To run interactive commands in a notebook run this:  `python researchnet/manage.py shell_plus --notebook`
 
 
 Bugs, new requests or contribution
