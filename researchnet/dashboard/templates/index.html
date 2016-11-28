@@ -544,10 +544,7 @@
                 // The message will automatically display here and undisplay when the ajax calls are complete :-)
 
                 //$(document).ajaxStart($.blockUI).ajaxStop($.unblockUI);
-                $.blockUI({
-                    message: '<h4><img src="static/ajax-loader.gif" />hang on</h4>',
-                    css: { backgroundColor: '#666666', color: '#fff', border: '0px', padding: '10px' }
-                })
+                $.blockUI({ message: null });
 
                 LoadDataAndRenderCharts();
                 
