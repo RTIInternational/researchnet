@@ -7,7 +7,7 @@ Prerequisites
 -------------
 
 * [install Docker Compose](https://docs.docker.com/compose/ "Documentation")
-s
+
 
 Getting Started
 ----------------
