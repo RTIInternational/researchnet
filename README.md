@@ -19,18 +19,18 @@ _PRO TIP_: Because python is running as a container, anytime you install a modul
 
 Documentation
 ----------------
-We use MkDocs for our documentation.  Just go to the documentation folder and run `mkdocs serve`.  After you do this you can get to the documentation for this project locally here: 'http://127.0.0.1:8000' s
+We use MkDocs for our documentation.  Just go to the documentation folder and run `mkdocs serve`.  After you do this you can get to the documentation for this project locally here: 'http://127.0.0.1:8000' 
 
 
 Front-end assets
 ----------------
 
-Front-end assets are managed by [Bower](http://bower.io). You have to run this in order to make the dashboard work `python manage.py bower install`
+Front-end assets are managed by [Bower](http://bower.io). You have to run this `python manage.py bower install`,then `python manage.py collectstatic` in order to make the dashboard work.
 
 
 Bugs, new requests or contribution
 --------------
-Please submit bugs, gripes and feature requests as an issue
+Please submit bugs, gripes, and feature requests as an issue.
 
 
 
