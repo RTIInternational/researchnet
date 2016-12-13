@@ -79,7 +79,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-            ]
+                ]
             }
     }
 ]
@@ -125,7 +125,8 @@ BOWER_INSTALLED_APPS = (
     'filesaver#1.3.1',
     'jquery.blockUI',
     'open-sans-fontface#1.4.2',
-    'd3-scale-chromatic'
+    'd3-scale-chromatic#1.1.0',
+    'd3-interpolate#1.1.2'
 )
 
 REST_FRAMEWORK = {

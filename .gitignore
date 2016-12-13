@@ -14,7 +14,7 @@ __pycache__/
 
 components/
 researchnet/config/staticfiles/*
-!researchnet/config/staticfiles/research-32.png
+!researchnet/config/staticfiles/research-35.png
 !researchnet/config/staticfiles/researchnet.png
 !researchnet/config/staticfiles/us-states.json
 !researchnet/config/staticfiles/favicon.ico
