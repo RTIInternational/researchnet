@@ -6,7 +6,7 @@ This document describes the process for running the Researchnet server using [do
 Prerequisites
 -------------
 
-* [install Docker Compose](https://docs.docker.com/compose/ "Documentation")
+* [Docker Compose](https://docs.docker.com/compose/ "Docker Compose")
 
 
 Getting Started
