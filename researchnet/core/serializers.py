@@ -15,10 +15,8 @@ class ParticipantUserSerializer(serializers.ModelSerializer):
         read_only_fields = ('is_staff', 'is_superuser', 'is_active', 'date_joined',)
     
     gender=serializers.CharField(source='participant.gender')
-    dob=serializers.CharField(source='participant.dob')
+    dob=serializers.DateField(source='participant.dob')
 
-
-    
     def create(self, validated_data):
         user = User(**validated_data)
         user.set_password(validated_data['password'])
@@ -36,7 +34,7 @@ class ParticipantSerializer(serializers.Serializer):
     last_name=serializers.CharField(source='user.last_name')
     email=serializers.EmailField(source='user.email')
     gender=serializers.CharField()
-    dob=serializers.DateField()
+    dob=serializers.DateField(required=False, allow_null=True)
 
     def create(self, validated_data):
             

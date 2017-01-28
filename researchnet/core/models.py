@@ -19,18 +19,16 @@ class Submission(models.Model):
     place = models.TextField(null=True)
     response = JSONField()
 
-# a profile model
 class Participant(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     gender = models.TextField()
-    dob = models.DateField(blank=True, null=True)
+    dob = models.DateField(null=True, blank=True)
 
 class Consent(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     scope = models.TextField()
     imageData = models.ImageField(blank=True)
     consent_date = models.DateTimeField(default=datetime.now)
-
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
 def create_auth_token(sender, instance=None, created=False, **kwargs):
