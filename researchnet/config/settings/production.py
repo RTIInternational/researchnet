@@ -4,7 +4,7 @@ from .base import *
 DEBUG = False
 ALLOWED_HOSTS = ['*']
 
-ADMINS = (('Webmaster','apreston@rti.org'))
+ADMINS = [('Adam', 'apreston@rti.org')]
 
 MANAGERS = ADMINS
 
