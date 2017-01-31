@@ -160,6 +160,7 @@ if  'EMAIL_PORT' in os.environ:
 if 'EMAIL_USE_TLS' in os.environ:
     EMAIL_USE_TLS =  os.environ['EMAIL_USE_TLS']
 
+SERVER_EMAIL = 'ict@rti.org'
 DEFAULT_FROM_EMAIL = 'ResearchNet Research Study <researchnet@ictedge.org>'
 EMAIL_REGISTRATION_SUBJECT = 'Welcome to RTI\'s ResearchNet'
 
