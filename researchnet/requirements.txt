@@ -1,5 +1,5 @@
 click==5.1
-Django==1.9
+Django==1.10
 django-appconf==1.0.1
 django-bower==5.0.4
 django-compressor==1.6
