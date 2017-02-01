@@ -1,7 +1,7 @@
 click==5.1
 Django==1.10
 django-appconf==1.0.1
-django-bower==5.0.4
+django-bower==5.2.0
 django-compressor==1.6
 django-extensions==1.6.6
 djangorestframework==3.5.3
