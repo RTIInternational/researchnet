@@ -70,7 +70,6 @@ def login_view(request, *args, **kwargs):
         form = ResearchnetAuthForm(request, data=request.POST)
 
         if form.is_valid():
-            print("form is valid")
 
             user = authenticate(username=form.cleaned_data['username'], password=form.cleaned_data['password'])
             
