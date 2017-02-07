@@ -36,7 +36,7 @@ def enrollment(request):
 def export_submissions(request):
     
     submissions = Submission.objects.all()
-    df = pd.DataFrame.from_records(json_normalize(submissions.values()))
+    df = pd.DataFrame.from_records(json_normalize(submissions.values('id', 'device_id', 'lat', 'long', 'place', 'response', 'time_complete', 'time_start', 'timestamp', 'user__username', 'user__participant__gender')))
 
     # Create the HttpResponse object with the appropriate CSV header.
     export = df.to_csv()
