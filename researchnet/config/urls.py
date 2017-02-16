@@ -11,6 +11,7 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 from rest_framework import routers
 from rest_framework.urlpatterns import format_suffix_patterns
+from django.conf import settings
 
 
 from core import views
@@ -47,7 +48,11 @@ urlpatterns += [
     url(r'^api-token-auth/', views.obtain_auth_token)
 ]
 
-
+if settings.DEBUG:
+    import debug_toolbar
+    urlpatterns += [
+        url(r'^__debug__/', include(debug_toolbar.urls)),
+    ]
 
 # Needed until the static file deployment situation is figured out
 urlpatterns += staticfiles_urlpatterns()
