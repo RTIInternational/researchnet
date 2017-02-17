@@ -12,6 +12,9 @@ from django.core.exceptions import PermissionDenied
 
 from django.core.signals import request_finished
 from django.dispatch import receiver
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_page
+
 
 from rest_framework import status
 from rest_framework.response import Response
@@ -25,6 +28,8 @@ from .permissions import IsStaffOrTargetUser
 
 from .serializers import ParticipantUserSerializer, SubmissionSerializer, ConsentSerializer, ParticipantSerializer
 from .models import Submission, Consent, Participant
+
+
 
 
 logger = logging.getLogger(__name__)
@@ -53,6 +58,10 @@ class SubmissionList(generics.ListCreateAPIView):
 
     queryset = Submission.objects.all()
     serializer_class = SubmissionSerializer
+
+    @method_decorator(cache_page(60 * 60))
+    def dispatch(self, *args, **kwargs):
+        return super(SubmissionList, self).dispatch(*args, **kwargs)
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
