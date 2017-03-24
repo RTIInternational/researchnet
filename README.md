@@ -11,7 +11,7 @@ Prerequisites
 
 Getting Started
 ----------------
-Type this `docker-compose up` to start the docker containers.  Your application will be available via docker IP address on port 8000.  If you want to run this outside of docker, just make sure that you have an entry in your /etc/hosts for `db` that points to your postgressql database .  When you have all of that set up you can run `python manage.py runserver_plus 0.0.0.0:8000 --settings=config.settings.local`.    
+Type this `docker-compose up` to start the docker containers.  Your application will be available via docker IP address on port 8000.  If you want to run this outside of docker, just make sure that you have an entry in your /etc/hosts for `db` that points to your postgressql database .  When you have all of that set up you can run `python manage.py runserver_plus --settings=config.settings.local`.    
 
 We're using Django Authention, which means in order to login you'll need to run 'docker-compose run web researchnet/manage.py migrate' and after that 'docker-compose run web researchnet/manage.py createsuperuser'
 
