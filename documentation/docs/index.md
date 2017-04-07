@@ -4,11 +4,11 @@
 ![research](images/bulb-logo-sm1.png )
 
 
-ResearchNet is an online platform designed to empower medical researchers to use Apple's ResearchKit to enroll participants and conduct studies. 
+ResearchNet is a flexible, cloud-enabled back-end for Computer Assisted Self Interview (CASI) systems. 
 
-For the medical researcher, this platform provides a secure mechanism for managing enrollment, processing consent, and collecting the survey data. 
+For the survey researcher, this platform provides a secure mechanism for managing enrollment, processing consent, and collecting the survey data. 
 
 
-Under the hood, ResearchNet is comprised of three software components:  a set of REST APIs for developers, a software development kit (SDK) for IOS,  and a simple dashboard for monitoring the study progress.  
+Under the hood, ResearchNet is comprised of three software components:  a set of REST APIs for developers, a software development kit (SDK) supporting IOS, and a simple dashboard for monitoring the study progress.  
 
 
