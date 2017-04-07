@@ -1,4 +1,4 @@
-site_name: ResearchNet
+site_name: researchnet
 theme: flatly
 pages:
 - 'Introduction': 'index.md'

@@ -9,3 +9,14 @@ img[alt="research"] {
     padding:1px; 
     border:0px;
 }
+
+.navbar-default {
+	background-color: #333333;
+}
+
+.navbar-brand {
+	font-size: 28px;
+}
+
+
+
