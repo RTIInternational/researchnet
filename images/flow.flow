@@ -1,0 +1,19 @@
+# Made here: http://bramp.github.io/js-sequence-diagrams/
+
+Title: Researchnet Application Flow
+Client->Application: Enroll
+Application->Database: Create Study Participant
+Database->Application:
+Application->Client:
+Client->Application: Request Token (/api-token-auth/)
+Application->Database: Get Token
+Database->Application: Return Token
+Application->Client: Return Token
+Client->Application: Submit Consent (/consent/)
+Application->Database:Save Consent
+Database->Application:
+Application->Client:
+Client->Application: Submit Survey (/submission/)
+Application->Database: Save Survey Respose
+Database->Application:
+Application->Client:

@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+
+	<title>API - researchnet</title>
+
+        <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../css/font-awesome-4.0.3.css" rel="stylesheet">
+        <link rel="stylesheet" href="../css/highlight.css">
+        <link href="../css/base.css" rel="stylesheet">
+        <link href="../extra.css" rel="stylesheet">
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+        
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <!-- Main title -->
+            <a class="navbar-brand" href="..">researchnet</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+            <!-- Main navigation -->
+            <ul class="nav navbar-nav">
+            
+            
+                <li >
+                    <a href="..">Introduction</a>
+                </li>
+            
+            
+            
+                <li >
+                    <a href="../background/">Background</a>
+                </li>
+            
+            
+            
+                <li >
+                    <a href="../governance/">Governance</a>
+                </li>
+            
+            
+            
+                <li class="active">
+                    <a href="./">API</a>
+                </li>
+            
+            
+            
+                <li >
+                    <a href="../specifications/">Technical Specifications</a>
+                </li>
+            
+            
+            </ul>
+
+            <!-- Search, Navigation and Repo links -->
+            <ul class="nav navbar-nav navbar-right">
+                <li >
+                    <a rel="next" href="../governance/">
+                        <i class="fa fa-arrow-left"></i> Previous
+                    </a>
+                </li>
+                <li >
+                    <a rel="prev" href="../specifications/">
+                        Next <i class="fa fa-arrow-right"></i>
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+        <div class="container">
+            <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+    
+        <li class="main active"><a href="#token-authenticate">Token Authenticate</a></li>
+        
+    
+        <li class="main "><a href="#participant">Participant</a></li>
+        
+    
+        <li class="main "><a href="#participant-consent">Participant Consent</a></li>
+        
+    
+        <li class="main "><a href="#survey-submission">Survey Submission</a></li>
+        
+    
+    </ul>
+</div></div>
+            <div class="col-md-9" role="main">
+
+<h1 id="token-authenticate">Token Authenticate</h1>
+<table>
+<thead>
+<tr>
+<th align="left"></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><strong>Description</strong></td>
+<td>Obtain a token given a username and password. Subsequently, this token is used to authenticate all requests using the following authorization HTTP header <code>Authorization: Token [TOKEN_ID]</code></td>
+</tr>
+<tr>
+<td align="left"><strong>Endpoint</strong></td>
+<td>/api-token-auth/</td>
+</tr>
+<tr>
+<td align="left"><strong>Method</strong></td>
+<td>POST</td>
+</tr>
+<tr>
+<td align="left"><strong>Authentication</strong></td>
+<td>None</td>
+</tr>
+<tr>
+<td align="left"><strong>Response Codes</strong></td>
+<td>200 - Successful<br/>401 - Unauthorized <br/>400 - Bad Request</td>
+</tr>
+</tbody>
+</table>
+<p>Request Object</p>
+<pre><code>{   
+    &quot;username&quot;:&quot;participant&quot;,
+    &quot;password&quot;:&quot;aadfadfdf&quot;
+}
+</code></pre>
+
+<p>Response Object</p>
+<pre><code>{
+    &quot;token&quot;: &quot;ffc0479b0021eed19271d51a803558e7d10ff286&quot;
+}
+</code></pre>
+
+<h1 id="participant">Participant</h1>
+<table>
+<thead>
+<tr>
+<th align="left"></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><strong>Description</strong></td>
+<td>Get study participants.</td>
+</tr>
+<tr>
+<td align="left"><strong>Endpoint</strong></td>
+<td>/participant/</td>
+</tr>
+<tr>
+<td align="left"><strong>Method</strong></td>
+<td>GET</td>
+</tr>
+<tr>
+<td align="left"><strong>Pagination</strong></td>
+<td>Limit Offset: This pagination style mirrors the syntax used when looking up multiple database records. The client includes both a <code>limit</code> and an <code>offset</code> query parameter. The limit indicates the maximum number of items to return, and defaults to 20 records. The offset indicates the starting position of the query in relation to the complete set of unpaginated items.</td>
+</tr>
+<tr>
+<td align="left"><strong>Authentication</strong></td>
+<td>Token</td>
+</tr>
+<tr>
+<td align="left"><strong>Response Codes</strong></td>
+<td>200 - Sucessful<br/>401 - Unauthorized <br/>400 - Bad Request</td>
+</tr>
+</tbody>
+</table>
+<p>Response Object</p>
+<pre><code>{
+  &quot;count&quot;: 20,
+  &quot;next&quot;: null,
+  &quot;previous&quot;: null,
+  &quot;results&quot;: [
+    {
+      &quot;username&quot;: &quot;testuser0&quot;,
+      &quot;first_name&quot;: &quot;Chris&quot;,
+      &quot;last_name&quot;: &quot;Smith&quot;,
+      &quot;email&quot;: &quot;fakeemail@rti.org&quot;,
+      &quot;gender&quot;: &quot;Male&quot;,
+      &quot;dob&quot;: &quot;1971-09-04&quot;
+    },
+    {
+      &quot;username&quot;: &quot;testuser1&quot;,
+      &quot;first_name&quot;: &quot;Sue&quot;,
+      &quot;last_name&quot;: &quot;Smith&quot;,
+      &quot;email&quot;: &quot;fakeemail@rti.org&quot;,
+      &quot;gender&quot;: &quot;Female&quot;,
+      &quot;dob&quot;: &quot;1983-03-04&quot;
+    },
+    ...
+    ]
+}
+
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th align="left"></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><strong>Description</strong></td>
+<td>Enroll a study participant.</td>
+</tr>
+<tr>
+<td align="left"><strong>Endpoint</strong></td>
+<td>/participant/</td>
+</tr>
+<tr>
+<td align="left"><strong>Method</strong></td>
+<td>POST</td>
+</tr>
+<tr>
+<td align="left"><strong>Authentication</strong></td>
+<td>None</td>
+</tr>
+<tr>
+<td align="left"><strong>Response Codes</strong></td>
+<td>200 - Sucessful<br/>401 - Unauthorized <br/>400 - Bad Request<br/>403 - Forbidden</td>
+</tr>
+</tbody>
+</table>
+<p>Request Object</p>
+<pre><code>{   
+    &quot;username&quot;:&quot;joeschmoe&quot;,
+    &quot;password&quot;:&quot;secretpassword&quot;,
+    &quot;first_name&quot;: &quot;Jane&quot;,
+    &quot;last_name&quot;: &quot;Doe&quot;,
+    &quot;email&quot;: &quot;joe@gmail.com&quot;,
+    &quot;gender&quot;: &quot;Male&quot;,
+    &quot;dob&quot;: &quot;9/15/1985&quot;
+}
+
+</code></pre>
+
+<h1 id="participant-consent">Participant Consent</h1>
+<table>
+<thead>
+<tr>
+<th align="left"></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><strong>Description</strong></td>
+<td>Establishes user consent to use submitted data within a scope (to be defined by study)</td>
+</tr>
+<tr>
+<td align="left"><strong>Endpoint</strong></td>
+<td>/consent/</td>
+</tr>
+<tr>
+<td align="left"><strong>Method</strong></td>
+<td>POST, PUT</td>
+</tr>
+<tr>
+<td align="left"><strong>Authentication</strong></td>
+<td>Token</td>
+</tr>
+<tr>
+<td align="left"><strong>Response Codes</strong></td>
+<td>200 - Sucessful<br/>401 - Unauthorized <br/>400 - Bad Request</td>
+</tr>
+</tbody>
+</table>
+<p>Request Object</p>
+<pre><code>{   
+    &quot;imageData&quot;:&quot;aadfadfdfadfadfafasdfas&quot;, // signature image
+    &quot;scope&quot;: &quot;no_sharing&quot;
+}
+</code></pre>
+
+<h1 id="survey-submission">Survey Submission</h1>
+<table>
+<thead>
+<tr>
+<th align="left"></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><strong>Description</strong></td>
+<td>Submit a survey response.</td>
+</tr>
+<tr>
+<td align="left"><strong>Endpoint</strong></td>
+<td>/submission/</td>
+</tr>
+<tr>
+<td align="left"><strong>Method</strong></td>
+<td>POST</td>
+</tr>
+<tr>
+<td align="left"><strong>Authentication</strong></td>
+<td>Token</td>
+</tr>
+<tr>
+<td align="left"><strong>Response Codes</strong></td>
+<td>200 - Sucessful<br/>401 - Unauthorized <br/>400 - Bad Request</td>
+</tr>
+</tbody>
+</table>
+<p>Request Object</p>
+<pre><code>{   
+
+    &quot;time_start&quot;: &quot;2015-12-17T18:52:49.963458Z&quot;,
+    &quot;time_complete&quot;: &quot;2015-12-17T18:52:49.963458Z&quot;,
+    &quot;device_id&quot;: &quot;ED2B101F-CC55-46FF-BEE5-60CC32EEC6C9&quot;,
+    &quot;lat&quot;: &quot;40.5895466&quot;,
+    &quot;long&quot;: &quot;-105.0751243&quot;,
+    &quot;response&quot;: {
+        &quot;mood category&quot;: &quot;fine&quot;,
+        &quot;mood scale&quot;: &quot;8&quot;,
+        &quot;mood image&quot;: &quot;3&quot;
+    }
+
+}
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th align="left"></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><strong>Description</strong></td>
+<td>Get survey submissions.</td>
+</tr>
+<tr>
+<td align="left"><strong>Endpoint</strong></td>
+<td>/submission/</td>
+</tr>
+<tr>
+<td align="left"><strong>Method</strong></td>
+<td>GET</td>
+</tr>
+<tr>
+<td align="left"><strong>Pagination</strong></td>
+<td>Limit Offset: This pagination style mirrors the syntax used when looking up multiple database records. The client includes both a <code>limit</code> and an <code>offset</code> query parameter. The limit indicates the maximum number of items to return, and defaults to 20 records. The offset indicates the starting position of the query in relation to the complete set of unpaginated items.</td>
+</tr>
+<tr>
+<td align="left"><strong>Authentication</strong></td>
+<td>Token</td>
+</tr>
+<tr>
+<td align="left"><strong>Response Codes</strong></td>
+<td>200 - Sucessful<br/>401 - Unauthorized <br/>400 - Bad Request</td>
+</tr>
+</tbody>
+</table>
+<p>Response Object</p>
+<pre><code>{
+  &quot;count&quot;: 105,
+  &quot;next&quot;: &quot;http://localhost:8000/submission/?limit=20&amp;offset=20&quot;,
+  &quot;previous&quot;: null,
+  &quot;results&quot;: [
+    {
+      &quot;id&quot;: 23,
+      &quot;participant&quot;: {
+        &quot;username&quot;: &quot;testuser0&quot;,
+        &quot;email&quot;: &quot;fakeemail@rti.org&quot;,
+        &quot;first_name&quot;: &quot;Piper&quot;,
+        &quot;last_name&quot;: &quot;Walters&quot;,
+        &quot;gender&quot;: &quot;Male&quot;,
+        &quot;dob&quot;: &quot;1984-05-23&quot;
+      },
+      &quot;time_start&quot;: &quot;2016-03-30T20:54:17.142617Z&quot;,
+      &quot;time_complete&quot;: &quot;2016-03-30T20:54:17.142632Z&quot;,
+      &quot;timestamp&quot;: &quot;2016-03-30T20:54:17.164977Z&quot;,
+      &quot;device_id&quot;: &quot;TEST-49D5-4CAD-AE42-E5CE922A3346&quot;,
+      &quot;response&quot;: {
+        &quot;mood image&quot;: &quot;6&quot;,
+        &quot;mood cateogry&quot;: &quot;fine&quot;,
+        &quot;mood scale&quot;: &quot;2&quot;
+      },
+      &quot;lat&quot;: 45.5423508,
+      &quot;long&quot;: -122.7945071,
+      &quot;place&quot;: &quot;Portland, OR US&quot;
+    },
+    {
+      &quot;id&quot;: 24,
+      &quot;participant&quot;: {
+        &quot;username&quot;: &quot;testuser0&quot;,
+        &quot;email&quot;: &quot;fakeemail@rti.org&quot;,
+        &quot;first_name&quot;: &quot;Piper&quot;,
+        &quot;last_name&quot;: &quot;Walters&quot;,
+        &quot;gender&quot;: &quot;Male&quot;,
+        &quot;dob&quot;: &quot;1984-05-23&quot;
+      },
+      &quot;time_start&quot;: &quot;2016-03-30T20:54:17.291626Z&quot;,
+      &quot;time_complete&quot;: &quot;2016-03-30T20:54:17.291638Z&quot;,
+      &quot;timestamp&quot;: &quot;2016-03-30T20:54:17.292202Z&quot;,
+      &quot;device_id&quot;: &quot;TEST-49D5-4CAD-AE42-E5CE922A3346&quot;,
+      &quot;response&quot;: {
+        &quot;mood image&quot;: &quot;9&quot;,
+        &quot;mood cateogry&quot;: &quot;good&quot;,
+        &quot;mood scale&quot;: &quot;7&quot;
+      },
+      &quot;lat&quot;: 39.1490189,
+      &quot;long&quot;: -107.1444289,
+      &quot;place&quot;: &quot;Marble, CO US&quot;
+    },
+    ...
+    ]
+}
+
+</code></pre>
+
+<p><em>If you are feeling adventurous, try running this in <a href="https://app.getpostman.com/run-collection/6241de2d723c0c4b8780">Postman</a>.</em></p></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            
+            <center>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</center>
+        </footer>
+
+        <script src="../js/jquery-1.10.2.min.js"></script>
+        <script src="../js/bootstrap-3.0.3.min.js"></script>
+        <script src="../js/highlight.pack.js"></script>
+        <script src="../js/base.js"></script>
+    </body>
+</html>

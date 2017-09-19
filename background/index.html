@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+
+	<title>Background - researchnet</title>
+
+        <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../css/font-awesome-4.0.3.css" rel="stylesheet">
+        <link rel="stylesheet" href="../css/highlight.css">
+        <link href="../css/base.css" rel="stylesheet">
+        <link href="../extra.css" rel="stylesheet">
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+        
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <!-- Main title -->
+            <a class="navbar-brand" href="..">researchnet</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+            <!-- Main navigation -->
+            <ul class="nav navbar-nav">
+            
+            
+                <li >
+                    <a href="..">Introduction</a>
+                </li>
+            
+            
+            
+                <li class="active">
+                    <a href="./">Background</a>
+                </li>
+            
+            
+            
+                <li >
+                    <a href="../governance/">Governance</a>
+                </li>
+            
+            
+            
+                <li >
+                    <a href="../api/">API</a>
+                </li>
+            
+            
+            
+                <li >
+                    <a href="../specifications/">Technical Specifications</a>
+                </li>
+            
+            
+            </ul>
+
+            <!-- Search, Navigation and Repo links -->
+            <ul class="nav navbar-nav navbar-right">
+                <li >
+                    <a rel="next" href="..">
+                        <i class="fa fa-arrow-left"></i> Previous
+                    </a>
+                </li>
+                <li >
+                    <a rel="prev" href="../governance/">
+                        Next <i class="fa fa-arrow-right"></i>
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+        <div class="container">
+            <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+    
+        <li class="main active"><a href="#background">Background</a></li>
+        
+            <li><a href="#research-objectives">Research Objectives</a></li>
+        
+            <li><a href="#statement-of-work">Statement of Work</a></li>
+        
+            <li><a href="#milestones">Milestones</a></li>
+        
+            <li><a href="#budget-summary">Budget Summary</a></li>
+        
+            <li><a href="#expected-results">Expected Results</a></li>
+        
+            <li><a href="#supporting-comments-from-management">Supporting Comments (from management)</a></li>
+        
+    
+    </ul>
+</div></div>
+            <div class="col-md-9" role="main">
+
+<h1 id="background">Background</h1>
+<p>Apple iOS currently controls a little over 43% of the US smartphone market, providing access to more than 79 million iPhone users in the US. The ResearchKit platform immediately garnered a great deal of interest within the biomedical research community.   </p>
+<p>As exciting as this new framework is Apple provided no guidance on how the data collected was to be stored and managed.  This is where the Biomedical Data as a Service Internal Research and Development (IR&amp;D) project comes in.  Designed and implmented by the Research Computing Division, this solution includes the following basic components: an iOS code library, a cloud-based data host, a service layer implementing data exchange application programming interfaces, and a dashboard UI for management.  Instrument developers simply include the iOS library in their IOS application code to connect to the data service via the REST based web API.  Study managers manage their datasets and perform exploratory analytics via the dashboard UI. The system design and implementation incorporates US legal and regulatory compliance with respect to data privacy and security. </p>
+<p>Apple launched its ResearchKit framework for iOS on March 9, 2015. ResearchKit is an open source software framework designed to aid in the creation of mobile apps for biomedical and health research. ResearchKit simplifies construction of highly functional apps. Support is provided for various app modules, including informed consent, passive data collection, active tasks, surveys and data dashboards. Apple iOS currently controls a little over 43% of the US smartphone market, providing access to more than 79 million iPhone users in the US. The ResearchKit platform immediately garnered a great deal of interest within the biomedical research community.</p>
+<p>Five apps developed with ResearchKit were also released at the debut press event. In March Stanford University researchers found that 11,000 people had signed up for a cardiovascular study using Apple Inc.’s ResearchKit, less than 24 hours after the iPhone tool was introduced. The Michael J. Fox Foundation for Parkinson’s Research collaborated with nonprofit group Sage Bionetworks to develop The Parkinson’s app, which had 5,589 consenting users with 24 hours of launch. These early results suggest a healthy future for biomedical research using data gathered from mobile apps, and for the ResearchKit framework. RCD has already developed a very simple ResearchKit app, but currently has no backend data service to securely receive and manage the data collected. Exhibit 1 is a screenshot of this example app. With our rich capabilities in health research, research data management, statistical analysis, and data sciences, we need to explore the potential of ResearchKit for our business. </p>
+<p>Deployed ResearchKit apps generate a great deal of data, presenting operational challenges for researchers.  Given the nature of the data, privacy and security concerns must be addressed with care. The ResearchKit framework provides no specific capabilities for dealing with these data, relying on built-in iOS functions. Apple offers no recommendations or backend service for storing, securing, managing and analyzing the data collected using ResearchKit apps. Researchers seeking to leverage this technology may not be able to easily develop deployable solutions without resolving significant technical challenges. </p>
+<p>These challenges represent an opportunity for RTI to step forward with solutions. We propose that RTI build the tools and framework necessary to provide biomedical data management for ResearchKit apps as:</p>
+<ul>
+<li>a capability offered to clients in the context of RTI-led biomedical research projects; and</li>
+<li>As an RTI-managed service offered to clients conducting their own biomedical research.</li>
+</ul>
+<p>The solution would include the following basic components: an iOS code library, a cloud-based data host, a service layer implementing data exchange APIs, and a dashboard UI for management.  Exhibit 2 is a simplified diagram showing the flow of data between ReseachKit applications, the proposed backend data service, and researchers. Implementers would include the iOS library in their app code, and connect to our data host via the service APIs.  Users would manage their datasets and perform exploratory analytics via the dashboard UI. The system design and implementation would incorporate US legal and regulatory compliance with respect to data privacy and security. </p>
+<p><img alt="Screenshot" src="../images/researchkit.png" /></p>
+<p>This project would build and demonstrate the feasibility of a service designed to gather and help analyze biomedical data from users of mobile apps developed using ResearchKit. This new capability would be a logical extension and modernization of our existing biomedical data collection, management, and research business. RTI currently cannot offer this capability to clients. 
+This new service will leverage the experience skills of our staff in research data center technologies and operations (e.g. research protocol design and oversight, human subjects research, data privacy and security, data collection and management, statistical analysis, data visualization), and should help generate business in those areas. In developing this service the project team will consult the RTI Center for Advanced Health Information Technology (CAHIT), Information Technology Services (ITS), the Institutional Review Board (IRB), and the Center for Data Sciences (CDS). This service, while developed to receive data from ResearchKit applications running on iOS mobile devices, could also serve as a backend for other mobile applications for biomedical research, such as RTI’s PHIT application.
+Examples of RTI projects that could use the new capabilities developed by this IR&amp;D project immediately include the following:</p>
+<ul>
+<li>Emerging Technology Trends, a FY2016 IR&amp;D project that will build a native iOS app for passive data collection using iBeacon or other sensor standards. </li>
+<li>Disrupting the cycle of addiction: bringing biomarkers of behavior into better treatment, An RTI Grand Challenge Proposal current being reviewed.</li>
+</ul>
+<hr />
+<h3 id="research-objectives">Research Objectives</h3>
+<ol>
+<li>
+<p>Develop the internal capability to design and develop ResearchKit framework apps, and to securely collect the data in an RTI-managed backend data service.</p>
+</li>
+<li>
+<p>Provide a platform with known capabilities and costs, increasing bid timeliness and accuracy.</p>
+</li>
+<li>
+<p>Assess privacy and security issues within framework of regulatory compliance, addressing these in the system design.</p>
+</li>
+<li>
+<p>Develop effective tools for managing and analyzing the data as they are received from ResearchKit framework apps.</p>
+</li>
+<li>
+<p>Increased RTI's scientific stature within the biomedical research community for having leading-edge data services capability.</p>
+</li>
+<li>
+<p>Provide RTI with a commercialization opportunity</p>
+</li>
+</ol>
+<hr />
+<h3 id="statement-of-work">Statement of Work</h3>
+<p>Each iteration being set based on the full objectives as well as the results of the previous iterations and related stakeholder feedback. </p>
+<p>The basic progression of tasks toward goals is listed here.  Note that these activities will be interleaved and concurrent, rather than consecutive.</p>
+<h3 id="milestones">Milestones</h3>
+<table>
+<thead>
+<tr>
+<th>October - January</th>
+<th>Planned Activities</th>
+<th>Notes/Comments</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Task 1: Establishment of product definition</td>
+<td>- Scan competitive landscape.<br/> - Review target audience needs.<br/> - Establish feature list and version plan.</td>
+<td>The project team will consult CAHIT.</td>
+</tr>
+<tr>
+<td>Task 2: Document requirements for iOS code library</td>
+<td>Document technical requirements for the iOS library component.</td>
+<td></td>
+</tr>
+<tr>
+<td>Task 3: Document basic requirements for cloud data service</td>
+<td>The project team will consult RTI-ITS and the IRB to develop and document requirements for cloud service providers.</td>
+<td>Analysis and requirements gathering for the cloud data service components</td>
+</tr>
+<tr>
+<td>Task 4: Identification of potential cloud provider/partners</td>
+<td>- Research of provider capabilities, reputation, costs, etc. <br/> - Develop short list of top provider/partner candidates.</td>
+<td>The project team will consult RTI-ITS to review requirements and assess potential cloud service providers. Potential cloud services include IBM Softlayer, Microsoft Azure, and Amazon Web Services</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>February - May</th>
+<th>Planned Activities</th>
+<th>Notes/Comments</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Task 5: Selection of cloud provider/partner</td>
+<td>- Scan competitive landscape.<br/> - Confer with stakeholders, review options and make decision.</td>
+<td>Stakeholders consulted by the project team will include RTI-ITS and the IRB.</td>
+</tr>
+<tr>
+<td>Task 6: Document detailed requirements and design for cloud data service and dashboard UI</td>
+<td>Knowing provider, develop and document requirements and system design</td>
+<td></td>
+</tr>
+<tr>
+<td>Task 7: Early data service development</td>
+<td>Kick off data service development</td>
+<td></td>
+</tr>
+<tr>
+<td>Task 8: Early dashboard UI development</td>
+<td>Kick off dashboard development</td>
+<td></td>
+</tr>
+<tr>
+<td>Task 9: Development of iOS code library</td>
+<td>Development and service integration of iOS component</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>June - September</th>
+<th>Planned Activities</th>
+<th>Notes/Comments</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Task 10: Data service development</td>
+<td>Development, testing, demo/pilot planning</td>
+<td></td>
+</tr>
+<tr>
+<td>Task 11: Dashboard UI development</td>
+<td>Development, testing, demo/pilot planning</td>
+<td></td>
+</tr>
+<tr>
+<td>Task 12: Testing data service integration with iOS components</td>
+<td>Integration testing and differential development</td>
+<td></td>
+</tr>
+<tr>
+<td>Task 13: Demo/Pilot of iOS app using data service</td>
+<td>Complete a demo app using data service integration</td>
+<td></td>
+</tr>
+<tr>
+<td>Task 14: Demo/Pilot of dashboard UI</td>
+<td>Complete a demo/pilot of dashboard app using service hosted data</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="budget-summary">Budget Summary</h3>
+<p>Research and development hours to support the activities listed above.   </p>
+<h4 id="the-basic-skill-categories">The basic skill categories</h4>
+<ul>
+<li>System analysis and design</li>
+<li>iOS development and publishing</li>
+<li>Cloud service development and operations</li>
+<li>Dashboard UI design and development</li>
+<li>Project coordination</li>
+</ul>
+<h4 id="labor-assignments">Labor assignments</h4>
+<ul>
+<li>Adam Preston, iOS prototype development, cloud services and coordination, 160 hours</li>
+<li>Chris Siege, Data visualization, 60 hours</li>
+<li>Ron Thigpen, Cloud services, analysis and coordination 100 hours</li>
+</ul>
+<h4 id="other-direct-costs-odcs">Other Direct Costs (ODCs)</h4>
+<ul>
+<li>Cloud hosting services, $100 / mo X 9 mos</li>
+<li>SSL security certificate, $50 ea X 1</li>
+<li>Domain registration, $50 ea X 1</li>
+<li>Development appliance, $600 ea X 1</li>
+</ul>
+<hr />
+<h3 id="expected-results">Expected Results</h3>
+<ol>
+<li>A working pilot data service integrating with ResearchKit apps</li>
+<li>An available iOS component library for interaction with our data service</li>
+<li>A demonstrable app built using the ResearchKit framework, our iOS library, and our data service</li>
+<li>A small dataset generated with our app</li>
+<li>Demonstrate a dashboard UI for data management and visual analysis</li>
+</ol>
+<hr />
+<h3 id="supporting-comments-from-management">Supporting Comments (from management)</h3>
+<p>Apple Inc.’s ResearchKit is a new platform for advanced medical research using Apple’s leading edge mobile devices. This platform provides access to more than 40% of smartphone users in the US. Apple’s market share in other developed countries is similar. We should take advantage of this opportunity and add this capability to our existing set of research tools.</p></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            
+            <center>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</center>
+        </footer>
+
+        <script src="../js/jquery-1.10.2.min.js"></script>
+        <script src="../js/bootstrap-3.0.3.min.js"></script>
+        <script src="../js/highlight.pack.js"></script>
+        <script src="../js/base.js"></script>
+    </body>
+</html>
