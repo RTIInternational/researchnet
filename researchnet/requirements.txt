@@ -26,3 +26,4 @@ geocoder==1.10.1
 numpy==1.11.0
 pandas==0.19.2
 pytz==2016.4
+django-debug-toolbar==1.9.1

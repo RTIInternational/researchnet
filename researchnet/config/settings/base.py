@@ -125,7 +125,6 @@ BOWER_INSTALLED_APPS = (
     'filesaver#1.3.1',
     'jquery.blockUI',
     'open-sans-fontface#1.4.2',
-    'd3-scale-chromatic#1.1.0',
     'd3-interpolate#1.1.2'
 )
 
