@@ -1,3 +1,82 @@
+.footer {
+  background-color: #404040;
+  padding: 2rem 4rem;
+  color: #fff;
+  margin-top: 50px;
+  font-size: .9em;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+  width: 100%;  
+}
+
+.footer h4 {
+  color: #fff;
+  font-size: 1em;
+  font-weight: 400;
+  text-transform: uppercase;
+  margin-top: 2.5rem;
+  margin-bottom: 10px;
+}
+.footer p, .footer a {
+  font-weight: 300;
+  font-size: .9em;
+  color: #fff;
+}
+
+@media only screen and (min-width: 40.063em) {
+  .footer .columns:nth-child(n+2) {
+    border-left: 1px solid #b3b3b3;
+
+  }
+}
+.footer-links {
+  list-style-type: none;
+}
+.footer-links li {
+  margin-top: .5em;
+}
+
+body {
+
+  font-family: 'Open Sans', sans-serif;
+}
+
+.top-bar .name h1 a, .top-bar .name h2 a, .top-bar .name h3 a, .top-bar .name h4 a, .top-bar .name p a, .top-bar .name span a {
+    color: #FFFFFF;
+    font-weight: 400;
+    line-height: 2.8125rem;
+
+}
+
+.top-bar-section ul li > a {
+    font-family: 'Open Sans', sans-serif;
+    color: #FFFFFF;
+    display: block;
+    font-size: 0.9125rem;
+    padding-left: 0.9375rem;
+    padding: 12px 0 12px 0.9375rem;
+    text-transform: none;
+    width: 100%;
+    
+}
+
+.top-bar .name h1, .top-bar .name h2, .top-bar .name h3, .top-bar .name h4, .top-bar .name p, .top-bar .name span {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 24px;
+    line-height: 2.8125rem;
+    margin: 0; 
+}
+
+.dashboard-control {
+  margin-top:25px;
+}
+
+.style3 {
+    font-size: 25px;
+    color: #ffdf80; 
+
+}
 
 
 
