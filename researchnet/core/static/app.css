@@ -4,6 +4,9 @@
   color: #fff;
   margin-top: 50px;
   font-size: .9em;
+  bottom: 0;
+  position: fixed;
+  width: 100%;
 }
 
 .footer h4 {
