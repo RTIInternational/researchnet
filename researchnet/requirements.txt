@@ -1,5 +1,5 @@
 click==5.1
-Django==1.10
+Django==1.11.20
 django-appconf==1.0.1
 django-bower==5.2.0
 django-compressor==1.6
@@ -7,13 +7,13 @@ django-extensions==1.6.6
 djangorestframework==3.5.3
 django-cors-headers==1.1.0
 gunicorn>=19.5.0
-Jinja2==2.8
+Jinja2==2.10.1
 livereload==2.4.0
 Markdown==2.6.2
 MarkupSafe==0.23
 mkdocs==0.14.0
 psycopg2==2.7.3.1
-PyYAML==3.11
+PyYAML==4.2b1
 six==1.9.0
 tornado==4.2.1
 Werkzeug==0.10.4
