@@ -6,7 +6,6 @@ The `urlpatterns` list routes URLs to views. For more information please see:
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-from django.contrib.auth.views import login, logout
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 from rest_framework import routers
@@ -24,7 +23,7 @@ urlpatterns = [
     url(r'^enrollments/$', dashboard.views.enrollment),
     url(r'^export_submissions/$', dashboard.views.export_submissions),
     url(r'^export_enrollees/$', dashboard.views.export_enrollees),
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'^admin/', admin.site.urls),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^accounts/login/$', dashboard.views.login_view, name='login'),
     url(r'^logout/$', dashboard.views.logout_view, name='logout'),

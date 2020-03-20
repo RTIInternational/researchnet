@@ -9,7 +9,7 @@ from rest_framework.authtoken.models import Token
 import geocoder
 
 class Submission(models.Model):
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     time_start = models.DateTimeField(default=datetime.now)
     time_complete = models.DateTimeField(default=datetime.now)
     timestamp = models.DateTimeField(db_index=True, auto_now_add=True)
