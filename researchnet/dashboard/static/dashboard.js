@@ -48,8 +48,9 @@
                     $('#messageLine').html(
                         '<p class="errorMessage">An error has occurred that may prevent this page from working correctly. '
                         + 'Please use the support information under About this page to get help.<br/>Details:'
-                        + 'No records returned from the API call.'
+                        + 'No records returned from the API call..'
                         + '</p>');
+                        
                     return console.warn(error);
                 }
 

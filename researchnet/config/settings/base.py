@@ -27,8 +27,6 @@ SECRET_KEY = '!dfk(&=25el=cf!=tzm2m4q+ym8#f-c7=q_r)7#b1#!_%gokw@'
 
 ALLOWED_HOSTS = []
 
-
-
 # Application definition
 INSTALLED_APPS = (
     
