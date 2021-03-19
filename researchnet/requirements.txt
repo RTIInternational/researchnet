@@ -7,7 +7,7 @@ django-extensions==2.2.8
 djangorestframework==3.11.0
 django-cors-headers==3.2.1
 gunicorn>=20.0.4
-Jinja2==2.10.1
+Jinja2==2.11.3
 livereload==2.4.0
 Markdown==2.6.2
 MarkupSafe==0.23
