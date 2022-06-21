@@ -22,7 +22,7 @@ South==1.0.2
 httpie==2.0.0
 Pillow>=3.3.2
 geocoder==1.10.1
-numpy==1.18.2 
+numpy==1.22.0 
 pandas==1.0.3 
 rjsmin==1.1.0
 pytz==2019.3
